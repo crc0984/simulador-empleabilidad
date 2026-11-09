@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descubriendo el Taller del Doctor Demente | Salud Mental & Alto Impacto</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            demente: {
+              base: '#060714',
+              surface: '#0E1026',
+              card: 'rgba(18, 21, 48, 0.75)',
+              border: 'rgba(255, 255, 255, 0.12)',
+              cyan: '#29B6F6',
+              purple: '#9B4DCA',
+              magenta: '#E040FB',
+              neonPink: '#FF2A85',
+              green: '#00E676'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #060714;
+      background-image: 
+        radial-gradient(circle at 18% 15%, rgba(155, 77, 202, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 82% 20%, rgba(41, 182, 246, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(224, 64, 251, 0.15) 0%, transparent 50%);
+      color: #E2E8F0;
+    }
+    .neon-card {
+      background: rgba(14, 16, 38, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .neon-card:hover {
+      border-color: rgba(41, 182, 246, 0.45);
+      box-shadow: 0 10px 30px -10px rgba(41, 182, 246, 0.25);
+    }
+    .gradient-hero-title {
+      background: linear-gradient(135deg, #FFFFFF 30%, #E040FB 70%, #29B6F6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-pill-btn {
+      background: linear-gradient(90deg, #9B4DCA 0%, #29B6F6 100%);
+      transition: all 0.3s ease;
+    }
+    .gradient-pill-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -6px rgba(155, 77, 202, 0.55);
+    }
+    .psi-glow {
+      filter: drop-shadow(0 0 16px rgba(41, 182, 246, 0.6)) drop-shadow(0 0 32px rgba(155, 77, 202, 0.4));
+    }
+    .pulse-line {
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: pulseDraw 3s linear infinite;
+    }
+    @keyframes pulseDraw {
+      0% { stroke-dashoffset: 600; }
+      50% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -600; }
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-demente-magenta selection:text-white relative overflow-x-hidden">
+
+  <!-- WRAPPER PRINCIPAL ESTILO STITCH -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 lg:py-10">
+
+    <!-- FRAME CONTENEDOR CON BORDE NEÓN REDONDEADO -->
+    <div class="neon-card rounded-[2.5rem] p-6 sm:p-10 border border-white/15 relative overflow-hidden shadow-2xl">
+      
+      <!-- NAVBAR -->
+      <nav class="flex items-center justify-between gap-4 pb-8 border-b border-white/10">
+        <!-- BRAND LOGO -->
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-demente-purple to-demente-cyan p-0.5 shadow-lg shadow-demente-purple/40">
+            <div class="w-full h-full rounded-[14px] bg-demente-base flex items-center justify-center font-display font-black text-xl text-white">
+              Ψ
+            </div>
+          </div>
+          <span class="font-display font-bold text-xl text-white tracking-wide">Doctor Demente</span>
+        </div>
+
+        <!-- LINKS -->
+        <div class="hidden lg:flex items-center gap-7 text-xs sm:text-sm font-medium text-slate-300">
+          <a href="#programa" class="hover:text-demente-cyan transition-colors">Navegación</a>
+          <a href="#como-funciona" class="hover:text-demente-cyan transition-colors">Pacientes</a>
+          <a href="#como-funciona" class="hover:text-demente-cyan transition-colors">Terapias</a>
+          <a href="#expertos" class="hover:text-demente-cyan transition-colors">Soluciones</a>
+          <a href="#sobre-mi" class="hover:text-demente-cyan transition-colors">Sobre mí</a>
+        </div>
+
+        <!-- LOGIN / AGENDAR -->
+        <div>
+          <a href="https://wa.me/573104692473?text=Hola%20Doctor%20Demente,%20deseo%20agendar%20mi%20sesi%C3%B3n" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-full text-xs font-semibold text-slate-200 border border-white/20 hover:border-demente-cyan/60 hover:text-white bg-white/5 transition-all">
+            Iniciar sesión / Agendar cita
+          </a>
+        </div>
+      </nav>
+
+      <!-- HERO BANNER CON ALAS PSICOLOGÍA NEÓN & EKG -->
+      <div class="pt-10 pb-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative">
+        <div class="lg:col-span-8 space-y-4">
+          <h1 class="text-3xl sm:text-5xl lg:text-5xl font-display font-black leading-tight tracking-tight text-white">
+            Descubriendo el Taller <br>
+            <span class="gradient-hero-title">del Doctor Demente</span>
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-light">
+            Un programa intensivo de 4 semanas diseñado para explorar los límites de la mente, sanar y desbloquear el potencial de tu mente con métodos y desafíos innovadores.
+          </p>
+        </div>
+
+        <!-- ALAS NEÓN Ψ & PULSO GRÁFICO -->
+        <div class="lg:col-span-4 flex items-center justify-center relative">
+          <!-- Símbolo Ψ con Alas Neón -->
+          <div class="relative w-64 h-36 flex items-center justify-center">
+            <svg class="w-full h-full psi-glow" viewBox="0 0 300 150" fill="none">
+              <!-- EKG Línea de fondo -->
+              <path class="pulse-line stroke-demente-magenta" stroke-width="2.5" d="M10 75 H90 L105 30 L115 110 L125 50 L135 85 L145 75 H290" />
+              <!-- Alas estilizadas Neón -->
+              <path d="M150 75 C120 20, 40 10, 10 40 C45 60, 90 70, 135 80 Z" fill="url(#wingGrad1)" opacity="0.85"/>
+              <path d="M150 75 C180 20, 260 10, 290 40 C255 60, 210 70, 165 80 Z" fill="url(#wingGrad2)" opacity="0.85"/>
+              <!-- Símbolo Psi central -->
+              <text x="150" y="85" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="bold" font-size="52" fill="#E040FB">Ψ</text>
+              <defs>
+                <linearGradient id="wingGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#29B6F6" />
+                  <stop offset="100%" stop-color="#9B4DCA" />
+                </linearGradient>
+                <linearGradient id="wingGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#9B4DCA" />
+                  <stop offset="100%" stop-color="#29B6F6" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN INTERACTIVA: RUTA DE 4 PASOS + EXPERTOS + QUIÉNES ASISTEN -->
+      <div id="como-funciona" class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-4 pb-8">
+        
+        <!-- CARD 1: CÓMO FUNCIONA / RUTA DE 4 PASOS -->
+        <div class="lg:col-span-6 neon-card rounded-3xl p-6 sm:p-7 border border-white/10 space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-display font-bold text-xl text-white">Cómo funciona</h2>
+              <span class="text-xs text-demente-cyan font-mono">Ruta de 4 pasos</span>
+            </div>
+            <div class="grid grid-cols-2 gap-1 text-demente-magenta">
+              <span class="w-2.5 h-2.5 rounded-sm bg-demente-purple"></span>
+              <span class="w-2.5 h-2.5 rounded-sm bg-demente-cyan"></span>
+              <span class="w-2.5 h-2.5 rounded-sm bg-demente-cyan"></span>
+              <span class="w-2.5 h-2.5 rounded-sm bg-demente-purple"></span>
+            </div>
+          </div>
+
+          <div class="space-y-4 text-xs sm:text-sm">
+            <!-- Paso 1 -->
+            <div class="flex items-start gap-3.5 p-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-demente-cyan/30 transition-all">
+              <div class="w-7 h-7 rounded-lg bg-demente-purple/30 border border-demente-purple text-white flex items-center justify-center font-bold text-xs shrink-0">1</div>
+              <div>
+                <h3 class="font-bold text-white text-sm">Evaluación Mental y Emocional</h3>
+                <p class="text-slate-400 text-xs mt-0.5">Identifica bloqueos, patrones y optimiza tu mente con rigor clínico.</p>
+              </div>
+            </div>
+
+            <!-- Paso 2 -->
+            <div class="flex items-start gap-3.5 p-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-demente-cyan/30 transition-all">
+              <div class="w-7 h-7 rounded-lg bg-demente-cyan/30 border border-demente-cyan text-white flex items-center justify-center font-bold text-xs shrink-0">2</div>
+              <div>
+                <h3 class="font-bold text-white text-sm">Terapias y Desafíos Intensivos</h3>
+                <p class="text-slate-400 text-xs mt-0.5">Inmersión en técnicas de autoconocimiento, sombra junguiana y resiliencia mental.</p>
+              </div>
+            </div>
+
+            <!-- Paso 3 -->
+            <div class="flex items-start gap-3.5 p-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-demente-cyan/30 transition-all">
+              <div class="w-7 h-7 rounded-lg bg-demente-magenta/30 border border-demente-magenta text-white flex items-center justify-center font-bold text-xs shrink-0">3</div>
+              <div>
+                <h3 class="font-bold text-white text-sm">Simulacros y Mentoría Psicológica</h3>
+                <p class="text-slate-400 text-xs mt-0.5">Retroalimentación en tiempo real para superar barreras y disonancias cognitivas.</p>
+              </div>
+            </div>
+
+            <!-- Paso 4 -->
+            <div class="flex items-start gap-3.5 p-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-demente-cyan/30 transition-all">
+              <div class="w-7 h-7 rounded-lg bg-demente-green/30 border border-demente-green text-white flex items-center justify-center font-bold text-xs shrink-0">4</div>
+              <div>
+                <h3 class="font-bold text-white text-sm">Integración y Liberación Directa</h3>
+                <p class="text-slate-400 text-xs mt-0.5">Conéctate con procesos de transformación profunda, propósito y salud mental de alto impacto.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: EXPERTOS + AUDIENCIA OBJETIVO -->
+        <div class="lg:col-span-6 space-y-6 flex flex-col justify-between">
+          
+          <!-- APRENDE DE LOS EXPERTOS -->
+          <div id="expertos" class="neon-card rounded-3xl p-6 sm:p-7 border border-white/10 space-y-4">
+            <h2 class="font-display font-bold text-lg text-white">Aprende de los Expertos</h2>
+            <div class="grid grid-cols-2 gap-4">
+              <!-- Dr. Demente -->
+              <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5 text-center space-y-2 hover:border-demente-purple/40 transition-all">
+                <div class="w-16 h-16 rounded-full mx-auto p-1 bg-gradient-to-tr from-demente-purple to-demente-cyan shadow-md">
+                  <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-2xl font-bold">
+                    👨‍⚕️
+                  </div>
+                </div>
+                <div class="font-display font-bold text-white text-sm">Dr. Demente</div>
+                <div class="text-[11px] text-demente-cyan font-medium">Mentor de Psicología y Mente</div>
+              </div>
+
+              <!-- Dra. Psyche -->
+              <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5 text-center space-y-2 hover:border-demente-magenta/40 transition-all">
+                <div class="w-16 h-16 rounded-full mx-auto p-1 bg-gradient-to-tr from-demente-magenta to-demente-cyan shadow-md">
+                  <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-2xl font-bold">
+                    👩‍⚕️
+                  </div>
+                </div>
+                <div class="font-display font-bold text-white text-sm">Dra. Psyche</div>
+                <div class="text-[11px] text-demente-magenta font-medium">Mentora de Resiliencia</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ¿QUIÉNES PUEDEN ASISTIR? -->
+          <div class="neon-card rounded-3xl p-6 sm:p-7 border border-white/10 space-y-3">
+            <div class="flex items-center gap-2.5 text-demente-cyan font-display font-bold text-base">
+              <span class="material-symbols-outlined text-demente-cyan text-xl">group</span>
+              ¿Quiénes Pueden Asistir?
+            </div>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+              Buscadores de cambio profundo, mentes inquietas que buscan superar barreras mentales y emocionales, profesionales de alto rendimiento y cualquiera que desee desbloquear su potencial psicológico.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ESTADÍSTICAS Y DATOS DESTACADOS -->
+      <div class="pt-2 pb-8">
+        <h3 class="text-center font-display font-bold text-base sm:text-lg text-slate-200 mb-6">
+          Estadísticas y Datos Destacados
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <!-- Stat 1 -->
+          <div class="neon-card rounded-2xl p-5 border border-white/10 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-demente-purple/20 border border-demente-purple/40 text-demente-magenta flex items-center justify-center text-2xl shrink-0">
+              🧠
+            </div>
+            <div>
+              <div class="text-2xl font-display font-black text-white">100%</div>
+              <div class="text-xs text-slate-400">Transformación Personal</div>
+            </div>
+          </div>
+
+          <!-- Stat 2 -->
+          <div class="neon-card rounded-2xl p-5 border border-white/10 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-demente-cyan/20 border border-demente-cyan/40 text-demente-cyan flex items-center justify-center text-2xl shrink-0">
+              💬
+            </div>
+            <div>
+              <div class="text-2xl font-display font-black text-white">Interactivos</div>
+              <div class="text-xs text-slate-400">Grupos de Apoyo</div>
+            </div>
+          </div>
+
+          <!-- Stat 3 -->
+          <div class="neon-card rounded-2xl p-5 border border-white/10 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-demente-green/20 border border-demente-green/40 text-demente-green flex items-center justify-center text-2xl shrink-0">
+              📈
+            </div>
+            <div>
+              <div class="text-2xl font-display font-black text-white">+84%</div>
+              <div class="text-xs text-slate-400">Tasa de Sanación y Éxito</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER ACTIONS & PAINT DRIP ACCENTS -->
+      <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 relative">
+        <!-- BOTÓN PRINCIPAL GRADIENT -->
+        <a href="https://wa.me/573104692473?text=Hola%20Doctor%20Demente,%20deseo%20registrarme%20en%20el%20pr%C3%B3ximo%20Taller" target="_blank" rel="noopener" class="gradient-pill-btn w-full sm:w-auto px-8 py-3.5 rounded-full font-display font-bold text-sm sm:text-base text-white text-center shadow-lg">
+          Regístrate en el Próximo Taller
+        </a>
+
+        <!-- BOTONES SECUNDARIOS -->
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <a href="https://wa.me/573104692473?text=Deseo%20postularme%20como%20paciente" target="_blank" rel="noopener" class="w-1/2 sm:w-auto px-5 py-2.5 rounded-full text-xs font-semibold text-slate-300 border border-white/15 hover:border-white/30 hover:text-white bg-white/5 transition-all text-center">
+            Postularse como Paciente
+          </a>
+          <a href="https://wa.me/573104692473?text=Deseo%20unirme%20como%20colaborador" target="_blank" rel="noopener" class="w-1/2 sm:w-auto px-5 py-2.5 rounded-full text-xs font-semibold text-slate-300 border border-white/15 hover:border-white/30 hover:text-white bg-white/5 transition-all text-center">
+            Unirse como Colaborador
+          </a>
+        </div>
+      </div>
+
+      <!-- DECORACIÓN NEÓN DRIP EN LA BASE -->
+      <div class="pt-6 flex justify-center opacity-70">
+        <div class="w-3/4 h-1.5 bg-gradient-to-r from-transparent via-demente-magenta via-demente-cyan to-transparent rounded-full blur-sm"></div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
