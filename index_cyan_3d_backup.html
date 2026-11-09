@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador Interactivo de Empleabilidad | Socialab & iD Top Talent</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0A0B1A',
+              card: '#12152B',
+              surface: '#1A1E3B',
+              purple: '#9B4DCA',
+              cyan: '#29B6F6',
+              coral: '#FF6A3D',
+              green: '#10B981',
+              border: 'rgba(255, 255, 255, 0.12)'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+            mono: ['Space Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0A0B1A;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(155, 77, 202, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(41, 182, 246, 0.12) 0%, transparent 40%);
+    }
+    .glass-card {
+      background: rgba(18, 21, 43, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .glass-card:hover {
+      border-color: rgba(155, 77, 202, 0.4);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #9B4DCA 0%, #29B6F6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-btn {
+      background: linear-gradient(135deg, #9B4DCA 0%, #29B6F6 100%);
+      transition: all 0.3s ease;
+    }
+    .gradient-btn:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(155, 77, 202, 0.5);
+    }
+    input[type=range]::-webkit-slider-thumb {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: #29B6F6;
+      cursor: pointer;
+      -webkit-appearance: none;
+      box-shadow: 0 0 10px rgba(41, 182, 246, 0.8);
+    }
+  </style>
+</head>
+<body class="text-slate-100 font-sans antialiased selection:bg-brand-purple selection:text-white">
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50 glass-card border-b border-brand-border/40 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl gradient-btn flex items-center justify-center font-display font-extrabold text-xl text-white shadow-lg shadow-brand-purple/30">
+          iD
+        </div>
+        <div>
+          <span class="font-display font-bold text-lg text-white tracking-tight">Top Talent</span>
+          <span class="text-xs text-brand-cyan font-mono block -mt-1">Socialab S.A.S.</span>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#experiencia-3d" class="hover:text-brand-cyan transition-colors flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>Visor 3D C-Level</a>
+        <a href="#diagnostico" class="hover:text-brand-cyan transition-colors">Autodiagnóstico M-DEM</a>
+        <a href="#auditoria-ats" class="hover:text-brand-cyan transition-colors">Simulador ATS</a>
+        <a href="#sala-entrevista" class="hover:text-brand-cyan transition-colors flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-coral animate-ping"></span>Sala de Entrevista</a>
+        <a href="#ruta-maed" class="hover:text-brand-cyan transition-colors">Ruta MAED (6 Talleres)</a>
+        <a href="#modelo-negocio" class="hover:text-brand-cyan transition-colors">Modelo de Negocio</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- REDES SOCIALES OFICIALES -->
+        <a href="https://www.tiktok.com/@eldoctordemente" target="_blank" rel="noopener" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all hover:scale-105 border border-white/10" title="TikTok Oficial @eldoctordemente">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@ElDOCTORDEMENTETIKTOK" target="_blank" rel="noopener" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-red-500 transition-all hover:scale-105 border border-white/10" title="Canal de YouTube @ElDOCTORDEMENTETIKTOK">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="#diagnostico" class="gradient-btn px-4 py-2 rounded-lg text-sm font-semibold text-white">
+          Probar Simulador
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="max-w-7xl mx-auto px-6 pt-16 pb-20 text-center relative">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-surface border border-brand-border text-xs font-mono text-brand-cyan mb-6">
+      <span class="w-2 h-2 rounded-full bg-brand-coral animate-pulse"></span>
+      PSICOLOGÍA ORGANIZACIONAL + INTELIGENCIA ARTIFICIAL
+    </div>
+
+    <h1 class="text-4xl sm:text-6xl font-display font-extrabold max-w-4xl mx-auto leading-tight tracking-tight mb-6">
+      ¿Tu hoja de vida la lee un reclutador o la descarta un <span class="gradient-text">filtro ATS en 3 segundos?</span>
+    </h1>
+
+    <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
+      La plataforma interactiva desarrollada por <strong>Cristian Castañeda</strong> para <strong>Socialab</strong>. Diagnostica tu compatibilidad con algoritmos, domina el método STAR y activa el modelo de negocio avalado para ferias de empleo.
+    </p>
+
+    <!-- LIVE STATS STRIP -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+      <div class="glass-card p-4 rounded-2xl text-center">
+        <div class="text-2xl sm:text-3xl font-display font-bold text-white">6</div>
+        <div class="text-xs text-slate-400 uppercase tracking-wider font-mono mt-1">Talleres MAED</div>
+      </div>
+      <div class="glass-card p-4 rounded-2xl text-center">
+        <div class="text-2xl sm:text-3xl font-display font-bold text-brand-cyan">120 min</div>
+        <div class="text-xs text-slate-400 uppercase tracking-wider font-mono mt-1">Metodología Andragógica</div>
+      </div>
+      <div class="glass-card p-4 rounded-2xl text-center">
+        <div class="text-2xl sm:text-3xl font-display font-bold text-brand-purple">M-DEM</div>
+        <div class="text-xs text-slate-400 uppercase tracking-wider font-mono mt-1">Modelo Multidimensional</div>
+      </div>
+      <div class="glass-card p-4 rounded-2xl text-center">
+        <div class="text-2xl sm:text-3xl font-display font-bold text-brand-coral">100%</div>
+        <div class="text-xs text-slate-400 uppercase tracking-wider font-mono mt-1">Foco en Empleabilidad</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECCIÓN 1: AUTODIAGNÓSTICO M-DEM INTERACTIVO -->
+  <section id="diagnostico" class="max-w-7xl mx-auto px-6 py-16">
+    <div class="text-center mb-12">
+      <span class="text-brand-purple font-mono text-xs uppercase tracking-widest font-bold">MÓDULO INTERACTIVO 01</span>
+      <h2 class="text-3xl sm:text-4xl font-display font-bold mt-2">Diagnóstico de Empleabilidad Multidimensional (M-DEM)</h2>
+      <p class="text-slate-400 max-w-xl mx-auto mt-2 text-sm">Ajusta los 4 indicadores según tu estado actual para obtener tu índice de empleabilidad en tiempo real.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- SLIDERS DE EVALUACIÓN -->
+      <div class="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl space-y-6">
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="font-medium text-sm text-slate-200">1. Optimización ATS y Palabras Clave</label>
+            <span id="val-ats" class="font-mono text-brand-cyan text-sm font-bold">70%</span>
+          </div>
+          <input type="range" id="slider-ats" min="0" max="100" value="70" class="w-full h-2 bg-brand-surface rounded-lg appearance-none cursor-pointer" oninput="calculateScore()">
+          <p class="text-xs text-slate-400 mt-1">Estructura sin tablas, encabezados limpios, keywords del perfil laboral.</p>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="font-medium text-sm text-slate-200">2. Marca Personal & LinkedIn (E.P.B.)</label>
+            <span id="val-brand" class="font-mono text-brand-purple text-sm font-bold">60%</span>
+          </div>
+          <input type="range" id="slider-brand" min="0" max="100" value="60" class="w-full h-2 bg-brand-surface rounded-lg appearance-none cursor-pointer" oninput="calculateScore()">
+          <p class="text-xs text-slate-400 mt-1">Especialidad, Propuesta de valor, Beneficio cuantificable y red activa.</p>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="font-medium text-sm text-slate-200">3. Dominio del Método STAR en Entrevistas</label>
+            <span id="val-star" class="font-mono text-brand-coral text-sm font-bold">50%</span>
+          </div>
+          <input type="range" id="slider-star" min="0" max="100" value="50" class="w-full h-2 bg-brand-surface rounded-lg appearance-none cursor-pointer" oninput="calculateScore()">
+          <p class="text-xs text-slate-400 mt-1">Capacidad de responder preguntas conductuales: Situación, Tarea, Acción y Resultado.</p>
+        </div>
+
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="font-medium text-sm text-slate-200">4. Prospección Activa y Uso Ético de IA</label>
+            <span id="val-strategy" class="font-mono text-brand-green text-sm font-bold">65%</span>
+          </div>
+          <input type="range" id="slider-strategy" min="0" max="100" value="65" class="w-full h-2 bg-brand-surface rounded-lg appearance-none cursor-pointer" oninput="calculateScore()">
+          <p class="text-xs text-slate-400 mt-1">Prompts avanzados en ChatGPT/Gemini respetando el código deontológico (Ley 1090).</p>
+        </div>
+      </div>
+
+      <!-- RADAR / RESULTADO DINÁMICO -->
+      <div class="lg:col-span-5 glass-card p-8 rounded-3xl text-center border-brand-purple/30 relative overflow-hidden">
+        <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">Índice Global de Empleabilidad</div>
+        
+        <!-- Score Circular Visual -->
+        <div class="relative w-44 h-44 mx-auto my-4 flex items-center justify-center">
+          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,0.08)" stroke-width="10" fill="transparent" />
+            <circle id="score-circle" cx="50" cy="50" r="42" stroke="url(#circleGradient)" stroke-width="10" fill="transparent" stroke-dasharray="264" stroke-dashoffset="100" stroke-linecap="round" class="transition-all duration-500 ease-out" />
+            <defs>
+              <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#9B4DCA" />
+                <stop offset="100%" stop-color="#29B6F6" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="absolute flex flex-col items-center">
+            <span id="total-score" class="text-4xl font-display font-extrabold text-white">61</span>
+            <span class="text-xs font-mono text-brand-cyan">PUNTOS / 100</span>
+          </div>
+        </div>
+
+        <div id="diagnostic-verdict" class="mt-4 p-4 rounded-2xl bg-brand-surface/60 border border-brand-border text-left">
+          <div class="font-bold text-white text-sm flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-cyan"></span>
+            Diagnóstico: Perfil en Fase de Consolidación
+          </div>
+          <p id="diagnostic-desc" class="text-xs text-slate-300 mt-2">
+            Tu hoja de vida tiene potencial pero requiere enriquecer métricas cuantificables en los logros para no ser descartada por los filtros ATS.
+          </p>
+        </div>
+
+        <a href="#ruta-maed" class="mt-6 block w-full py-3 rounded-xl gradient-btn text-sm font-bold text-white shadow-lg shadow-brand-purple/20">
+          Ver Plan de Nivelación Recomendado ➔
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: SIMULADOR DE AUDITORÍA ATS EN VIVO -->
+  <section id="auditoria-ats" class="max-w-7xl mx-auto px-6 py-16 border-t border-brand-border/40">
+    <div class="text-center mb-12">
+      <span class="text-brand-cyan font-mono text-xs uppercase tracking-widest font-bold">MÓDULO INTERACTIVO 02</span>
+      <h2 class="text-3xl sm:text-4xl font-display font-bold mt-2">Simulador de Auditoría de CV ATS</h2>
+      <p class="text-slate-400 max-w-xl mx-auto mt-2 text-sm">Pega un fragmento de tu experiencia laboral o perfil para evaluar verbos de acción, métricas e impacto.</p>
+    </div>
+
+    <div class="max-w-4xl mx-auto glass-card p-6 sm:p-8 rounded-3xl">
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-slate-300 mb-2">Pega aquí una viñeta de logro o resumen profesional:</label>
+        <textarea id="cv-input" rows="4" class="w-full bg-brand-dark/90 border border-brand-border rounded-2xl p-4 text-sm text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="Ejemplo: Lideré la optimización de procesos logísticos, reduciendo tiempos de espera en un 22% mediante análisis de datos y metodologías ágiles."></textarea>
+      </div>
+
+      <div class="flex flex-wrap gap-3 items-center justify-between">
+        <div class="flex gap-2">
+          <button onclick="loadSampleText(1)" class="px-3 py-1.5 rounded-lg bg-brand-surface hover:bg-slate-700 text-xs text-slate-300 border border-brand-border">Ejemplo Débil</button>
+          <button onclick="loadSampleText(2)" class="px-3 py-1.5 rounded-lg bg-brand-surface hover:bg-slate-700 text-xs text-slate-300 border border-brand-border">Ejemplo de Alto Impacto</button>
+        </div>
+        <button onclick="auditCV()" class="gradient-btn px-6 py-2.5 rounded-xl font-semibold text-sm text-white flex items-center gap-2">
+          <span>⚡ Auditar con Algoritmo ATS</span>
+        </button>
+      </div>
+
+      <!-- RESULTADOS DE AUDITORÍA -->
+      <div id="audit-results" class="mt-8 pt-6 border-t border-brand-border/50 hidden">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border">
+            <span class="text-xs font-mono text-slate-400 uppercase">Score de Impacto</span>
+            <div id="audit-score" class="text-2xl font-bold font-display text-brand-cyan mt-1">0%</div>
+          </div>
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border">
+            <span class="text-xs font-mono text-slate-400 uppercase">Verbos de Acción</span>
+            <div id="action-verbs-count" class="text-2xl font-bold font-display text-brand-purple mt-1">0 detectados</div>
+          </div>
+          <div class="p-4 rounded-xl bg-brand-surface border border-brand-border">
+            <span class="text-xs font-mono text-slate-400 uppercase">Métricas Numéricas</span>
+            <div id="metrics-count" class="text-2xl font-bold font-display text-brand-coral mt-1">0 detectadas</div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-brand-dark border border-brand-border">
+          <div class="text-xs font-mono text-slate-400 uppercase mb-2">Diagnóstico de la IA:</div>
+          <p id="audit-feedback" class="text-sm text-slate-200"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2.5: SALA DE ENTREVISTA VIRTUAL INMERSIVA (MÉTODO STAR EN VIVO) -->
+  <section id="sala-entrevista" class="max-w-7xl mx-auto px-6 py-16 border-t border-brand-border/40 relative">
+    <div class="text-center mb-10">
+      <span class="text-brand-coral font-mono text-xs uppercase tracking-widest font-bold">SIMULADOR INMERSIVO EN TIEMPO REAL</span>
+      <h2 class="text-3xl sm:text-4xl font-display font-bold mt-2">Sala de Entrevista Virtual (Método STAR)</h2>
+      <p class="text-slate-400 max-w-2xl mx-auto mt-2 text-sm">Entrénate en un entorno inmersivo frente a un reclutador virtual. Desarrolla respuestas estructuradas bajo la metodología STAR para impactar en paneles de selección de alta exigencia.</p>
+    </div>
+
+    <!-- CABINA DE ENTREVISTA CON ATMÓSFERA VISUAL -->
+    <div class="glass-card rounded-3xl border border-brand-border overflow-hidden shadow-2xl relative">
+      <!-- HEADER DE LA SESIÓN DE VIDEOLLAMADA / ENTREVISTA -->
+      <div class="bg-brand-surface/90 px-6 py-3 border-b border-brand-border/60 flex items-center justify-between text-xs font-mono">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 text-brand-coral font-bold bg-brand-coral/10 px-2.5 py-1 rounded-full border border-brand-coral/30">
+            <span class="w-2 h-2 rounded-full bg-brand-coral animate-ping"></span>
+            REC • EVALUACIÓN EN CURSO
+          </span>
+          <span class="text-slate-400 hidden sm:inline">Panel: Selección Directiva &amp; Tech</span>
+        </div>
+        <div class="flex items-center gap-4 text-slate-300">
+          <span>Tiempo: <strong class="text-white font-mono">03:42</strong></span>
+          <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30">Audio HD Conectado</span>
+        </div>
+      </div>
+
+      <!-- CUERPO DE LA SALA DE ENTREVISTA -->
+      <div class="p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- LADO IZQUIERDO: EL ENTREVISTADOR Y LA SITUACIÓN -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="rounded-2xl overflow-hidden border border-brand-border/70 relative bg-slate-900 group">
+            <!-- Imagen inmersiva de ambiente de entrevista profesional -->
+            <div class="h-56 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80');">
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"></div>
+              <div class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur text-xs font-mono text-slate-200 border border-white/10">
+                👤 Dra. Camila Méndez — Head of Talent
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <span class="text-xs font-mono text-brand-cyan uppercase tracking-wider block">Pregunta de Selección Activa:</span>
+                <p id="interview-question" class="text-sm font-medium text-white leading-snug drop-shadow-md">
+                  "Cuéntame sobre una ocasión donde un proyecto crítico estuvo al borde del colapso por resistencia del equipo o fallos técnicos, y cómo lograste revertir el resultado."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selector de situaciones de entrevista -->
+          <div class="p-4 rounded-2xl bg-brand-surface/60 border border-brand-border text-xs">
+            <span class="font-mono text-slate-400 uppercase block mb-2 font-bold">Cambiar Escenario de Entrevista:</span>
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="setInterviewScenario(1)" class="px-3 py-2 rounded-xl bg-white/5 hover:bg-brand-purple/20 border border-white/10 hover:border-brand-purple/40 text-left transition-all">
+                <strong class="block text-white">Liderazgo en Crisis</strong>
+                <span class="text-slate-400">Presión y plazos</span>
+              </button>
+              <button onclick="setInterviewScenario(2)" class="px-3 py-2 rounded-xl bg-white/5 hover:bg-brand-cyan/20 border border-white/10 hover:border-brand-cyan/40 text-left transition-all">
+                <strong class="block text-white">Adopción de IA</strong>
+                <span class="text-slate-400">Innovación y ética</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- LADO DERECHO: CONSTRUCTOR DE RESPUESTA MÉTODO STAR -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-md bg-brand-purple/20 text-brand-purple font-mono font-bold text-xs border border-brand-purple/30">MÉTODO STAR</span>
+              <span class="text-xs text-slate-400">Estructura tu respuesta en 4 pilares:</span>
+            </div>
+            <button onclick="loadSTARSample()" class="text-xs font-mono text-brand-cyan hover:underline">
+              Cargar ejemplo óptimo
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border">
+              <label class="font-bold text-brand-purple block mb-1 font-mono">[S] Situación (Contexto)</label>
+              <input id="star-s" type="text" placeholder="¿Dónde ocurrió? ¿Cuál era el reto inicial?" class="w-full bg-brand-dark border border-brand-border rounded-lg px-2.5 py-1.5 text-slate-200 focus:outline-none focus:border-brand-purple text-xs">
+            </div>
+            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border">
+              <label class="font-bold text-brand-cyan block mb-1 font-mono">[T] Tarea (Responsabilidad)</label>
+              <input id="star-t" type="text" placeholder="¿Cuál era tu papel y objetivo específico?" class="w-full bg-brand-dark border border-brand-border rounded-lg px-2.5 py-1.5 text-slate-200 focus:outline-none focus:border-brand-cyan text-xs">
+            </div>
+            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border">
+              <label class="font-bold text-brand-coral block mb-1 font-mono">[A] Acción (Ejecución e IA)</label>
+              <input id="star-a" type="text" placeholder="¿Qué pasos diste tú exactamente? ¿Herramientas?" class="w-full bg-brand-dark border border-brand-border rounded-lg px-2.5 py-1.5 text-slate-200 focus:outline-none focus:border-brand-coral text-xs">
+            </div>
+            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border">
+              <label class="font-bold text-emerald-400 block mb-1 font-mono">[R] Resultado (Métrica)</label>
+              <input id="star-r" type="text" placeholder="¿Qué impacto medible lograste? (% o $)" class="w-full bg-brand-dark border border-brand-border rounded-lg px-2.5 py-1.5 text-slate-200 focus:outline-none focus:border-emerald-400 text-xs">
+            </div>
+          </div>
+
+          <button onclick="evaluateSTAR()" class="w-full gradient-btn py-3 rounded-xl font-semibold text-white text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-purple/20">
+            <span>🎯 Evaluar Respuesta STAR en Tiempo Real</span>
+          </button>
+
+          <!-- FEEDBACK EVALUADOR STAR -->
+          <div id="star-feedback-box" class="p-4 rounded-2xl bg-brand-dark border border-brand-border hidden text-xs space-y-2">
+            <div class="flex items-center justify-between border-b border-brand-border/60 pb-2">
+              <span class="font-mono text-slate-400 uppercase font-bold">Veredicto del Panel Reclutador:</span>
+              <span id="star-score-badge" class="px-2.5 py-0.5 rounded-full font-mono font-bold text-brand-cyan bg-brand-cyan/15 border border-brand-cyan/30">Score: 0%</span>
+            </div>
+            <p id="star-feedback-text" class="text-slate-200 leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: RUTA DE LOS 6 TALLERES (MODELO MAED) -->
+  <section id="ruta-maed" class="max-w-7xl mx-auto px-6 py-16 border-t border-brand-border/40">
+    <div class="text-center mb-12">
+      <span class="text-brand-coral font-mono text-xs uppercase tracking-widest font-bold">ARQUITECTURA PEDAGÓGICA</span>
+      <h2 class="text-3xl sm:text-4xl font-display font-bold mt-2">Ruta de 6 Talleres Andragógicos (Modelo MAED)</h2>
+      <p class="text-slate-400 max-w-xl mx-auto mt-2 text-sm">Cada taller tiene una duración de 120 minutos, estructurado en 4 fases de aprendizaje experiencial.</p>
+    </div>
+
+    <!-- TABS DE LOS 4 MOMENTOS MAED -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto mb-10">
+      <div class="p-3 rounded-xl bg-brand-surface border border-brand-purple/40 text-center">
+        <span class="text-xs font-mono text-brand-purple font-bold block">15 MIN</span>
+        <span class="text-xs font-bold text-white">1. Motivación</span>
+      </div>
+      <div class="p-3 rounded-xl bg-brand-surface border border-brand-cyan/40 text-center">
+        <span class="text-xs font-mono text-brand-cyan font-bold block">25 MIN</span>
+        <span class="text-xs font-bold text-white">2. Asimilación</span>
+      </div>
+      <div class="p-3 rounded-xl bg-brand-surface border border-brand-coral/40 text-center">
+        <span class="text-xs font-mono text-brand-coral font-bold block">50 MIN</span>
+        <span class="text-xs font-bold text-white">3. Ejercitación</span>
+      </div>
+      <div class="p-3 rounded-xl bg-brand-surface border border-brand-green/40 text-center">
+        <span class="text-xs font-mono text-brand-green font-bold block">30 MIN</span>
+        <span class="text-xs font-bold text-white">4. Demostración</span>
+      </div>
+    </div>
+
+    <!-- GRID DE LOS 6 TALLERES -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Taller 1 -->
+      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple/50 transition-all">
+        <span class="text-xs font-mono text-slate-400">TALLER 01</span>
+        <h3 class="font-display font-bold text-xl text-white mt-1 mb-2">Autoconocimiento y Proyecto de Vida</h3>
+        <p class="text-xs text-slate-300 mb-4">Identificación de brechas de perfil, anclas de carrera y matriz DOFA laboral para definir el norte profesional.</p>
+        <span class="inline-block px-2.5 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-mono">Foco: Diagnóstico</span>
+      </div>
+
+      <!-- Taller 2 (DESTACADO / CRISTIAN) -->
+      <div class="glass-card p-6 rounded-3xl border-2 border-brand-cyan shadow-xl shadow-brand-cyan/10 relative">
+        <div class="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-brand-cyan text-brand-dark text-xs font-extrabold uppercase font-mono">
+          Taller Principal
+        </div>
+        <span class="text-xs font-mono text-brand-cyan">TALLER 02 (CRISTIAN CASTAÑEDA)</span>
+        <h3 class="font-display font-bold text-xl text-white mt-1 mb-2">Hoja de Vida ATS & Marca Personal</h3>
+        <p class="text-xs text-slate-300 mb-4">Ingeniería de prompts en IA, fórmula E.P.B. (Especialidad, Propuesta, Beneficio) y calibración de keywords para el algoritmo.</p>
+        <span class="inline-block px-2.5 py-1 rounded-full bg-brand-cyan/10 text-brand-cyan text-xs font-mono">Foco: Optimización CV</span>
+      </div>
+
+      <!-- Taller 3 -->
+      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple/50 transition-all">
+        <span class="text-xs font-mono text-slate-400">TALLER 03</span>
+        <h3 class="font-display font-bold text-xl text-white mt-1 mb-2">LinkedIn & Social Selling Profesional</h3>
+        <p class="text-xs text-slate-300 mb-4">Optimización del SSI (Social Selling Index), creación de contenido estratégico y prospección directa de reclutadores.</p>
+        <span class="inline-block px-2.5 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-mono">Foco: Networking B2B</span>
+      </div>
+
+      <!-- Taller 4 -->
+      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple/50 transition-all">
+        <span class="text-xs font-mono text-slate-400">TALLER 04 (JENNIFER MEDINA)</span>
+        <h3 class="font-display font-bold text-xl text-white mt-1 mb-2">Entrevistas Exitosas & Método STAR</h3>
+        <p class="text-xs text-slate-300 mb-4">Estructura de respuesta para entrevistas por competencias (Situación, Tarea, Acción, Resultado) y manejo de preguntas trampa.</p>
+        <span class="inline-block px-2.5 py-1 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-mono">Foco: Fogueo STAR</span>
+      </div>
+
+      <!-- Taller 5 -->
+      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple/50 transition-all">
+        <span class="text-xs font-mono text-slate-400">TALLER 05</span>
+        <h3 class="font-display font-bold text-xl text-white mt-1 mb-2">Pruebas Psicotécnicas & Assessment</h3>
+        <p class="text-xs text-slate-300 mb-4">Dinámicas grupales, pruebas situacionales y evaluación bajo el código ético de la Ley 1090 de 2006.</p>
+        <span class="inline-block px-2.5 py-1 rounded-full bg-brand-purple/10 text-brand-purple text-xs font-mono">Foco: Selección</span>
+      </div>
+
+      <!-- Taller 6 -->
+      <div class="glass-card p-6 rounded-3xl border border-brand-border hover:border-brand-purple/50 transition-all">
+        <span class="text-xs font-mono text-slate-400">TALLER 06</span>
+        <h3 class="font-display font-bold text-xl text-white mt-1 mb-2">Negociación de Ofertas & Cierre</h3>
+        <p class="text-xs text-slate-300 mb-4">Benchmarking salarial, análisis de paquete de compensación total y tácticas de negociación asertiva.</p>
+        <span class="inline-block px-2.5 py-1 rounded-full bg-brand-green/10 text-brand-green text-xs font-mono">Foco: Contratación</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: MODELO DE NEGOCIO (AUTORIZADO MAGALY) -->
+  <section id="modelo-negocio" class="max-w-7xl mx-auto px-6 py-16 border-t border-brand-border/40">
+    <div class="text-center mb-12">
+      <span class="text-brand-green font-mono text-xs uppercase tracking-widest font-bold">VALIDACIÓN INSTITUCIONAL</span>
+      <h2 class="text-3xl sm:text-4xl font-display font-bold mt-2">Modelo de Negocio Autorizado</h2>
+      <p class="text-slate-400 max-w-xl mx-auto mt-2 text-sm">Estructura validada por la dirección de Socialab para la feria de empleo y monetización escalable.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <!-- B2C Candidatos -->
+      <div class="glass-card p-8 rounded-3xl border border-brand-border">
+        <div class="inline-block px-3 py-1 rounded-full bg-brand-purple/20 text-brand-purple text-xs font-mono font-bold mb-4">
+          SOLUCIÓN B2C (CANDIDATOS)
+        </div>
+        <h3 class="font-display font-bold text-2xl text-white mb-2">Kit Acelerador de Empleabilidad</h3>
+        <p class="text-sm text-slate-300 mb-6">Para profesionales y egresados que necesitan insertarse rápidamente al mercado laboral calificado.</p>
+
+        <ul class="space-y-3 text-sm text-slate-200 mb-8">
+          <li class="flex items-center gap-2">✓ Autodiagnóstico M-DEM con prescripción personalizada</li>
+          <li class="flex items-center gap-2">✓ Plantilla de CV ATS optimizada para IA</li>
+          <li class="flex items-center gap-2">✓ Acceso a los 6 talleres MAED en vivo y grabados</li>
+          <li class="flex items-center gap-2">✓ Simulación de entrevista STAR 1 a 1</li>
+        </ul>
+
+        <a href="https://wa.me/?text=Hola,%20quiero%20conocer%20el%20Kit%20Acelerador%20de%20Empleabilidad%20Socialab" target="_blank" class="block w-full text-center py-3 rounded-xl border border-brand-purple hover:bg-brand-purple/20 text-sm font-semibold text-white transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+
+      <!-- B2B Empresas -->
+      <div class="glass-card p-8 rounded-3xl border-2 border-brand-cyan shadow-xl shadow-brand-cyan/10">
+        <div class="inline-block px-3 py-1 rounded-full bg-brand-cyan/20 text-brand-cyan text-xs font-mono font-bold mb-4">
+          SOLUCIÓN B2B (EMPRESAS & FERIAS)
+        </div>
+        <h3 class="font-display font-bold text-2xl text-white mb-2">Pipeline Precalificado M-DEM</h3>
+        <p class="text-sm text-slate-300 mb-6">Para empresas aliadas (Compensar, aliados de ferias Kennedy y Engativá) que buscan talento validado.</p>
+
+        <ul class="space-y-3 text-sm text-slate-200 mb-8">
+          <li class="flex items-center gap-2">✓ Candidatos evaluados con métricas objetivas M-DEM</li>
+          <li class="flex items-center gap-2">✓ Reducción del 40% en tiempos de selección técnica</li>
+          <li class="flex items-center gap-2">✓ Participación preferente en la Mega Feria Virtual</li>
+          <li class="flex items-center gap-2">✓ Informes de impacto sociodemográfico listos</li>
+        </ul>
+
+        <a href="https://wa.me/?text=Hola,%20represento%20una%20empresa%20y%20quiero%20vincularme%20a%20la%20Feria%20Socialab" target="_blank" class="block w-full text-center py-3 rounded-xl gradient-btn text-sm font-semibold text-white">
+          Alianza Empresarial
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="max-w-7xl mx-auto px-6 py-12 border-t border-brand-border/40 text-center text-xs text-slate-400">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pb-8 mb-8 border-b border-brand-border/30">
+      <div class="text-left">
+        <span class="font-display font-bold text-white text-base">Ecosistema Doctor Demente &amp; Socialab</span>
+        <p class="text-slate-400 text-xs mt-0.5">Psicología organizacional, automatización con IA y aceleración de talento.</p>
+      </div>
+
+      <!-- BOTONES DE REDES SOCIALES -->
+      <div class="flex items-center gap-3">
+        <a href="https://www.tiktok.com/@eldoctordemente" target="_blank" rel="noopener" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition-all hover:scale-105" title="TikTok Oficial @eldoctordemente">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          <span class="font-mono text-xs font-semibold">TikTok @eldoctordemente</span>
+        </a>
+        <a href="https://www.youtube.com/@ElDOCTORDEMENTETIKTOK" target="_blank" rel="noopener" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition-all hover:scale-105 hover:text-red-400" title="Canal de YouTube @ElDOCTORDEMENTETIKTOK">
+          <svg class="w-4 h-4 fill-current text-red-500" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span class="font-mono text-xs font-semibold">YouTube @ElDOCTORDEMENTETIKTOK</span>
+        </a>
+      </div>
+    </div>
+
+    <p>Proyecto de Prácticas Profesionales II — Campo Organizacional | Corporación Universitaria Iberoamericana</p>
+    <p class="mt-1">Sitio de práctica: <strong>Socialab S.A.S. (ID Top Talent)</strong> · Supervisión: Magaly Rosero &amp; Ximena Díaz</p>
+    <p class="mt-2 font-mono text-brand-cyan">Desarrollado por Cristian Castañeda · Doctor Demente Labs © 2026</p>
+  </footer>
+
+  <!-- LÓGICA JAVASCRIPT DEL SIMULADOR -->
+  <script>
+    // FUNCIONES SALA DE ENTREVISTA INMERSIVA (MÉTODO STAR)
+    const interviewScenarios = {
+      1: {
+        question: '"Cuéntame sobre una ocasión donde un proyecto crítico estuvo al borde del colapso por resistencia del equipo o fallos técnicos, y cómo lograste revertir el resultado."',
+        sample: {
+          s: "En Socialab lideré el diagnóstico de empleabilidad para 150 egresados con resistencia inicial al cambio tecnológico.",
+          t: "Mi responsabilidad era garantizar un 80% de participación en los talleres MAED sin afectar los cronogramas.",
+          a: "Implementé microtalleres experienciales con IA y sesiones de fogueo 1 a 1 de 12 horas bajo método STAR.",
+          r: "Alcanzamos una tasa de satisfacción del 96% y redujimos el abandono al 4% con 15 ofertas laborales activas."
+        }
+      },
+      2: {
+        question: '"Describe cómo integraste una tecnología disruptiva (como IA generativa o automatizaciones) en un entorno tradicional respetando los estándares éticos y de calidad."',
+        sample: {
+          s: "Al desarrollar la auditoría ATS de ID Top Talent, los candidatos enviaban CVs no estructurados con alta tasa de rechazo.",
+          t: "Debía optimizar el proceso de selección sin vulnerar la Ley 1090 de 2006 de protección de datos.",
+          a: "Diseñé un evaluador algorítmico transparente en JavaScript que analiza palabras clave y métricas sin sesgos.",
+          r: "Mejoramos la tasa de paso de filtros ATS en un 42% en las dos primeras semanas de fogueo."
+        }
+      }
+    };
+
+    let currentScenario = 1;
+
+    function setInterviewScenario(id) {
+      currentScenario = id;
+      document.getElementById('interview-question').innerText = interviewScenarios[id].question;
+      document.getElementById('star-feedback-box').classList.add('hidden');
+    }
+
+    function loadSTARSample() {
+      const data = interviewScenarios[currentScenario].sample;
+      document.getElementById('star-s').value = data.s;
+      document.getElementById('star-t').value = data.t;
+      document.getElementById('star-a').value = data.a;
+      document.getElementById('star-r').value = data.r;
+    }
+
+    function evaluateSTAR() {
+      const s = document.getElementById('star-s').value.trim();
+      const t = document.getElementById('star-t').value.trim();
+      const a = document.getElementById('star-a').value.trim();
+      const r = document.getElementById('star-r').value.trim();
+      const box = document.getElementById('star-feedback-box');
+      const badge = document.getElementById('star-score-badge');
+      const text = document.getElementById('star-feedback-text');
+
+      if (!s || !t || !a || !r) {
+        alert('Por favor completa los 4 componentes (S, T, A, R) para recibir tu veredicto del panel.');
+        return;
+      }
+
+      box.classList.remove('hidden');
+
+      let score = 40;
+      if (s.length > 25) score += 15;
+      if (t.length > 20) score += 15;
+      if (a.toLowerCase().includes('implementé') || a.toLowerCase().includes('diseñé') || a.toLowerCase().includes('lideré') || a.length > 30) score += 15;
+      if (r.match(/\d+[%]?/)) score += 15;
+      if (score > 100) score = 100;
+
+      badge.innerText = `Score: ${score}%`;
+
+      if (score >= 85) {
+        text.innerHTML = "<span class='text-brand-green font-bold'>🏆 ¡Respuesta de Alto Impacto para Panel Directivo!</span> Tu narrativa balancea contexto real, liderazgo activo y evidencia cuantitativa irrefutable. Genera alta credibilidad.";
+      } else {
+        text.innerHTML = "<span class='text-brand-cyan font-bold'>⚡ Buena Estructura STAR:</span> Asegúrate de incluir números más específicos en el Resultado (% de ahorro, horas optimizadas) para no dejar dudas de tu impacto.";
+      }
+    }
+    function calculateScore() {
+      const ats = parseInt(document.getElementById('slider-ats').value);
+      const brand = parseInt(document.getElementById('slider-brand').value);
+      const star = parseInt(document.getElementById('slider-star').value);
+      const strategy = parseInt(document.getElementById('slider-strategy').value);
+
+      document.getElementById('val-ats').innerText = ats + '%';
+      document.getElementById('val-brand').innerText = brand + '%';
+      document.getElementById('val-star').innerText = star + '%';
+      document.getElementById('val-strategy').innerText = strategy + '%';
+
+      // Ponderación: ATS (30%), Brand (25%), STAR (25%), Strategy (20%)
+      const total = Math.round((ats * 0.3) + (brand * 0.25) + (star * 0.25) + (strategy * 0.2));
+      document.getElementById('total-score').innerText = total;
+
+      // Animar círculo SVG (perímetro aprox 264)
+      const offset = 264 - (264 * (total / 100));
+      document.getElementById('score-circle').style.strokeDashoffset = offset;
+
+      // Actualizar veredicto
+      const descEl = document.getElementById('diagnostic-desc');
+      if (total < 50) {
+        descEl.innerText = "Alerta: Tu perfil corre un alto riesgo de ser filtrado automáticamente por los ATS antes de llegar a un reclutador. Urge reestructurar palabras clave y formato.";
+      } else if (total < 75) {
+        descEl.innerText = "Perfil en Consolidación: Tienes buenas bases pero faltan métricas cuantitativas en logros y mayor preparación para defender el método STAR en entrevistas.";
+      } else {
+        descEl.innerText = "¡Perfil de Alto Calibre! Excelente alineación con algoritmos ATS y preparación estratégica. Estás listo para postularte a vacantes competitivas.";
+      }
+    }
+
+    function loadSampleText(type) {
+      const input = document.getElementById('cv-input');
+      if (type === 1) {
+        input.value = "Trabajé en el área de recursos humanos ayudando con las tareas de oficina y atendiendo llamadas del personal cuando tenían preguntas.";
+      } else {
+        input.value = "Lideré la reestructuración del proceso de reclutamiento para 150 vacantes comerciales, reduciendo el time-to-hire en un 28% e implementando filtros ATS con métricas cuantitativas.";
+      }
+    }
+
+    function auditCV() {
+      const text = document.getElementById('cv-input').value.trim();
+      const resultsEl = document.getElementById('audit-results');
+      
+      if (!text) {
+        alert('Por favor ingresa un fragmento de texto para auditar.');
+        return;
+      }
+
+      resultsEl.classList.remove('hidden');
+
+      // Verbos de acción comunes en selección
+      const verbs = ['lideré', 'implementé', 'reduje', 'optimicé', 'diseñé', 'coordiné', 'incrementé', 'desarrollé', 'gestioné', 'audité'];
+      let foundVerbs = 0;
+      verbs.forEach(v => {
+        if (text.toLowerCase().includes(v)) foundVerbs++;
+      });
+
+      // Regex para buscar métricas numéricas (% o números)
+      const numbers = text.match(/\d+[%]?/g) || [];
+      const metricsCount = numbers.length;
+
+      // Cálculo de score simple de impacto
+      let score = 30;
+      if (foundVerbs > 0) score += Math.min(foundVerbs * 15, 40);
+      if (metricsCount > 0) score += Math.min(metricsCount * 15, 30);
+      if (score > 100) score = 100;
+
+      document.getElementById('audit-score').innerText = score + '%';
+      document.getElementById('action-verbs-count').innerText = foundVerbs + ' detectados';
+      document.getElementById('metrics-count').innerText = metricsCount + ' detectadas';
+
+      const feedbackEl = document.getElementById('audit-feedback');
+      if (score < 50) {
+        feedbackEl.innerHTML = "<span class='text-brand-coral font-bold'>⚠️ Nivel Débil:</span> El texto usa descripciones pasivas ('ayudé', 'trabajé') y no presenta métricas tangibles. El algoritmo ATS lo calificará con baja relevancia.";
+      } else if (score < 80) {
+        feedbackEl.innerHTML = "<span class='text-brand-cyan font-bold'>⚡ Nivel Promedio:</span> Tienes verbos de acción pero necesitas reforzar el impacto con números específicos (% de ahorro, personas lideradas o presupuesto).";
+      } else {
+        feedbackEl.innerHTML = "<span class='text-brand-green font-bold'>✓ Nivel Élite:</span> Formato óptimo bajo estándares ATS. Combina verbos de acción fuertes con resultados cuantificables medibles.";
+      }
+    }
+
+    // Inicializar cálculo al cargar
+    calculateScore();
+
+    // ==========================================
+    // THREE.JS C-LEVEL 3D INTERACTIVE ENGINE
+    // ==========================================
+    let scene, camera, renderer, coreMesh, wireframeMesh, ring1, ring2, particles, particleGeo;
+    let isRotating = true;
+    let mouseX = 0, mouseY = 0;
+    let targetRotationX = 0, targetRotationY = 0;
+    let isDragging = false, prevMouseX = 0, prevMouseY = 0;
+    const coreColors = [0x9B4DCA, 0x29B6F6, 0xFF6A3D, 0x10B981];
+    let currentColorIdx = 0;
+
+    function init3DScene() {
+      const container = document.getElementById('c-level-canvas');
+      if (!container) return;
+
+      const width = container.parentElement.clientWidth;
+      const height = container.parentElement.clientHeight;
+
+      scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x0A0B1A, 0.04);
+
+      camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+      camera.position.z = 7;
+
+      renderer = new THREE.WebGLRenderer({ canvas: container, antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // Lights
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+      scene.add(ambientLight);
+
+      const light1 = new THREE.PointLight(0x29B6F6, 3, 50);
+      light1.position.set(5, 5, 5);
+      scene.add(light1);
+
+      const light2 = new THREE.PointLight(0x9B4DCA, 3, 50);
+      light2.position.set(-5, -5, -3);
+      scene.add(light2);
+
+      // Core Crystal Polyhedron
+      const coreGeo = new THREE.IcosahedronGeometry(1.6, 1);
+      const coreMat = new THREE.MeshStandardMaterial({
+        color: 0x9B4DCA,
+        metalness: 0.8,
+        roughness: 0.2,
+        emissive: 0x29B6F6,
+        emissiveIntensity: 0.25,
+        wireframe: false
+      });
+      coreMesh = new THREE.Mesh(coreGeo, coreMat);
+      scene.add(coreMesh);
+
+      // Wireframe Outer Cage
+      const wireMat = new THREE.MeshBasicMaterial({
+        color: 0x29B6F6,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.4
+      });
+      wireframeMesh = new THREE.Mesh(new THREE.IcosahedronGeometry(2.0, 1), wireMat);
+      scene.add(wireframeMesh);
+
+      // Dual Orbital Rings
+      const ringGeo = new THREE.TorusGeometry(2.7, 0.03, 16, 100);
+      const ringMat1 = new THREE.MeshBasicMaterial({ color: 0x29B6F6, transparent: true, opacity: 0.6 });
+      ring1 = new THREE.Mesh(ringGeo, ringMat1);
+      ring1.rotation.x = Math.PI / 3;
+      scene.add(ring1);
+
+      const ringMat2 = new THREE.MeshBasicMaterial({ color: 0xFF6A3D, transparent: true, opacity: 0.5 });
+      ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.1, 0.02, 16, 100), ringMat2);
+      ring2.rotation.y = Math.PI / 4;
+      scene.add(ring2);
+
+      // 1,200 Interactive Floating Particles
+      const particleCount = 1200;
+      particleGeo = new THREE.BufferGeometry();
+      const positions = new Float32Array(particleCount * 3);
+      const scales = new Float32Array(particleCount);
+
+      for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 16;
+        positions[i + 1] = (Math.random() - 0.5) * 16;
+        positions[i + 2] = (Math.random() - 0.5) * 16;
+        scales[i / 3] = Math.random();
+      }
+
+      particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const pMat = new THREE.PointsMaterial({
+        color: 0x29B6F6,
+        size: 0.06,
+        transparent: true,
+        opacity: 0.7,
+        blending: THREE.AdditiveBlending
+      });
+      particles = new THREE.Points(particleGeo, pMat);
+      scene.add(particles);
+
+      // Mouse & Drag Listeners
+      container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        prevMouseX = e.clientX;
+        prevMouseY = e.clientY;
+      });
+      window.addEventListener('mouseup', () => isDragging = false);
+      window.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+          const deltaX = e.clientX - prevMouseX;
+          const deltaY = e.clientY - prevMouseY;
+          coreMesh.rotation.y += deltaX * 0.01;
+          coreMesh.rotation.x += deltaY * 0.01;
+          wireframeMesh.rotation.y += deltaX * 0.01;
+          wireframeMesh.rotation.x += deltaY * 0.01;
+          prevMouseX = e.clientX;
+          prevMouseY = e.clientY;
+        } else {
+          mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+          mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        }
+      });
+
+      container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        camera.position.z = Math.max(3.5, Math.min(12, camera.position.z + e.deltaY * 0.005));
+      }, { passive: false });
+
+      // Resize Listener
+      window.addEventListener('resize', onWindowResize);
+
+      animate3D();
+    }
+
+    function onWindowResize() {
+      const container = document.getElementById('c-level-canvas');
+      if (!container || !renderer || !camera) return;
+      const width = container.parentElement.clientWidth;
+      const height = container.parentElement.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
+
+    function animate3D() {
+      requestAnimationFrame(animate3D);
+
+      if (isRotating && coreMesh) {
+        coreMesh.rotation.y += 0.007;
+        coreMesh.rotation.x += 0.004;
+        wireframeMesh.rotation.y -= 0.005;
+        wireframeMesh.rotation.x -= 0.003;
+        ring1.rotation.z += 0.009;
+        ring2.rotation.x += 0.006;
+      }
+
+      if (particles) {
+        particles.rotation.y += 0.0015;
+      }
+
+      // Smooth mouse follow
+      camera.position.x += (mouseX * 0.8 - camera.position.x) * 0.03;
+      camera.position.y += (mouseY * 0.8 - camera.position.y) * 0.03;
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
+    }
+
+    function toggle3DRotation() {
+      isRotating = !isRotating;
+      const btn = document.getElementById('btn-toggle-rot');
+      btn.innerText = isRotating ? '⏸ Pausar Giro' : '▶ Reanudar Giro';
+    }
+
+    function burstParticles() {
+      if (!particleGeo) return;
+      const pos = particleGeo.attributes.position.array;
+      for (let i = 0; i < pos.length; i += 3) {
+        pos[i] *= 1.3;
+        pos[i+1] *= 1.3;
+        pos[i+2] *= 1.3;
+      }
+      particleGeo.attributes.position.needsUpdate = true;
+      setTimeout(() => {
+        for (let i = 0; i < pos.length; i += 3) {
+          pos[i] /= 1.3;
+          pos[i+1] /= 1.3;
+          pos[i+2] /= 1.3;
+        }
+        particleGeo.attributes.position.needsUpdate = true;
+      }, 600);
+    }
+
+    function changeCoreColor() {
+      if (!coreMesh) return;
+      currentColorIdx = (currentColorIdx + 1) % coreColors.length;
+      const nextColor = coreColors[currentColorIdx];
+      coreMesh.material.color.setHex(nextColor);
+      wireframeMesh.material.color.setHex(coreColors[(currentColorIdx + 1) % coreColors.length]);
+      const vectors = ['Liderazgo STAR', 'Arquitectura IA', 'Innovación Socialab', 'Estrategia C-Level'];
+      document.getElementById('hud-vector').innerText = vectors[currentColorIdx];
+    }
+
+    // Inicializar 3D al cargar
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init3DScene);
+    } else {
+      init3DScene();
+    }
+
+  </script>
+</body>
+</html>
