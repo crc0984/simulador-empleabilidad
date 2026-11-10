@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Demente · La Clínica de la Hoja de Vida & Modo Entrevista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #08090E;
+      --bg-card: rgba(18, 20, 32, 0.75);
+      --bg-card-hover: rgba(26, 29, 48, 0.85);
+      --border-subtle: rgba(139, 92, 246, 0.18);
+      --border-glow: rgba(139, 92, 246, 0.45);
+      --neon-purple: #8B5CF6;
+      --neon-violet: #A855F7;
+      --neon-amber: #F59E0B;
+      --neon-cyan: #06B6D4;
+      --toxic-green: #10B981;
+      --text-white: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dark: #64748B;
+      --danger: #EF4444;
+      --gradient-brand: linear-gradient(135deg, #8B5CF6 0%, #D946EF 50%, #F59E0B 100%);
+      --gradient-card: linear-gradient(180deg, rgba(30, 34, 54, 0.7) 0%, rgba(15, 17, 28, 0.9) 100%);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-deep);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 60%);
+      color: var(--text-white);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: -0.02em;
+    }
+
+    /* ---------- NAVIGATION ---------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 9, 14, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-white);
+    }
+    .brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--gradient-brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    }
+    .brand-text h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .brand-text span {
+      font-size: 11px;
+      color: var(--neon-amber);
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-menu a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .nav-menu a:hover { color: var(--text-white); }
+    .cta-nav {
+      background: var(--gradient-brand);
+      color: var(--text-white);
+      padding: 9px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      box-shadow: 0 0 20px rgba(217, 70, 239, 0.35);
+      transition: all 0.25s ease;
+    }
+    .cta-nav:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(217, 70, 239, 0.6);
+    }
+
+    /* ---------- HERO SECTION ---------- */
+    .hero {
+      padding: 70px 0 60px;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .alert-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--neon-amber);
+      margin-bottom: 20px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--neon-amber);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--neon-amber);
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.5; }
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(34px, 5vw, 54px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero-title span.hl-jung {
+      background: linear-gradient(90deg, #A855F7, #EC4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-title span.hl-demente {
+      color: var(--neon-amber);
+      text-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 17px;
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 580px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-main {
+      background: var(--gradient-brand);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.5);
+      transition: all 0.25s;
+    }
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px -5px rgba(217, 70, 239, 0.6);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-white);
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.25s;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--neon-purple);
+    }
+
+    /* ---------- INTERVIEW SIMULATOR CARD (STITCH REPLICA) ---------- */
+    .sim-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.15);
+      position: relative;
+    }
+    .sim-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+    .sim-live {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      color: var(--toxic-green);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--toxic-green);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--toxic-green);
+      animation: pulse 1.2s infinite;
+    }
+    .sim-badge-mode {
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid var(--border-glow);
+      color: var(--neon-violet);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .sim-dialogue-box {
+      background: rgba(10, 11, 18, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .mentor-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .mentor-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--neon-amber);
+      background: #1E1B4B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+    }
+    .mentor-info h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    .mentor-info span {
+      font-size: 11px;
+      color: var(--neon-amber);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .mentor-speech {
+      font-size: 13.5px;
+      color: #E2E8F0;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .metrics-panel {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .metric-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 8px 10px;
+      text-align: center;
+    }
+    .metric-pill span {
+      display: block;
+      font-size: 10px;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .metric-pill strong {
+      font-size: 14px;
+      color: var(--neon-cyan);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .sim-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sim-opt-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: #E2E8F0;
+      font-size: 12.5px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s;
+    }
+    .sim-opt-btn:hover {
+      background: rgba(139, 92, 246, 0.15);
+      border-color: var(--neon-purple);
+      color: #fff;
+      transform: translateX(4px);
+    }
+    .sim-opt-btn .opt-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--neon-amber);
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+      padding: 90px 0;
+      position: relative;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 50px;
+    }
+    .section-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--neon-purple);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ---------- JUNGIAN PILLARS ---------- */
+    .jung-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .jung-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 28px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .jung-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--neon-purple);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px -10px rgba(139, 92, 246, 0.25);
+    }
+    .jung-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+    .jung-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .jung-card p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .jung-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--neon-amber);
+      background: rgba(245, 158, 11, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* ---------- EL EMBUDO CLÍNICO (6 PASOS) ---------- */
+    .clinic-funnel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .step-item {
+      background: rgba(18, 20, 32, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .step-item:hover { border-color: var(--neon-amber); }
+    .step-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--neon-amber);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-content h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .step-content p {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+
+    /* ---------- PRICING & TRATAMIENTOS ---------- */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    .price-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px 26px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .price-card.featured {
+      border-color: var(--neon-violet);
+      box-shadow: 0 0 35px rgba(168, 85, 247, 0.25);
+      background: linear-gradient(180deg, rgba(32, 24, 56, 0.8) 0%, rgba(15, 17, 28, 0.95) 100%);
+    }
+    .badge-pop {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--gradient-brand);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+    }
+    .price-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .price-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin: 12px 0 16px;
+    }
+    .price-amount span {
+      font-size: 14px;
+      color: var(--text-dark);
+      font-weight: 400;
+    }
+    .price-list {
+      list-style: none;
+      margin-bottom: 28px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .price-list li {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .price-list li::before {
+      content: "✓";
+      color: var(--toxic-green);
+      font-weight: bold;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 40px 0;
+      margin-top: 60px;
+      background: #05060A;
+      color: var(--text-dark);
+      font-size: 13px;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .nav-menu { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="brand-logo">
+        <div class="brand-badge">Ψ</div>
+        <div class="brand-text">
+          <h1>Doctor Demente</h1>
+          <span>Clínica de Empleabilidad & Psicología Oscura</span>
+        </div>
+      </a>
+      <div class="nav-menu">
+        <a href="#metodo">El Método Junguiano</a>
+        <a href="#simulador">Modo Entrevista 3D</a>
+        <a href="#auditoria-ats">Auditor ATS</a>
+        <a href="#clinica">La Clínica de la HV</a>
+        <a href="#tratamientos" style="color:var(--neon-amber); font-weight:700;">Tratamientos (-50% OFF)</a>
+      </div>
+      <a href="https://wa.me/573104692473?text=Hola%20Doctor%20Demente,%20quiero%20diagnosticar%20mi%20hoja%20de%20vida%20con%2050%25%20OFF" target="_blank" class="cta-nav">Pedir Consulta 1:1 (-50%)</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="alert-pill">
+          <div class="pulse-dot"></div>
+          <span class="mono">DIAGNÓSTICO PSICOLÓGICO CLÍNICO</span>
+        </div>
+        <h2 class="hero-title">
+          Tu Hoja de Vida está <span class="hl-demente">enferma</span>.<br>
+          Ven y te receto la <span class="hl-jung">cura</span>.
+        </h2>
+        <p class="hero-desc">
+          A Recursos Humanos no le importa tu "pasión por los retos": tienen <strong>6 segundos</strong> para escanearte antes de mandarte a la basura. Fusionamos los arquetipos oscuros de <strong>Carl Jung</strong>, neurociencia de la persuasión y hackeo de <strong>filtros ATS</strong> para que dejes de rogar por trabajo y aprendas a facturar.
+        </p>
+        <div class="hero-actions">
+          <a href="#simulador" class="btn-main">
+            <span>Probar Modo Entrevista con IA</span>
+            <span>⚡</span>
+          </a>
+          <a href="#tratamientos" class="btn-secondary">Ver Paquetes de Alta Laboral</a>
+        </div>
+      </div>
+
+      <!-- SIMULATOR WIDGET (STITCH STYLE) -->
+      <div class="sim-card" id="simulador">
+        <div class="sim-header">
+          <div class="sim-live">
+            <div class="live-dot"></div>
+            <span>Sala de Fogueo Activa</span>
+          </div>
+          <span class="sim-badge-mode mono">MODO: PSICOLOGÍA OSCURA</span>
+        </div>
+
+        <div class="sim-dialogue-box">
+          <div class="mentor-profile">
+            <div class="mentor-avatar">🧠</div>
+            <div class="mentor-info">
+              <h4>Doctor Demente</h4>
+              <span>Psicología Organizacional &amp; Evaluador STAR Implacable</span>
+            </div>
+          </div>
+          <p class="mentor-speech" id="doctor-speech">
+            "Te sientas frente a mí y tu lenguaje corporal grita que llevas 8 meses sin empleo. Si un reclutador huele tu desesperación, te va a ofrecer la mitad del salario. ¿Cuál es tu plan para ocultar tu 'Sombra' y proyectar autoridad?"
+          </p>
+        </div>
+
+        <div class="metrics-panel">
+          <div class="metric-pill">
+            <span>Disonancia</span>
+            <strong id="metric-disonancia" style="color:var(--danger);">84% Alta</strong>
+          </div>
+          <div class="metric-pill">
+            <span>Temple STAR</span>
+            <strong id="metric-star" style="color:var(--neon-amber);">Calibrando</strong>
+          </div>
+          <div class="metric-pill">
+            <span>Compatibilidad</span>
+            <strong id="metric-ats" style="color:var(--neon-cyan);">62% Media</strong>
+          </div>
+        </div>
+
+        <div class="sim-options" id="sim-options">
+          <button class="sim-opt-btn" onclick="responderSimulador(1)">
+            <span>"Uso el método STAR para justificar cada vacío laboral con consultorías."</span>
+            <span class="opt-badge">Arquetipo Máscara</span>
+          </button>
+          <button class="sim-opt-btn" onclick="responderSimulador(2)">
+            <span>"Admito mis errores con humor negro y cambio la conversación a su dolor."</span>
+            <span class="opt-badge">Integración Sombra</span>
+          </button>
+          <button class="sim-opt-btn" onclick="responderSimulador(3)">
+            <span>"Me quedo callado y digo que aprendo rápido bajo presión."</span>
+            <span class="opt-badge" style="color:var(--danger);">Error Novato</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- JUNG & DARK PSYCHOLOGY SECTION -->
+  <section id="metodo">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">La Ciencia Detrás del Caos</div>
+        <h2 class="section-title">Psicología Analítica de Jung aplicada a la Caza de Empleo</h2>
+        <p class="section-subtitle">
+          El proceso de selección no es justo ni meritocrático. Es un juego de poder psicológico entre los sesgos del reclutador y los arquetipos que proyectas.
+        </p>
+      </div>
+
+      <div class="jung-grid">
+        <div class="jung-card">
+          <div class="jung-icon">🎭</div>
+          <h3>La "Persona" (Tu Máscara de CV)</h3>
+          <p>Los algoritmos ATS no leen personas; leen patrones semánticos planos. Construimos una máscara algorítmica impecable para que el software te catalogue como el candidato del percentil 99.</p>
+          <span class="jung-tag">Anti-Filtros ATS</span>
+        </div>
+
+        <div class="jung-card">
+          <div class="jung-icon">🌑</div>
+          <h3>La "Sombra" (Tus Puntos Ciegos)</h3>
+          <p>Ese miedo a que te pregunten por tu edad (+40), tu tiempo sin trabajar o tus pretensiones salariales te sabotea antes de abrir la boca. Integramos tu sombra para responder sin titubeos.</p>
+          <span class="jung-tag">Control de Ansiedad</span>
+        </div>
+
+        <div class="jung-card">
+          <div class="jung-icon">⚡</div>
+          <h3>El "Animus" (Autoridad & STAR)</h3>
+          <p>Dejar de sonar como un subordinado suplicante. Aplicamos la técnica de framing narrativo: el entrevistador tiene un problema grave que le cuesta dinero y tú eres la única solución quirúrgica.</p>
+          <span class="jung-tag">Negociación Agresiva</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNNEL: LA CLÍNICA DE LA HOJA DE VIDA -->
+  <section id="clinica" style="background: rgba(14, 16, 26, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Historia Clínica del Paciente</div>
+        <h2 class="section-title">El Protocolo Clínico: Del Scroll al Alta Laboral</h2>
+        <p class="section-subtitle">
+          No damos asesorías sueltas de autoayuda. Operamos tu perfil profesional en 4 etapas estructuradas.
+        </p>
+      </div>
+
+      <div class="clinic-funnel">
+        <div class="step-item">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Diagnóstico de Urgencias (6s)</h4>
+            <p>Sometemos tu CV al escaneo implacable de 6 segundos. Identificamos formato cancerígeno, tipografías no legibles por bots y frases cliché que huelen a fracaso.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>Cirugía Curricular Anti-ATS</h4>
+            <p>Reescribimos cada línea bajo arquitectura de logros cuantificables y palabras clave exactas de la industria en formato plano que supera cualquier software de reclutamiento.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Fogueo en la Sala de Tortura STAR</h4>
+            <p>Simulación de entrevista con el Doctor Demente en vivo. Preguntas con trampa, manipulación de silencios incómodos y corrección de lenguaje no verbal en tiempo real.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h4>Alta Laboral &amp; Negociación Salarial</h4>
+            <p>Te entregamos el dossier completo de empleabilidad: CV maestro, perfil optimizado de LinkedIn (Fórmula E.P.B.) y protocolo de negociación salarial sin miedo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDITORÍA ATS EN VIVO (36 VERBOS DE IMPACTO) -->
+  <section id="auditoria-ats" style="padding: 60px 0 30px;">
+    <div class="container">
+      <div class="sim-card" style="max-width: 960px; margin: 0 auto;">
+        <div class="sim-header">
+          <div class="sim-live">
+            <div class="live-dot"></div>
+            <span>Escáner Forense Anti-ATS Activo · 36 Verbos Gerenciales</span>
+          </div>
+          <span class="sim-badge-mode mono">Score M-DEM: <strong id="total-score">78</strong>/100</span>
+        </div>
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:22px; margin-bottom:8px;">Prueba tu Hoja de Vida contra el Algoritmo (3 Segundos)</h3>
+        <p style="color:var(--text-muted); font-size:14px; margin-bottom:16px;">Pega un fragmento de tu perfil o experiencia laboral para detectar verbos de poder, métricas STAR y nivel de descarte en Workday / Taleo.</p>
+        <textarea id="cv-input" style="width:100%; min-height:100px; background:rgba(8,9,14,0.85); border:1px solid var(--border-subtle); border-radius:12px; padding:14px; color:#fff; font-family:'Inter',sans-serif; font-size:14px; margin-bottom:14px; resize:vertical;" placeholder="Ejemplo: Lideré la optimización del proceso de selección para 150 vacantes, reduciendo el tiempo de contratación en un 28% e implementando filtros ATS..."></textarea>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px;">
+          <button onclick="auditCV()" class="btn-main" style="padding:11px 22px; font-size:14px;">Ejecutar Diagnóstico ATS Ahora ⚡</button>
+          <button onclick="document.getElementById('cv-input').value='Trabajé en el área administrativa ayudando con informes y apoyando reuniones del equipo cuando se necesitaba.'; auditCV();" class="btn-secondary" style="padding:11px 18px; font-size:13px; cursor:pointer;">Probar CV Enfermo (Ejemplo)</button>
+          <button onclick="document.getElementById('cv-input').value='Lideré la reestructuración comercial gestionando 120 cuentas clave, incrementé la facturación en un 38% ($450M COP) y optimicé el embudo B2B.'; auditCV();" class="btn-secondary" style="padding:11px 18px; font-size:13px; cursor:pointer;">Probar CV Élite STAR (Ejemplo)</button>
+        </div>
+        <div id="audit-results" style="display:none; background:rgba(8,9,14,0.9); border:1px solid var(--border-glow); border-radius:14px; padding:18px; margin-top:12px;">
+          <div class="metrics-panel" style="margin-bottom:12px;">
+            <div class="metric-pill">
+              <span>Score Supervivencia ATS</span>
+              <strong id="audit-score" style="font-size:18px; color:var(--neon-amber);">0%</strong>
+            </div>
+            <div class="metric-pill">
+              <span>Verbos de Impacto</span>
+              <strong id="action-verbs-count" style="font-size:16px; color:var(--neon-cyan);">0 detectados</strong>
+            </div>
+            <div class="metric-pill">
+              <span>Métricas STAR (# / %)</span>
+              <strong id="metrics-count" style="font-size:16px; color:var(--neon-violet);">0 detectadas</strong>
+            </div>
+          </div>
+          <div id="audit-feedback" style="font-size:13.5px; line-height:1.5; padding-top:10px; border-top:1px solid rgba(255,255,255,0.08);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING TABLE (ACTUALIZADA: 50% OFF + WHATSAPP 573104692473 + MERCADOPAGO + LEY 1090) -->
+  <section id="tratamientos">
+    <div class="container">
+      <div class="section-header">
+        <div class="alert-pill" style="margin-bottom:12px;">
+          <div class="pulse-dot"></div>
+          <span class="mono">🔥 TARIFA DE PENETRACIÓN: 50% OFF POR APERTURA DE COHORTE</span>
+        </div>
+        <div class="section-eyebrow">Intervención en Empleabilidad · 50% OFF Lanzamiento</div>
+        <h2 class="section-title">Invierte en tu Alta Laboral o Sigue Regalando tu Tiempo</h2>
+        <p class="section-subtitle">
+          Tarifas especiales al 50% de descuento para candidatos listos para dejar de ser desempleados profesionales (Coaching de Empleabilidad y Psicología Organizacional — Ley 1090 de 2006).
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- PLAN 1 -->
+        <div class="price-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span class="mono" style="font-size:11px; color:var(--neon-cyan); text-transform:uppercase;">Nivel 1 · Choque Rápido</span>
+            <span class="mono" style="font-size:11px; background:rgba(16,185,129,0.15); color:var(--toxic-green); padding:2px 8px; border-radius:999px; font-weight:700;">-50% HOY</span>
+          </div>
+          <h3>Auditoría Diagnóstica 1:1</h3>
+          <p style="color:var(--text-muted); font-size:13.5px;">Revisión forense de tu CV con método M-DEM y plan de choque rápido.</p>
+          <div class="price-amount">
+            <span style="text-decoration:line-through; font-size:16px; color:var(--text-dark); display:block; margin-bottom:-6px;">Antes $120.000 COP</span>
+            $60.000 <span>COP / sesión</span>
+          </div>
+          <ul class="price-list">
+            <li>Sesión en vivo de 50 min con Doctor Demente</li>
+            <li>Auditoría de tu CV frente a algoritmos ATS</li>
+            <li>Detección de sesgos y errores que te descartan</li>
+            <li>Plan de acción inmediato bajo modelo GROW</li>
+          </ul>
+          <a href="https://wa.me/573104692473?text=Hola%20Doctor%20Demente%2C%20quiero%20agendar%20la%20Auditoria%20Diagnostica%201%3A1%20con%2050%25%20OFF%20(%2460.000%20COP).%20Acepto%20politica%20de%20datos%20(Ley%201581)." target="_blank" rel="noopener" class="btn-secondary" style="text-align:center;">
+            Agendar Consulta (-50%)
+          </a>
+        </div>
+
+        <!-- PLAN 2 (DESTACADO) -->
+        <div class="price-card featured">
+          <div class="badge-pop">El Más Recetado · 50% OFF</div>
+          <span class="mono" style="font-size:11px; color:var(--neon-amber); text-transform:uppercase; margin-bottom:6px; display:block;">Nivel 2 · Intervención Total</span>
+          <h3>Paquete Integral Anti-ATS</h3>
+          <p style="color:var(--neon-violet); font-size:13.5px;">Reconstrucción total de tu perfil, LinkedIn E.P.B. y fogueo STAR.</p>
+          <div class="price-amount" style="color:#fff;">
+            <span style="text-decoration:line-through; font-size:16px; color:var(--text-muted); display:block; margin-bottom:-6px;">Antes $350.000 COP</span>
+            $175.000 <span>COP paquete</span>
+          </div>
+          <ul class="price-list">
+            <li>Reescritura completa de tu CV en formato Anti-ATS</li>
+            <li>Optimización estratégica de LinkedIn (Fórmula E.P.B.)</li>
+            <li>1 Sesión de fogueo de entrevista STAR con presión real</li>
+            <li>Plantillas y prompts éticos de IA personalizados</li>
+            <li>Acompañamiento vía WhatsApp por 15 días</li>
+          </ul>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <a href="https://wa.me/573104692473?text=Hola%20Doctor%20Demente%2C%20quiero%20el%20Paquete%20Integral%20Anti-ATS%20con%2050%25%20OFF%20(%24175.000%20COP).%20Acepto%20Ley%201581." target="_blank" rel="noopener" class="btn-main" style="justify-content:center; text-align:center;">
+              Iniciar Tratamiento Completo
+            </a>
+            <a href="https://link.mercadopago.com.co/drdemente" target="_blank" rel="noopener" class="btn-secondary" style="text-align:center; padding:10px; font-size:13px; border-color:var(--toxic-green); color:var(--toxic-green);">
+              Pagar con Nequi / PSE (Mercado Pago)
+            </a>
+          </div>
+        </div>
+
+        <!-- PLAN 3 (GRUPAL / KIT) -->
+        <div class="price-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span class="mono" style="font-size:11px; color:var(--toxic-green); text-transform:uppercase;">Nivel 3 · Grupal &amp; Kit IA</span>
+            <span class="mono" style="font-size:11px; background:rgba(245,158,11,0.15); color:var(--neon-amber); padding:2px 8px; border-radius:999px; font-weight:700;">CUPOS LIMITADOS</span>
+          </div>
+          <h3>Taller en Vivo + Kit ATS</h3>
+          <p style="color:var(--text-muted); font-size:13.5px;">Entrenamiento práctico en la Ruta MAED y plantillas listas para usar.</p>
+          <div class="price-amount">
+            <span style="text-decoration:line-through; font-size:16px; color:var(--text-dark); display:block; margin-bottom:-6px;">Antes $90.000 COP</span>
+            $45.000 <span>COP / cupo</span>
+          </div>
+          <ul class="price-list">
+            <li>Acceso al Taller Práctico de Empleabilidad en vivo</li>
+            <li>Plantilla maestra de Hoja de Vida validada para ATS</li>
+            <li>Guía de Prompts de IA para adaptar tu CV en 5 min</li>
+            <li>Calculadora de logros cuantificables bajo método STAR</li>
+          </ul>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <a href="https://wa.me/573104692473?text=Hola%20Doctor%20Demente%2C%20quiero%20separar%20mi%20cupo%20en%20el%20Taller%20en%20Vivo%20%2B%20Kit%20ATS%20por%20%2445.000%20COP.%20Acepto%20Ley%201581." target="_blank" rel="noopener" class="btn-secondary" style="text-align:center;">
+              Separar Cupo en el Taller
+            </a>
+            <a href="https://link.mercadopago.com.co/drdemente" target="_blank" rel="noopener" style="text-align:center; font-size:12px; color:var(--toxic-green); text-decoration:underline;">
+              O descarga solo el Kit Digital ($15k–$45k) vía PSE/Nequi ➔
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <p style="font-weight:700; color:#fff; font-size:15px; margin-bottom:4px;">Doctor Demente · Cristian Castañeda (Psicología Organizacional)</p>
+        <p>© 2026 Todos los derechos reservados. Coaching de Empleabilidad bajo lineamientos éticos de la Ley 1090 de 2006 y Protección de Datos Ley 1581 de 2012.</p>
+      </div>
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <a href="https://www.tiktok.com/@eldoctordemente" target="_blank" rel="noopener" class="btn-secondary" style="padding:8px 14px; font-size:12px;">TikTok @eldoctordemente</a>
+        <a href="https://www.youtube.com/@ElDOCTORDEMENTETIKTOK" target="_blank" rel="noopener" class="btn-secondary" style="padding:8px 14px; font-size:12px;">YouTube @ElDOCTORDEMENTETIKTOK</a>
+        <span class="mono" style="color:var(--neon-amber);">Diagnóstico ➔ Intervención ➔ Alta Laboral</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function responderSimulador(opcion) {
+      const speech = document.getElementById('doctor-speech');
+      const dis = document.getElementById('metric-disonancia');
+      const star = document.getElementById('metric-star');
+      const ats = document.getElementById('metric-ats');
+      const opts = document.getElementById('sim-options');
+
+      if (opcion === 1) {
+        speech.innerHTML = '"Bien jugado. Al estructurar la transición como consultoría con entregables medibles activas el sesgo de autoridad y superas el filtro ATS. Has integrado la Máscara sin proyectar desesperación."';
+        dis.innerHTML = '20% Baja';
+        dis.style.color = 'var(--toxic-green)';
+        star.innerHTML = '92% Sólido';
+        star.style.color = 'var(--toxic-green)';
+        ats.innerHTML = '95% Éxito';
+        ats.style.color = 'var(--toxic-green)';
+      } else if (opcion === 2) {
+        speech.innerHTML = '"Jugada junguiana de alto calibre. Desarmas al evaluador reconociendo tu Sombra antes de que la usen en tu contra y rediriges el foco al dolor financiero de la empresa."';
+        dis.innerHTML = '45% Media';
+        dis.style.color = 'var(--neon-amber)';
+        star.innerHTML = '85% Bueno';
+        star.style.color = 'var(--neon-cyan)';
+        ats.innerHTML = '88% Apto';
+        ats.style.color = 'var(--neon-cyan)';
+      } else {
+        speech.innerHTML = '"¡Respuesta pasiva de candidato descartado! El reclutador escucha ese cliché 40 veces al día. Decir que aprendes rápido sin evidencia STAR es admitir que hoy no resuelves nada."';
+        dis.innerHTML = '98% Crítica';
+        dis.style.color = 'var(--danger)';
+        star.innerHTML = '15% Nulo';
+        star.style.color = 'var(--danger)';
+        ats.innerHTML = '30% Rechazado';
+        ats.style.color = 'var(--danger)';
+      }
+
+      opts.innerHTML = `
+        <a href="#tratamientos" class="sim-opt-btn" style="justify-content:center; background:var(--gradient-brand); color:white; font-weight:bold; border:none; padding:12px; text-decoration:none;">
+          Ver Tratamientos con 50% OFF de Lanzamiento ⚡
+        </a>
+        <button class="sim-opt-btn" onclick="reiniciarSimulador()" style="justify-content:center; color:var(--text-muted); padding:10px;">
+          Probar otra respuesta en el Simulador ↻
+        </button>
+      `;
+    }
+
+    function reiniciarSimulador() {
+      document.getElementById('doctor-speech').innerHTML = '"Te sientas frente a mí y tu lenguaje corporal grita que llevas 8 meses sin empleo. Si un reclutador huele tu desesperación, te va a ofrecer la mitad del salario. ¿Cuál es tu plan para ocultar tu \'Sombra\' y proyectar autoridad?"';
+      const dis = document.getElementById('metric-disonancia');
+      const star = document.getElementById('metric-star');
+      const ats = document.getElementById('metric-ats');
+      dis.innerHTML = '84% Alta'; dis.style.color = 'var(--danger)';
+      star.innerHTML = 'Calibrando'; star.style.color = 'var(--neon-amber)';
+      ats.innerHTML = '62% Media'; ats.style.color = 'var(--neon-cyan)';
+      document.getElementById('sim-options').innerHTML = `
+        <button class="sim-opt-btn" onclick="responderSimulador(1)">
+          <span>"Uso el método STAR para justificar cada vacío laboral con consultorías."</span>
+          <span class="opt-badge">Arquetipo Máscara</span>
+        </button>
+        <button class="sim-opt-btn" onclick="responderSimulador(2)">
+          <span>"Admito mis errores con humor negro y cambio la conversación a su dolor."</span>
+          <span class="opt-badge">Integración Sombra</span>
+        </button>
+        <button class="sim-opt-btn" onclick="responderSimulador(3)">
+          <span>"Me quedo callado y digo que aprendo rápido bajo presión."</span>
+          <span class="opt-badge" style="color:var(--danger);">Error Novato</span>
+        </button>
+      `;
+    }
+
+    // Número oficial de alta conversión configurado en el ecosistema Doctor Demente
+    const WHATSAPP_DEMENTE = "573104692473";
+
+    function agendarWhatsApp(planElegido) {
+      const scoreActual = document.getElementById('total-score')?.innerText || 'N/A';
+      const utmSource = new URLSearchParams(window.location.search).get('utm_source') || 'clinica_empleabilidad';
+      const mensaje = `Hola Doctor Demente, vengo de La Clínica de la Hoja de Vida (Score M-DEM: ${scoreActual}/100 | Origen: ${utmSource}). Quiero adquirir: ${planElegido}. Acepto la política de tratamiento de datos (Ley 1581 de 2012).`;
+      window.open(`https://wa.me/${WHATSAPP_DEMENTE}?text=${encodeURIComponent(mensaje)}`, '_blank');
+    }
+
+    // Motor ATS Mejorado con 36 verbos de acción gerenciales y operativos
+    window.auditCV = function() {
+      const text = document.getElementById('cv-input').value.trim();
+      const resultsEl = document.getElementById('audit-results');
+      if (!text) {
+        alert('Por favor ingresa un fragmento de tu experiencia o perfil para auditar.');
+        return;
+      }
+      resultsEl.style.display = 'block';
+
+      const normalize = (str) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const normalizedText = normalize(text);
+
+      const verbs = [
+        'lidere', 'implemente', 'reduje', 'optimice', 'disene', 'coordine',
+        'incremente', 'desarrolle', 'gestione', 'audite', 'automatice', 'negocie',
+        'estructure', 'ejecute', 'supervise', 'capacite', 'estandarice', 'lance',
+        'transforme', 'acelere', 'consolide', 'diagnostique', 'formule', 'dirigi',
+        'logre', 'alcance', 'construi', 'modernice', 'escale', 'integre',
+        'potencie', 'revitalice', 'sistematice', 'rentabilice', 'mitigue', 'articule'
+      ];
+
+      let foundVerbs = 0;
+      verbs.forEach(v => {
+        if (normalizedText.includes(v)) foundVerbs++;
+      });
+
+      const numbers = text.match(/\d+([.,]\d+)?[%$kKmM]?/g) || [];
+      const metricsCount = numbers.length;
+
+      let score = 25;
+      if (foundVerbs > 0) score += Math.min(foundVerbs * 18, 45);
+      if (metricsCount > 0) score += Math.min(metricsCount * 15, 30);
+      if (text.length > 110) score += 5;
+      if (score > 100) score = 100;
+
+      document.getElementById('audit-score').innerText = score + '%';
+      document.getElementById('total-score').innerText = score;
+      document.getElementById('action-verbs-count').innerText = foundVerbs + ' detectados';
+      document.getElementById('metrics-count').innerText = metricsCount + ' detectadas';
+
+      const feedbackEl = document.getElementById('audit-feedback');
+      if (score < 55) {
+        feedbackEl.innerHTML = `<span style="color:var(--danger); font-weight:700;">⚠️ Alerta Roja ATS (${score}%):</span> Tu redacción es pasiva y descriptiva. Un ATS como Workday o Taleo descartará este bloque en menos de 3 segundos. <button onclick="agendarWhatsApp('Urgente: Reingeniería de CV (Score ATS ${score}% - 50% OFF)')" style="background:none; border:none; color:var(--neon-cyan); text-decoration:underline; font-weight:700; cursor:pointer; margin-left:6px;">Corregir mi CV con Doctor Demente (-50%) ➔</button>`;
+      } else if (score < 82) {
+        feedbackEl.innerHTML = `<span style="color:var(--neon-cyan); font-weight:700;">⚡ Nivel Competitivo (${score}%):</span> Tienes verbos de acción, pero te falta cerrar con la 'R' del método STAR (% de mejora, ahorro en COP o tiempo reducido). <button onclick="agendarWhatsApp('Optimización STAR de CV (Score ATS ${score}% - 50% OFF)')" style="background:none; border:none; color:var(--neon-violet); text-decoration:underline; font-weight:700; cursor:pointer; margin-left:6px;">Pulir en Consulta 1:1 (-50%) ➔</button>`;
+      } else {
+        feedbackEl.innerHTML = `<span style="color:var(--toxic-green); font-weight:700;">🏆 Nivel Élite Anti-ATS (${score}%):</span> Estructura de alto impacto con verbos de liderazgo y evidencia numérica clara. Ahora asegúrate de defender este logro en la Sala de Entrevista STAR.`;
+      }
+    };
+  </script>
+</body>
+</html>
