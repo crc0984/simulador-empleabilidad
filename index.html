@@ -1,1015 +1,1248 @@
-﻿<!DOCTYPE html>
-
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Doctor Demente · Modo Entrevista | Content Operations HQ</title>
-<!-- Material Symbols Outlined -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Google Fonts: Playfair Display & Manrope -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
+<!-- Taller de Empleabilidad Doctor Demente (Soundscape Edition) -->
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Taller de Empleabilidad Doctor Demente (Soundscape Edition)</title>
+<!-- Google Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- Google Fonts: Newsreader (Headlines), Geist (Labels), Space Grotesk (Body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "surface-container-high": "#2b2a28",
-            "on-primary-fixed": "#241a00",
-            "tertiary": "#decac5",
-            "background": "#141312",
-            "surface-container": "#211f1e",
-            "primary-fixed": "#ffe088",
-            "surface-container-highest": "#363433",
-            "error-container": "#93000a",
-            "on-primary-fixed-variant": "#574500",
-            "on-error-container": "#ffdad6",
-            "on-tertiary-container": "#4f423f",
-            "surface-tint": "#e9c349",
-            "outline": "#99907c",
-            "tertiary-fixed-dim": "#d6c2be",
-            "secondary": "#d8c3b2",
-            "on-tertiary-fixed": "#241916",
-            "on-secondary-fixed": "#25190f",
-            "on-secondary-fixed-variant": "#534437",
-            "error": "#ffb4ab",
-            "primary-fixed-dim": "#e9c349",
-            "on-primary": "#3c2f00",
-            "outline-variant": "#4d4635",
-            "on-background": "#e6e1df",
-            "tertiary-fixed": "#f2ded9",
-            "on-surface-variant": "#d0c5af",
-            "secondary-fixed-dim": "#d8c3b2",
-            "surface-bright": "#3b3937",
-            "on-error": "#690005",
-            "surface-variant": "#363433",
-            "tertiary-container": "#c1afaa",
-            "surface": "#141312",
-            "inverse-primary": "#735c00",
-            "on-tertiary": "#3a2e2b",
-            "surface-container-low": "#1d1b1a",
-            "primary": "#f2ca50",
-            "on-primary-container": "#554300",
-            "on-surface": "#e6e1df",
-            "secondary-container": "#534437",
-            "on-tertiary-fixed-variant": "#514440",
-            "inverse-on-surface": "#32302f",
-            "surface-container-lowest": "#0f0e0d",
-            "inverse-surface": "#e6e1df",
-            "secondary-fixed": "#f5decd",
-            "on-secondary": "#3b2e22",
-            "surface-dim": "#141312",
-            "on-secondary-container": "#c6b1a1",
-            "primary-container": "#d4af37"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-xl": "4.5rem",
-            "space-sm": "0.75rem",
-            "margin": "1.25rem",
-            "gutter": "1.5rem",
-            "space-xs": "0.375rem",
-            "space-md": "1.5rem",
-            "margin-desktop": "5rem",
-            "space-lg": "2.5rem",
-            "gutter-desktop": "2.5rem",
-            "margin-tablet": "3rem"
-          },
-          "fontFamily": {
-            "label-caps": ["Manrope"],
-            "display-hero": ["Playfair Display"],
-            "headline-lg-mobile": ["Playfair Display"],
-            "display-hero-mobile": ["Playfair Display"],
-            "body-lg": ["Manrope"],
-            "label-md": ["Manrope"],
-            "body-md": ["Manrope"],
-            "headline-lg": ["Playfair Display"],
-            "headline-sm": ["Playfair Display"],
-            "headline-md": ["Playfair Display"],
-            "body-sm": ["Manrope"]
-          },
-          "fontSize": {
-            "label-caps": ["0.6875rem", { "lineHeight": "1rem", "letterSpacing": "0.2em", "fontWeight": "600" }],
-            "display-hero": ["4.5rem", { "lineHeight": "5rem", "letterSpacing": "-0.02em", "fontWeight": "400" }],
-            "headline-lg-mobile": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "0em", "fontWeight": "400" }],
-            "display-hero-mobile": ["2.75rem", { "lineHeight": "3.25rem", "letterSpacing": "-0.01em", "fontWeight": "400" }],
-            "body-lg": ["1.125rem", { "lineHeight": "1.875rem", "letterSpacing": "0.01em", "fontWeight": "300" }],
-            "label-md": ["0.8125rem", { "lineHeight": "1.125rem", "letterSpacing": "0.05em", "fontWeight": "500" }],
-            "body-md": ["0.9375rem", { "lineHeight": "1.6rem", "letterSpacing": "0.01em", "fontWeight": "300" }],
-            "headline-lg": ["3rem", { "lineHeight": "3.5rem", "letterSpacing": "-0.015em", "fontWeight": "400" }],
-            "headline-sm": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "0em", "fontWeight": "500" }],
-            "headline-md": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
-            "body-sm": ["0.8125rem", { "lineHeight": "1.375rem", "letterSpacing": "0.02em", "fontWeight": "400" }]
-          }
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          background: "#0f131f",
+          "surface-container-low": "#171b27",
+          "surface-container": "#1b1f2c",
+          "surface-container-high": "#262a36",
+          "surface-container-highest": "#303441",
+          "surface-container-lowest": "#0a0e19",
+          primary: "#f2ca50",
+          "primary-container": "#d4af37",
+          secondary: "#00eefc",
+          "secondary-container": "#00686f",
+          tertiary: "#e3c2ff",
+          "tertiary-container": "#d09eff",
+          "on-surface": "#dfe2f3",
+          "on-surface-variant": "#d0c5af",
+          "outline": "#99907c",
+          "outline-variant": "#4d4635",
+          error: "#ffb4ab",
+          "error-container": "#93000a"
+        },
+        fontFamily: {
+          headline: ["Newsreader", "serif"],
+          label: ["Geist", "sans-serif"],
+          body: ["Space Grotesk", "sans-serif"]
         }
       }
     }
-  </script>
+  }
+</script>
 <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .custom-scroll::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
-    }
-    .custom-scroll::-webkit-scrollbar-track {
-      background: #0f0e0d;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: #4d4635;
-      border-radius: 2px;
-    }
-  </style>
+  .stone-frame {
+    box-shadow: inset 0 1px 0 rgba(242, 202, 80, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.9), 0 8px 24px rgba(0,0,0,0.85);
+    border: 1px solid #4d4635;
+  }
+  .gold-elite-frame {
+    border: 2px solid #f2ca50;
+    box-shadow: 0 0 16px rgba(242, 202, 80, 0.45), inset 0 0 12px rgba(0,0,0,0.8);
+  }
+  .parchment-bg {
+    background: radial-gradient(circle at 50% 50%, #fef3c7 0%, #fde68a 85%, #f59e0b 130%);
+    color: #1c1917;
+  }
+  @keyframes holoPulse {
+    0%, 100% { box-shadow: 0 0 15px rgba(0, 238, 252, 0.35); }
+    50% { box-shadow: 0 0 30px rgba(0, 238, 252, 0.7); }
+  }
+  .holo-glow { animation: holoPulse 3.5s ease-in-out infinite; }
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  .rune-floating { animation: floatSlow 2.8s ease-in-out infinite; }
+</style>
 </head>
-<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col font-body-md text-body-md antialiased overflow-x-hidden">
-<!-- ========================================== -->
-<!-- 1. SHARED COMPONENT: TopAppBar (Strict JSON) -->
-<!-- ========================================== -->
-<header class="w-full px-6 py-3 flex items-center justify-between border-b border-outline-variant dark:border-outline bg-surface-container-lowest dark:bg-surface-dim docked full-width top-0 z-50 shadow-sm sticky">
-<!-- Leading Identity -->
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full bg-surface-container-lowest border border-primary flex items-center justify-center shadow-inner relative group">
-<span class="text-[#D4FF00] font-headline-sm text-headline-sm font-bold leading-none select-none">Ψ</span>
-<div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-[#D4FF00] ring-2 ring-surface-container-lowest"></div>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="text-headline-sm font-headline-sm font-bold text-primary dark:text-inverse-primary tracking-tight">Doctor Demente · Modo Entrevista</span>
-<span class="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] uppercase font-label-caps text-on-surface-variant bg-surface-container-high border border-outline-variant">Executive HQ</span>
-</div>
-<p class="text-label-md font-label-md text-outline">Centro de Mando &amp; Despliegue Forense de Contenidos</p>
-</div>
-</div>
-<!-- Navigation Nodes (Top Level Destination Execution) -->
-<nav class="hidden lg:flex items-center gap-6">
-<a class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed font-semibold pb-1 flex items-center gap-1.5 text-label-md font-label-md" href="#pipeline">
-<span class="material-symbols-outlined text-[18px]">view_timeline</span>
-        Pipeline Shorts
-      </a>
-<a class="text-on-surface-variant dark:text-outline-variant hover:text-on-surface dark:hover:text-surface-bright pb-1 transition-colors flex items-center gap-1.5 text-label-md font-label-md" href="#analytics">
-<span class="material-symbols-outlined text-[18px]">analytics</span>
-        Monitoreo YouTube
-      </a>
-<a class="text-on-surface-variant dark:text-outline-variant hover:text-on-surface dark:hover:text-surface-bright pb-1 transition-colors flex items-center gap-1.5 text-label-md font-label-md" href="#telemetry">
-<span class="material-symbols-outlined text-[18px]">psychology</span>
-        Laboratorio STAR
-      </a>
-<a class="text-on-surface-variant dark:text-outline-variant hover:text-on-surface dark:hover:text-surface-bright pb-1 transition-colors flex items-center gap-1.5 text-label-md font-label-md" href="#omnichannel">
-<span class="material-symbols-outlined text-[18px]">share</span>
-        Omnicanal
-      </a>
-</nav>
-<!-- Trailing Action -->
-<div class="flex items-center gap-4">
-<div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant">
-<span class="w-2 h-2 rounded-full bg-[#D4FF00] animate-pulse"></span>
-<span class="text-[11px] font-label-caps text-[#D4FF00] tracking-wider uppercase">Sincronización Omnicanal: Activa</span>
-</div>
-<button class="px-4 py-2 rounded bg-surface-container-high hover:bg-surface-container text-primary border border-outline-variant font-label-md text-label-md tracking-wider transition-colors duration-150 active:opacity-90 flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px]">logout</span>
-        Finalizar Sesión
-      </button>
-</div>
-</header>
-<!-- ========================================== -->
-<!-- SUB-HEADER / EXECUTIVE TELEMETRY TICKER -->
-<!-- ========================================== -->
-<section class="bg-surface-container-low border-b border-outline-variant/60 px-6 py-3.5">
-<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-[20px]">smart_display</span>
-<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase">KPIs YouTube Studio en Tiempo Real</span>
-</div>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-10">
-<!-- Metric 1 -->
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center border border-outline-variant">
-<span class="material-symbols-outlined text-primary text-[18px]">subscriptions</span>
-</div>
-<div>
-<div class="text-xs font-label-caps text-outline uppercase tracking-wider">Suscriptores</div>
-<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-1">
-              +48.2K
-              <span class="text-[11px] font-label-caps text-[#D4FF00]">+3.4%</span>
-</div>
-</div>
-</div>
-<!-- Metric 2 -->
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center border border-outline-variant">
-<span class="material-symbols-outlined text-primary text-[18px]">timelapse</span>
-</div>
-<div>
-<div class="text-xs font-label-caps text-outline uppercase tracking-wider">Retención Media</div>
-<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-1">
-              68.4%
-              <span class="text-[11px] font-label-caps text-primary">Óptimo</span>
-</div>
-</div>
-</div>
-<!-- Metric 3 -->
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center border border-outline-variant">
-<span class="material-symbols-outlined text-primary text-[18px]">ads_click</span>
-</div>
-<div>
-<div class="text-xs font-label-caps text-outline uppercase tracking-wider">CTR Global</div>
-<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-1">
-              11.2%
-              <span class="text-[11px] font-label-caps text-[#D4FF00]">High</span>
-</div>
-</div>
-</div>
-<!-- Metric 4 -->
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center border border-primary/40 shadow-sm">
-<span class="material-symbols-outlined text-[#D4FF00] text-[18px]">badge</span>
-</div>
-<div>
-<div class="text-xs font-label-caps text-outline uppercase tracking-wider">Leads Hoy (C-Level)</div>
-<div class="font-headline-sm text-headline-sm text-[#D4FF00] font-semibold flex items-center gap-1">
-              84
-              <span class="text-[11px] font-label-caps text-secondary-fixed">Admisiones</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- ========================================== -->
-<!-- MAIN WORKSPACE CANVAS -->
-<!-- ========================================== -->
-<main class="flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 py-8 flex flex-col gap-10">
-<!-- HERO SECTION & CURATED DISPATCH BANNER -->
-<section class="relative rounded-lg p-6 lg:p-8 bg-surface-container-low border border-outline-variant overflow-hidden shadow-2xl">
-<!-- Glow ambient backdrop -->
-<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-<div class="absolute -bottom-24 -left-24 w-80 h-80 bg-[#D4FF00]/5 rounded-full blur-3xl pointer-events-none"></div>
-<div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-<div class="max-w-3xl">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-surface-container-highest border border-outline-variant mb-3">
-<span class="text-[#D4FF00] text-xs font-label-caps uppercase tracking-widest font-bold">Modo Entrevista · Cristian Castañeda</span>
-<span class="text-outline text-xs">•</span>
-<span class="text-secondary text-xs font-label-caps tracking-widest">Protocolo Forense Diario</span>
-</div>
-<h1 class="font-headline-lg text-headline-lg md:text-headline-lg font-normal text-on-background tracking-tight">
-            Ecosistema de Influencia C-Level &amp; Conversión Ejecutiva
-          </h1>
-<p class="font-body-md text-body-md text-secondary mt-2 max-w-2xl font-light">
-            Estrategia de tres impactos diarios en YouTube Shorts diseñada con psicología conductual, desmantelamiento de filtros corporativos y atracción directa de postulantes directivos a la sesión de coaching.
-          </p>
-</div>
-<div class="flex flex-wrap lg:flex-col items-stretch gap-3 w-full lg:w-auto">
-<button class="flex-1 lg:flex-none px-6 py-3 rounded bg-primary-container hover:bg-primary text-on-primary-fixed font-label-md text-label-md tracking-wider font-semibold transition-all duration-150 flex items-center justify-center gap-2 shadow-lg">
-<span class="material-symbols-outlined text-[18px]">video_call</span>
-            Programar Corto Express
-          </button>
-<button class="flex-1 lg:flex-none px-6 py-3 rounded bg-surface-container-high hover:bg-surface-container border border-outline-variant text-on-surface font-label-md text-label-md tracking-wider transition-colors duration-150 flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-[18px]">instant_mix</span>
-            Ajustar Automatización STAR
-          </button>
-</div>
-</div>
-</section>
-<!-- ========================================== -->
-<!-- SECTION 2: PIPELINE MODULAR DE 3 SHORTS -->
-<!-- ========================================== -->
-<section class="space-y-4" id="pipeline">
-<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-outline-variant pb-3">
-<div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[22px]">auto_stories</span>
-<h2 class="font-headline-md text-headline-md text-on-surface">Pipeline Modular de los 3 Shorts Diarios</h2>
-</div>
-<p class="text-body-sm font-body-sm text-secondary">
-            Despliegue escalonado con hooks neurológicos de alto impacto: Matutino, Mediodía y Prime-Time Nocturno.
-          </p>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-label-caps font-label-caps text-outline uppercase tracking-wider">Lote del Día:</span>
-<span class="px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant text-primary font-mono text-xs font-semibold">
-            BATCH_2025_MAR_14
-          </span>
-</div>
-</div>
-<!-- 3-CARD BENTO GRID -->
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-<!-- SHORT 01: MATUTINO -->
-<div class="bg-surface-container-low rounded-lg border border-primary/30 p-5 flex flex-col justify-between relative group hover:border-primary transition-all duration-200">
-<div class="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#D4FF00]/10 border border-[#D4FF00]/40">
-<span class="w-1.5 h-1.5 rounded-full bg-[#D4FF00] animate-ping"></span>
-<span class="text-[10px] font-label-caps text-[#D4FF00] uppercase font-bold tracking-wider">Publicado</span>
-</div>
-<div>
-<!-- Timeline Tag & Time -->
-<div class="flex items-center gap-2 text-outline mb-2">
-<span class="material-symbols-outlined text-[16px] text-primary">wb_twilight</span>
-<span class="text-label-caps font-label-caps uppercase tracking-wider text-xs">Short 01 · 08:00 AM (Matutino)</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3 group-hover:text-primary transition-colors">
-              "Desmantelando el Filtro ATS de Workday"
-            </h3>
-<!-- Preview Card Container -->
-<div class="relative rounded bg-surface-container-lowest border border-outline-variant p-3.5 mb-4 space-y-2.5 overflow-hidden">
-<div class="flex items-center justify-between text-xs text-secondary border-b border-outline-variant/40 pb-2">
-<span class="font-label-caps text-label-caps uppercase tracking-widest text-outline">Hook Psicológico</span>
-<span class="text-[#D4FF00] font-mono">00:00 - 00:03s</span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface italic font-light">
-                "El 91% de los directores son rechazados antes de que un humano lea su CV. Esto es lo que Workday busca en secreto."
-              </p>
-<div class="pt-1 flex items-center justify-between text-xs">
-<span class="text-outline text-label-caps font-label-caps">Llamado a la Acción (CTA):</span>
-<span class="text-primary font-medium">Cupo VIP al Taller</span>
-</div>
-</div>
-<!-- Telemetría & Conversión -->
-<div class="grid grid-cols-2 gap-2 mb-4">
-<div class="p-2.5 rounded bg-surface-container border border-outline-variant">
-<div class="text-label-caps font-label-caps text-outline uppercase text-[10px]">Retención YouTube</div>
-<div class="text-headline-sm font-headline-sm text-on-surface font-semibold">72.0%</div>
-<div class="text-[10px] text-[#D4FF00] font-label-caps">Retención masiva</div>
-</div>
-<div class="p-2.5 rounded bg-surface-container border border-outline-variant">
-<div class="text-label-caps font-label-caps text-outline uppercase text-[10px]">Leads Capturados</div>
-<div class="text-headline-sm font-headline-sm text-[#D4FF00] font-semibold">+31 C-Level</div>
-<div class="text-[10px] text-outline font-label-caps">Conversión: 14.8%</div>
-</div>
-</div>
-</div>
-<!-- Bottom Control Switch -->
-<div class="pt-3 border-t border-outline-variant flex items-center justify-between">
-<span class="text-xs font-label-caps text-outline">Estado del Pipeline:</span>
-<div class="flex items-center gap-1 bg-surface-container-highest p-1 rounded">
-<button class="px-2 py-0.5 rounded text-[10px] font-label-caps text-outline hover:text-on-surface">Borrador</button>
-<button class="px-2 py-0.5 rounded text-[10px] font-label-caps text-outline hover:text-on-surface">Calibrando</button>
-<button class="px-2 py-0.5 rounded text-[10px] font-label-caps bg-primary text-on-primary font-bold">Publicado</button>
-</div>
-</div>
-</div>
-<!-- SHORT 02: MEDIODÍA -->
-<div class="bg-surface-container-low rounded-lg border border-outline-variant p-5 flex flex-col justify-between relative group hover:border-primary/60 transition-all duration-200">
-<div class="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded bg-primary/10 border border-primary/40">
-<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-<span class="text-[10px] font-label-caps text-primary uppercase font-bold tracking-wider">En Render/Edición</span>
-</div>
-<div>
-<div class="flex items-center gap-2 text-outline mb-2">
-<span class="material-symbols-outlined text-[16px] text-primary">wb_sunny</span>
-<span class="text-label-caps font-label-caps uppercase tracking-wider text-xs">Short 02 · 01:00 PM (Mediodía)</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3 group-hover:text-primary transition-colors">
-              "Pregunta Trampa: ¿Por qué dejaste tu último cargo directivo?"
-            </h3>
-<div class="relative rounded bg-surface-container-lowest border border-outline-variant p-3.5 mb-4 space-y-2.5">
-<div class="flex items-center justify-between text-xs text-secondary border-b border-outline-variant/40 pb-2">
-<span class="font-label-caps text-label-caps uppercase tracking-widest text-outline">Estructura STAR Forense</span>
-<span class="text-primary font-mono">Audio Calibrado (-14 LUFS)</span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface italic font-light">
-                "Nunca digas 'desacuerdo cultural'. Di esto para proyectar soberanía táctica y neutralizar el sesgo del Headhunter."
-              </p>
-<div class="pt-1 flex items-center justify-between text-xs">
-<span class="text-outline text-label-caps font-label-caps">Telemetría de Guion:</span>
-<span class="text-[#D4FF00] font-mono text-[11px]">STAR Score: 96/100</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-2 mb-4">
-<div class="p-2.5 rounded bg-surface-container border border-outline-variant">
-<div class="text-label-caps font-label-caps text-outline uppercase text-[10px]">Render Progresivo</div>
-<div class="text-headline-sm font-headline-sm text-primary font-semibold">84%</div>
-<div class="w-full bg-surface-container-highest h-1 rounded-full mt-1.5 overflow-hidden">
-<div class="bg-primary h-full w-[84%]"></div>
-</div>
-</div>
-<div class="p-2.5 rounded bg-surface-container border border-outline-variant">
-<div class="text-label-caps font-label-caps text-outline uppercase text-[10px]">Proyección Leads</div>
-<div class="text-headline-sm font-headline-sm text-on-surface font-semibold">~45 Est.</div>
-<div class="text-[10px] text-outline font-label-caps">Traficante: Headhunters</div>
-</div>
-</div>
-</div>
-<div class="pt-3 border-t border-outline-variant flex items-center justify-between">
-<span class="text-xs font-label-caps text-outline">Estado del Pipeline:</span>
-<div class="flex items-center gap-1 bg-surface-container-highest p-1 rounded">
-<button class="px-2 py-0.5 rounded text-[10px] font-label-caps text-outline hover:text-on-surface">Borrador</button>
-<button class="px-2 py-0.5 rounded text-[10px] font-label-caps bg-primary text-on-primary font-bold">Calibrando</button>
-<button class="px-2 py-0.5 rounded text-[10px] font-label-caps text-outline hover:text-on-surface">Listo</button>
-</div>
-</div>
-</div>
-<!-- SHORT 03: NOCTURNO -->
-<div class="bg-surface-container-low rounded-lg border border-outline-variant p-5 flex flex-col justify-between relative group hover:border-primary/60 transition-all duration-200">
-<div class="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container/40 border border-secondary-container">
-<span class="material-symbols-outlined text-[14px] text-secondary">schedule</span>
-<span class="text-[10px] font-label-caps text-secondary uppercase font-bold tracking-wider">Programado</span>
-</div>
-<div>
-<div class="flex items-center gap-2 text-outline mb-2">
-<span class="material-symbols-outlined text-[16px] text-primary">nights_stay</span>
-<span class="text-label-caps font-label-caps uppercase tracking-wider text-xs">Short 03 · 07:30 PM (Nocturno)</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3 group-hover:text-primary transition-colors">
-              "Negociación de Salario Fijo vs. Paquete Variable"
-            </h3>
-<div class="relative rounded bg-surface-container-lowest border border-outline-variant p-3.5 mb-4 space-y-2.5">
-<div class="flex items-center justify-between text-xs text-secondary border-b border-outline-variant/40 pb-2">
-<span class="font-label-caps text-label-caps uppercase tracking-widest text-outline">Audiencia Objetivo</span>
-<span class="text-secondary font-mono text-[11px]">Directores, VPs &amp; C-Level</span>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface italic font-light">
-                "Cómo reaccionar cuando te ofrecen un bono inflado con un salario base devaluado. El ancla del 35% de margen."
-              </p>
-<div class="pt-1 flex items-center justify-between text-xs">
-<span class="text-outline text-label-caps font-label-caps">Checkout Integrado:</span>
-<span class="text-[#D4FF00] font-mono text-[11px]">DaviPlata / Nequi Business</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-2 mb-4">
-<div class="p-2.5 rounded bg-surface-container border border-outline-variant">
-<div class="text-label-caps font-label-caps text-outline uppercase text-[10px]">Cuenta Regresiva</div>
-<div class="text-headline-sm font-headline-sm text-on-surface font-semibold">04h 12m</div>
-<div class="text-[10px] text-primary font-label-caps">Auto-Publish On</div>
-</div>
-<div class="p-2.5 rounded bg-surface-container border border-outline-variant">
-<div class="text-label-caps font-label-caps text-outline uppercase text-[10px]">Cupos Taller</div>
-<div class="text-headline-sm font-headline-sm text-on-surface font-semibold">12 Restantes</div>
-<div class="text-[10px] text-[#D4FF00] font-label-caps">Filtro Exclusivo</div>
-</div>
-</div>
-</div>
-<div class="pt-3 border-t border-outline-variant flex items-center justify-between">
-<span class="text-xs font-label-caps text-outline">Estado del Pipeline:</span>
-<div class="flex items-center gap-1 bg-surface-container-highest p-1 rounded">
-<button class="px-2 py-0.5 rounded text-[10px] font-label-caps text-outline hover:text-on-surface">Borrador</button>
-<button class="px-2 py-0.5 rounded text-[10px] font-label-caps bg-surface-container border border-primary/40 text-primary font-bold">Listo</button>
-<button class="px-2 py-0.5 rounded text-[10px] font-label-caps text-outline hover:text-on-surface">Publicado</button>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- ========================================== -->
-<!-- SECTION 3: CENTRO DE MANDO YOUTUBE & OMNICANAL -->
-<!-- ========================================== -->
-<section class="grid grid-cols-1 lg:grid-cols-12 gap-6" id="analytics">
-<!-- LEFT: Rendimiento YouTube & Gráfico Fluctuación Leads (8 cols) -->
-<div class="lg:col-span-8 bg-surface-container-low rounded-lg border border-outline-variant p-6 space-y-6">
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant/60 pb-4">
-<div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[22px]">ssid_chart</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface">Afluencia de Leads &amp; Conversión Forense</h3>
-</div>
-<p class="text-body-sm font-body-sm text-secondary">
-              Correlación minuto a minuto entre publicaciones y registros de ejecutivos de alto calibre.
-            </p>
-</div>
-<!-- Switcher: Shorts vs Masterclasses -->
-<div class="inline-flex p-1 bg-surface-container-lowest rounded border border-outline-variant">
-<button class="px-3 py-1 rounded bg-primary-container text-on-primary-fixed text-label-md font-label-md font-semibold text-xs transition-colors">
-              YouTube Shorts (Diarios)
-            </button>
-<button class="px-3 py-1 rounded text-outline hover:text-on-surface text-label-md font-label-md text-xs transition-colors">
-              Masterclasses Largas (60m)
-            </button>
-</div>
-</div>
-<!-- Telemetry Data Grid -->
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-<div class="p-3 rounded bg-surface-container border border-outline-variant/60">
-<div class="text-[10px] font-label-caps text-outline uppercase tracking-wider">Pico de Tráfico</div>
-<div class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">08:14 AM</div>
-<span class="text-[11px] text-[#D4FF00] font-label-caps">Salida Short 01</span>
-</div>
-<div class="p-3 rounded bg-surface-container border border-outline-variant/60">
-<div class="text-[10px] font-label-caps text-outline uppercase tracking-wider">Leads Directivos/Hr</div>
-<div class="font-headline-sm text-headline-sm text-primary font-semibold mt-0.5">14.2 / hr</div>
-<span class="text-[11px] text-outline font-label-caps">+28% vs ayer</span>
-</div>
-<div class="p-3 rounded bg-surface-container border border-outline-variant/60">
-<div class="text-[10px] font-label-caps text-outline uppercase tracking-wider">Conversión Bio Link</div>
-<div class="font-headline-sm text-headline-sm text-on-surface font-semibold mt-0.5">23.6%</div>
-<span class="text-[11px] text-primary font-label-caps">Landing VIP</span>
-</div>
-<div class="p-3 rounded bg-surface-container border border-outline-variant/60">
-<div class="text-[10px] font-label-caps text-outline uppercase tracking-wider">Ingreso Nequi/Davi</div>
-<div class="font-headline-sm text-headline-sm text-[#D4FF00] font-semibold mt-0.5">$3.4M COP</div>
-<span class="text-[11px] text-outline font-label-caps">Hoy (en vivo)</span>
-</div>
-</div>
-<!-- Dynamic Visualization Canvas Mockup -->
-<div class="p-4 rounded bg-surface-container-lowest border border-outline-variant relative">
-<div class="flex items-center justify-between text-xs text-outline mb-4">
-<span class="font-label-caps uppercase tracking-wider">Monitoreo de Telemetría: Últimas 12 Horas</span>
-<div class="flex items-center gap-4">
-<span class="flex items-center gap-1.5 text-xs text-primary"><span class="w-2 h-2 rounded-full bg-primary"></span> Visualizaciones Short</span>
-<span class="flex items-center gap-1.5 text-xs text-[#D4FF00]"><span class="w-2 h-2 rounded-full bg-[#D4FF00]"></span> Postulaciones Taller</span>
-</div>
-</div>
-<!-- Pure CSS Bar/Flow Graphic -->
-<div class="h-44 w-full flex items-end gap-2 pt-4 px-2 border-b border-outline-variant/60">
-<!-- 06:00 -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-surface-container-highest rounded-t hover:bg-primary/40 transition-all h-[15%] relative">
-<div class="absolute -top-6 left-1/2 -translate-x-1/2 hidden group-hover:block bg-surface-container-high px-1.5 py-0.5 rounded text-[9px] text-on-surface whitespace-nowrap">2.1K</div>
-</div>
-<span class="text-[9px] font-mono text-outline">06h</span>
-</div>
-<!-- 07:00 -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-surface-container-highest rounded-t hover:bg-primary/40 transition-all h-[25%] relative"></div>
-<span class="text-[9px] font-mono text-outline">07h</span>
-</div>
-<!-- 08:00 (SPIKE) -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-primary rounded-t transition-all h-[95%] relative shadow-lg">
-<div class="absolute -top-7 left-1/2 -translate-x-1/2 bg-[#08090E] border border-primary px-2 py-0.5 rounded text-[10px] text-[#D4FF00] font-bold whitespace-nowrap">+31 Leads</div>
-<div class="w-full bg-[#D4FF00] h-[30%] absolute bottom-0 rounded-b"></div>
-</div>
-<span class="text-[9px] font-mono text-primary font-bold">08h</span>
-</div>
-<!-- 09:00 -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-primary-container/80 rounded-t h-[70%] relative"></div>
-<span class="text-[9px] font-mono text-outline">09h</span>
-</div>
-<!-- 10:00 -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-surface-container-highest rounded-t h-[40%] relative"></div>
-<span class="text-[9px] font-mono text-outline">10h</span>
-</div>
-<!-- 11:00 -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-surface-container-highest rounded-t h-[35%] relative"></div>
-<span class="text-[9px] font-mono text-outline">11h</span>
-</div>
-<!-- 12:00 -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-surface-container-highest rounded-t h-[48%] relative"></div>
-<span class="text-[9px] font-mono text-outline">12h</span>
-</div>
-<!-- 13:00 (PREPARATION SPIKE) -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full border border-dashed border-primary/80 rounded-t h-[80%] relative flex items-center justify-center">
-<span class="text-[9px] text-primary rotate-90 font-mono">Render</span>
-</div>
-<span class="text-[9px] font-mono text-primary font-bold">13h</span>
-</div>
-<!-- 14:00 -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-surface-container-highest/60 rounded-t h-[30%] relative"></div>
-<span class="text-[9px] font-mono text-outline">14h</span>
-</div>
-<!-- 15:00 -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-surface-container-highest/60 rounded-t h-[28%] relative"></div>
-<span class="text-[9px] font-mono text-outline">15h</span>
-</div>
-<!-- 16:00 -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-surface-container-highest/60 rounded-t h-[32%] relative"></div>
-<span class="text-[9px] font-mono text-outline">16h</span>
-</div>
-<!-- 17:00 -->
-<div class="flex-1 flex flex-col items-center gap-1 h-full justify-end group">
-<div class="w-full bg-surface-container-highest/60 rounded-t h-[45%] relative"></div>
-<span class="text-[9px] font-mono text-outline">17h</span>
-</div>
-</div>
-<div class="mt-3 flex items-center justify-between text-[11px] text-secondary">
-<span>Diagnóstico Algorítmico: <strong class="text-on-surface">Índice de Retención +18.4% superior a la media de canales de Headhunting.</strong></span>
-<span class="text-[#D4FF00] font-label-caps">Velocidad Viral: ALTA</span>
-</div>
-</div>
-</div>
-<!-- RIGHT: Cola de Distribución Omnicanal (4 cols) -->
-<div class="lg:col-span-4 bg-surface-container-low rounded-lg border border-outline-variant p-6 flex flex-col justify-between space-y-6" id="omnichannel">
-<div>
-<div class="flex items-center justify-between border-b border-outline-variant/60 pb-3">
-<div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[20px]">hub</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface">Sincronización</h3>
-</div>
-<p class="text-body-sm font-body-sm text-secondary">Multiplataforma automática</p>
-</div>
-<span class="material-symbols-outlined text-[#D4FF00] text-[20px]">sync</span>
-</div>
-<div class="mt-4 space-y-3">
-<!-- Channel 1: YouTube -->
-<div class="p-3 rounded bg-surface-container border border-primary/40 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded bg-red-950/40 text-red-400 border border-red-800/40 flex items-center justify-center font-bold text-xs">
-                  YT
-                </div>
-<div>
-<div class="text-sm font-semibold text-on-surface">YouTube Shorts</div>
-<div class="text-[11px] text-outline">@DoctorDemente · Host Principal</div>
-</div>
-</div>
-<span class="px-2 py-0.5 rounded text-[10px] font-label-caps bg-primary text-on-primary font-bold">Activo</span>
-</div>
-<!-- Channel 2: TikTok -->
-<div class="p-3 rounded bg-surface-container border border-outline-variant flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded bg-surface-container-highest text-[#D4FF00] border border-outline-variant flex items-center justify-center font-bold text-xs">
-                  TT
-                </div>
-<div>
-<div class="text-sm font-semibold text-on-surface">TikTok Pro</div>
-<div class="text-[11px] text-outline">@eldoctordemente · Replicado</div>
-</div>
-</div>
-<span class="px-2 py-0.5 rounded text-[10px] font-label-caps bg-[#D4FF00]/20 text-[#D4FF00] border border-[#D4FF00]/40 font-bold">Synced</span>
-</div>
-<!-- Channel 3: LinkedIn Creator -->
-<div class="p-3 rounded bg-surface-container border border-outline-variant flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded bg-blue-950/40 text-blue-300 border border-blue-800/40 flex items-center justify-center font-bold text-xs">
-                  IN
-                </div>
-<div>
-<div class="text-sm font-semibold text-on-surface">LinkedIn Creator</div>
-<div class="text-[11px] text-outline">Cristian Castañeda · C-Suite Feed</div>
-</div>
-</div>
-<span class="px-2 py-0.5 rounded text-[10px] font-label-caps bg-surface-container-highest text-secondary border border-outline-variant">Queue: 13:00</span>
-</div>
-<!-- Channel 4: WhatsApp VIP Broadcast -->
-<div class="p-3 rounded bg-surface-container border border-outline-variant flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded bg-emerald-950/40 text-emerald-400 border border-emerald-800/40 flex items-center justify-center font-bold text-xs">
-                  WA
-                </div>
-<div>
-<div class="text-sm font-semibold text-on-surface">Comunidad VIP WhatsApp</div>
-<div class="text-[11px] text-outline">1,420 Candidatos Pre-seleccionados</div>
-</div>
-</div>
-<span class="px-2 py-0.5 rounded text-[10px] font-label-caps bg-[#D4FF00]/20 text-[#D4FF00] border border-[#D4FF00]/40 font-bold">Alerta ON</span>
-</div>
-</div>
-</div>
-<div class="pt-4 border-t border-outline-variant space-y-2">
-<div class="flex items-center justify-between text-xs text-secondary">
-<span>Ancho de Banda de Transmisión:</span>
-<span class="font-mono text-primary">Ultra-HD 4K 60fps</span>
-</div>
-<button class="w-full py-2.5 rounded bg-surface-container-high hover:bg-surface-container border border-outline-variant text-primary font-label-md text-label-md font-medium tracking-wider flex items-center justify-center gap-2 transition-colors">
-<span class="material-symbols-outlined text-[16px]">settings_input_antenna</span>
-            Forzar Re-Sincronización Total
-          </button>
-</div>
-</div>
-</section>
-<!-- ========================================== -->
-<!-- SECTION 4: GENERADOR RÁPIDO DE GUIONES STAR FORENSES -->
-<!-- ========================================== -->
-<section class="bg-surface-container-low rounded-lg border border-outline-variant p-6 space-y-6" id="telemetry">
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-outline-variant/60 pb-4">
-<div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[24px]">psychology_alt</span>
-<h2 class="font-headline-md text-headline-md text-on-surface">Generador &amp; Editor Táctico de Guiones STAR</h2>
-</div>
-<p class="text-body-sm font-body-sm text-secondary">
-            Arquitectura de 45 a 58 segundos: Hook Irresistible de 3s, Giro Psicológico Forense, Prueba de Autoridad y Conversión Inmediata.
-          </p>
-</div>
-<div class="flex items-center gap-3">
-<span class="text-xs font-label-caps text-outline uppercase tracking-wider">Modo Plantilla:</span>
-<span class="px-3 py-1 rounded bg-[#D4FF00]/10 text-[#D4FF00] border border-[#D4FF00]/40 text-xs font-mono font-bold">
-            FORENSIC_INTERVIEW_v4
-          </span>
-</div>
-</div>
-<!-- STAR TACTICAL WORKBENCH (4 BLOCKS) -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-<!-- Block 1: Hook 3s -->
-<div class="rounded bg-surface-container-lowest border border-primary/40 p-4 flex flex-col justify-between space-y-3 relative group">
-<div class="flex items-center justify-between text-xs">
-<span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-wider">01 · Hook de 3 Segundos</span>
-<span class="px-1.5 py-0.5 rounded text-[10px] bg-primary/20 text-primary font-mono font-bold">00:00 - 00:03</span>
-</div>
-<textarea class="w-full bg-surface-container border border-outline-variant/80 rounded p-2.5 text-xs text-on-surface font-body-sm focus:border-primary focus:ring-1 focus:ring-primary h-28 resize-none transition-colors" placeholder="Define el detonador neurológico...">Si dices 'mi mayor defecto es ser perfeccionista', el evaluador ya decidió no contratarte. Esto es lo que están anotando en tu expediente.</textarea>
-<div class="flex items-center justify-between text-[11px] text-outline">
-<span>Objetivo: Retención &gt; 85%</span>
-<span class="text-[#D4FF00]">22 palabras</span>
-</div>
-</div>
-<!-- Block 2: Giro Forense -->
-<div class="rounded bg-surface-container-lowest border border-outline-variant p-4 flex flex-col justify-between space-y-3 relative group">
-<div class="flex items-center justify-between text-xs">
-<span class="font-label-caps text-label-caps text-secondary uppercase font-bold tracking-wider">02 · Giro Psicológico</span>
-<span class="px-1.5 py-0.5 rounded text-[10px] bg-surface-container-high text-secondary font-mono">00:04 - 00:22</span>
-</div>
-<textarea class="w-full bg-surface-container border border-outline-variant/80 rounded p-2.5 text-xs text-on-surface font-body-sm focus:border-primary focus:ring-1 focus:ring-primary h-28 resize-none transition-colors" placeholder="Desmantela la creencia tradicional...">En psicología de interrogatorio laboral, esa respuesta denota evasión de vulnerabilidad crítica. En su lugar, expón una fricción operativa superada con números de rentabilidad medibles.</textarea>
-<div class="flex items-center justify-between text-[11px] text-outline">
-<span>Técnica: STAR Invertido</span>
-<span class="text-primary">Estructura validada</span>
-</div>
-</div>
-<!-- Block 3: Prueba de Autoridad -->
-<div class="rounded bg-surface-container-lowest border border-outline-variant p-4 flex flex-col justify-between space-y-3 relative group">
-<div class="flex items-center justify-between text-xs">
-<span class="font-label-caps text-label-caps text-secondary uppercase font-bold tracking-wider">03 · Prueba de Autoridad</span>
-<span class="px-1.5 py-0.5 rounded text-[10px] bg-surface-container-high text-secondary font-mono">00:23 - 00:44</span>
-</div>
-<textarea class="w-full bg-surface-container border border-outline-variant/80 rounded p-2.5 text-xs text-on-surface font-body-sm focus:border-primary focus:ring-1 focus:ring-primary h-28 resize-none transition-colors" placeholder="Introduce el caso de éxito real...">Aplicamos esta fórmula con un Director Comercial en Bogotá: pasó de 3 meses sin respuestas a 4 ofertas de $25M+ COP en solo dos semanas de simulación.</textarea>
-<div class="flex items-center justify-between text-[11px] text-outline">
-<span>Prueba Social: Caso Bogotá</span>
-<span class="text-[#D4FF00]">High Impact</span>
-</div>
-</div>
-<!-- Block 4: CTA al Portal -->
-<div class="rounded bg-surface-container-lowest border border-primary/60 p-4 flex flex-col justify-between space-y-3 relative group">
-<div class="flex items-center justify-between text-xs">
-<span class="font-label-caps text-label-caps text-[#D4FF00] uppercase font-bold tracking-wider">04 · CTA de Conversión</span>
-<span class="px-1.5 py-0.5 rounded text-[10px] bg-[#D4FF00]/20 text-[#D4FF00] font-mono font-bold">00:45 - 00:55</span>
-</div>
-<textarea class="w-full bg-surface-container border border-outline-variant/80 rounded p-2.5 text-xs text-on-surface font-body-sm focus:border-primary focus:ring-1 focus:ring-primary h-28 resize-none transition-colors" placeholder="Llamado directo al taller...">Si tienes una entrevista de alta jerarquía esta semana, comenta 'SIMULACIÓN' o toca el enlace en la biografía para auditar tu caso en vivo conmigo.</textarea>
-<div class="flex items-center justify-between text-[11px] text-outline">
-<span>Filtro: Nequi / DaviPlata / VIP</span>
-<span class="text-primary font-bold">Auto-DM Activo</span>
-</div>
-</div>
-</div>
-<!-- Action Footer for Script Builder -->
-<div class="pt-4 border-t border-outline-variant flex flex-wrap items-center justify-between gap-4">
-<div class="flex items-center gap-4 text-xs text-secondary">
-<span class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-primary text-[18px]">timer</span>
-            Duración Proyectada: <strong class="text-on-surface font-mono">54 segundos</strong>
-</span>
-<span class="flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[#D4FF00] text-[18px]">verified</span>
-            Índice de Retención STAR: <strong class="text-[#D4FF00] font-mono">98.2%</strong>
-</span>
-</div>
-<div class="flex items-center gap-3">
-<button class="px-4 py-2 rounded bg-surface-container-high hover:bg-surface-container border border-outline-variant text-on-surface font-label-md text-label-md transition-colors flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px]">content_copy</span>
-            Copiar a Teleprompter
-          </button>
-<button class="px-5 py-2 rounded bg-primary-container hover:bg-primary text-on-primary-fixed font-label-md text-label-md font-bold tracking-wider transition-colors shadow-md flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">send</span>
-            Enviar a Render &amp; Grabación
-          </button>
-</div>
-</div>
-</section>
+<body class="bg-background text-on-surface font-body antialiased overflow-x-hidden pb-24 selection:bg-primary selection:text-black">
 
-<!-- ================================================================= -->
-<!-- AUDITOR ATS & MÓDULO DE CONVERSIÓN CLÍNICA (50% OFF LANZAMIENTO)  -->
-<!-- ================================================================= -->
-<section id="auditoria-ats" class="bg-surface-container-low rounded-lg border border-outline-variant p-6 space-y-6">
-  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-outline-variant/60 pb-4">
-    <div>
-      <span class="text-xs font-mono text-[#FF6A3D] uppercase tracking-widest font-bold">MOTOR FORENSE ANTI-ATS · 36 VERBOS DE IMPACTO</span>
-      <h2 class="font-headline-md text-headline-md text-on-surface mt-1">Simulador de Auditoría de Hoja de Vida &amp; Score M-DEM</h2>
-      <p class="text-body-sm font-body-sm text-secondary">Pega el párrafo principal de tu perfil o experiencia laboral para medir su supervivencia ante filtros Workday / Taleo.</p>
-    </div>
-    <div class="flex items-center gap-3 bg-surface-container-lowest px-4 py-2 rounded-lg border border-primary/40">
-      <span class="text-xs font-mono text-secondary">Score M-DEM Global:</span>
-      <span id="total-score" class="text-2xl font-bold text-[#D4FF00] font-mono">78</span><span class="text-xs text-secondary">/100</span>
-    </div>
-  </div>
-  <div class="space-y-4">
-    <textarea id="cv-input" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-3.5 text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary h-28" placeholder="Ejemplo: Lideré la optimización del proceso de selección para 120 vacantes, reduciendo el tiempo de contratación en un 35%..."></textarea>
-    <div class="flex flex-wrap gap-3">
-      <button onclick="auditCV()" class="px-6 py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary-fixed font-bold text-xs uppercase tracking-wider transition-all">
-        Ejecutar Auditoría ATS Ahora
-      </button>
-      <a href="simulador.html" class="px-5 py-2.5 rounded-lg border border-primary/60 text-primary hover:bg-primary/10 font-semibold text-xs transition-all">
-        Abrir Simulador 3D C-Level Completo ➔
-      </a>
-      <a href="taller-doctor-demente.html" class="px-5 py-2.5 rounded-lg border border-[#D4FF00]/60 text-[#D4FF00] hover:bg-[#D4FF00]/10 font-semibold text-xs transition-all">
-        Ver Video Masterclass Taller 1080p ➔
-      </a>
-    </div>
-    <div id="audit-results" class="hidden p-4 rounded-xl bg-surface-container-lowest border border-outline-variant space-y-3">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="p-3 rounded-lg bg-surface-container border border-outline-variant/50">
-          <div class="text-xs text-secondary font-mono">Compatibilidad ATS</div>
-          <div id="audit-score" class="text-2xl font-bold text-[#D4FF00] font-mono">0%</div>
-        </div>
-        <div class="p-3 rounded-lg bg-surface-container border border-outline-variant/50">
-          <div class="text-xs text-secondary font-mono">Verbos de Acción</div>
-          <div id="action-verbs-count" class="text-xl font-bold text-cyan-400 font-mono">0 detectados</div>
-        </div>
-        <div class="p-3 rounded-lg bg-surface-container border border-outline-variant/50">
-          <div class="text-xs text-secondary font-mono">Métricas Cuantitativas</div>
-          <div id="metrics-count" class="text-xl font-bold text-purple-400 font-mono">0 detectadas</div>
-        </div>
-      </div>
-      <div id="audit-feedback" class="text-xs text-on-surface pt-2 border-t border-outline-variant/40"></div>
-    </div>
-  </div>
-</section>
+<!-- AUDIO INITIALIZATION BANNER -->
+<div id="audio-init-banner" class="fixed top-12 left-0 right-0 z-50 bg-gradient-to-r from-amber-950 via-surface-container-lowest to-amber-950 border-b border-primary/50 text-center py-1.5 px-4 text-xs font-label text-primary flex items-center justify-center space-x-2 transition-all duration-300 shadow-xl cursor-pointer">
+  <span class="material-symbols-outlined text-sm animate-pulse text-secondary" id="audio-banner-icon">graphic_eq</span>
+  <span class="font-bold tracking-wide">Motor de Audio Listo: Haz clic en cualquier lugar para activar el sonido inmersivo</span>
+  <span class="px-2 py-0.5 rounded bg-primary text-black font-extrabold text-[10px] uppercase ml-2 shadow">Activar Audio</span>
+</div>
 
-<!-- ================================================================= -->
-<!-- MÓDULO DE CONVERSIÓN CLÍNICA DE EMPLEABILIDAD (DOCTOR DEMENTE)    -->
-<!-- Integración: Escalera de Precios (50% OFF Lanzamiento) + WA + ATS -->
-<!-- ================================================================= -->
-<section id="clinica-precios" class="max-w-7xl mx-auto px-6 py-16 border-t border-outline-variant/40">
-  <div class="text-center mb-12">
-    <span class="inline-block px-3 py-1 rounded-full bg-orange-500/20 border border-orange-500/40 text-orange-400 font-mono text-xs uppercase tracking-widest font-bold mb-2">
-      🔥 TARIFA DE LANZAMIENTO (-50% OFF TEMPORAL) · LA CLÍNICA DE LA HOJA DE VIDA
+<!-- TOPBAR -->
+<header class="w-full h-12 px-4 flex justify-between items-center bg-surface-container-lowest z-40 fixed top-0 left-0 right-0 border-b border-outline-variant shadow-2xl">
+  <div class="flex items-center space-x-3">
+    <div class="w-8 h-8 rounded bg-surface-container border border-primary flex items-center justify-center text-primary shadow-[0_0_8px_rgba(242,202,80,0.4)]">
+      <span class="material-symbols-outlined text-base">castle</span>
+    </div>
+    <span class="font-headline font-bold text-lg text-primary tracking-wider uppercase">
+      Doctor Demente: Ciudadela del Empleo
     </span>
-    <h2 class="text-3xl sm:text-4xl font-headline-md font-bold mt-2 text-white">
-      Del Diagnóstico al Alta Laboral
-    </h2>
-    <p class="text-slate-400 max-w-2xl mx-auto mt-2 text-sm">
-      Precios especiales de penetración al 50% por apertura de cohorte (Coaching de empleabilidad y procesos de selección — Cumplimiento Ley 1090 de 2006).
-    </p>
+    <span class="hidden md:inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-secondary text-xs font-label border border-outline-variant">
+      Reino: ID Top Talent &amp; SocialLab [Empleabilidad] • 12ms
+    </span>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <!-- Nivel 1 -->
-    <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col bg-[#1d1b1a]">
-      <span class="text-xs font-mono text-cyan-400 uppercase">Nivel 1 · Puerta de Entrada</span>
-      <h3 class="font-bold text-xl text-white mt-1">Consulta Diagnóstico 1:1</h3>
-      <div class="my-3">
-        <span class="text-xs text-slate-500 line-through font-mono block">$80k–$150k COP</span>
-        <div class="text-2xl font-extrabold text-white">
-          $40k–$75k <span class="text-xs font-normal text-slate-400">COP / sesión</span>
-        </div>
+  <div class="flex items-center space-x-3">
+    <button id="topbar-audio-toggle" class="sfx-btn inline-flex items-center space-x-1.5 px-3 py-1 rounded bg-surface-container-high border border-primary/50 text-primary text-xs font-label hover:border-primary transition-all shadow-[0_0_10px_rgba(242,202,80,0.25)]" title="Alternar Música Ambiental">
+      <span class="material-symbols-outlined text-sm" id="topbar-sound-icon">volume_off</span>
+      <span id="topbar-sound-text" class="font-bold tracking-wide">BGM: OFF</span>
+    </button>
+
+    <button id="ready-check-btn" class="sfx-btn hidden sm:inline-flex items-center px-3 py-1 bg-surface-container-high text-primary hover:bg-surface-container text-xs font-label font-bold border border-outline-variant rounded transition-all active:scale-95">
+      Ready Check
+    </button>
+    <button id="enter-instance-btn" class="sfx-victory inline-flex items-center px-3.5 py-1 bg-primary text-black hover:bg-amber-300 text-xs font-label font-bold rounded shadow-[0_0_12px_rgba(242,202,80,0.4)] transition-all active:scale-95">
+      Entrar al Taller
+    </button>
+    <div class="sfx-rune relative w-8 h-8 rounded-full border-2 border-primary overflow-hidden shadow-[0_0_8px_rgba(242,202,80,0.5)] cursor-pointer" title="Doctor Demente">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUWUjUvyP0bzppnBUNuaVNMLiIZHkMe_VhMg8HnmsSwfs4R7Z7rL5cVjSWQOznTLYWe9XvuW5LaqVVqK-WDm23xI63yVCen1ztH8tWr-aEeZ8x0_MuBrMYuVBFsJt-u7OsAY2wE08N1Q9vcQBINTiFJjmZ4xsGNdw_JOTS6TXMIQ_yxFsQP4roidbJ92rLxUEDlgBCC3FMYJzpyPkyczWciMqmHRv4ZxVDEQPMgvw" alt="Hero Portrait" class="w-full h-full object-cover">
+    </div>
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<aside class="fixed left-0 top-12 bottom-0 w-64 hidden xl:flex flex-col justify-between py-4 z-30 bg-surface-container-low border-r border-outline-variant shadow-2xl">
+  <div class="space-y-4">
+    <div class="px-4 pb-3 border-b border-outline-variant flex items-center space-x-3">
+      <div class="w-10 h-10 rounded border border-primary bg-surface-container flex items-center justify-center text-primary shadow-[0_0_10px_rgba(242,202,80,0.2)]">
+        <span class="material-symbols-outlined">local_police</span>
       </div>
-      <p class="text-xs text-slate-300 mb-6 flex-grow">
-        Auditoría en vivo de tu Hoja de Vida + Plan de acción personalizado en 45–60 min con el método M-DEM y modelo GROW.
-      </p>
-      <button onclick="agendarWhatsApp('Consulta Diagnóstico 1:1 ($40k-$75k - 50% OFF Lanzamiento)')" class="w-full py-2.5 rounded-xl border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black font-semibold text-xs transition-all">
-        Agendar Diagnóstico (-50%)
-      </button>
+      <div>
+        <div class="font-headline font-bold text-sm text-primary leading-tight">Doctor Demente</div>
+        <div class="text-[11px] font-label text-on-surface-variant">Método MAED • GROW</div>
+      </div>
     </div>
 
-    <!-- Nivel 2 (Producto Estrella) -->
-    <div class="glass-card p-6 rounded-3xl border-2 border-purple-500 shadow-xl shadow-purple-500/20 flex flex-col relative bg-[#1d1b1a]">
-      <div class="absolute -top-3 right-4 px-3 py-0.5 rounded-full bg-purple-600 text-white text-[10px] font-mono font-bold uppercase">
-        Más Elegido · 50% OFF
+    <nav class="space-y-1 px-2">
+      <a class="sfx-btn bg-surface-container text-primary border-l-4 border-primary font-bold flex items-center px-3 py-2 rounded text-xs font-label transition-all" href="#raid-canvas">
+        <span class="material-symbols-outlined mr-3 text-base">swords</span>
+        Mapa del Taller
+      </a>
+      <a class="sfx-btn text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface flex items-center px-3 py-2 rounded text-xs font-label transition-all" href="#live-broadcast">
+        <span class="material-symbols-outlined mr-3 text-base">podcasts</span>
+        Taller en Vivo (Zona 1)
+      </a>
+      <a class="sfx-btn text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface flex items-center px-3 py-2 rounded text-xs font-label transition-all" href="#quest-log">
+        <span class="material-symbols-outlined mr-3 text-base">cloud_download</span>
+        Terminal de Misiones
+      </a>
+      <a class="sfx-btn text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface flex items-center px-3 py-2 rounded text-xs font-label transition-all" href="#instructor-modules">
+        <span class="material-symbols-outlined mr-3 text-base">school</span>
+        Módulos del Taller
+      </a>
+      <a class="sfx-btn text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface flex items-center px-3 py-2 rounded text-xs font-label transition-all" href="#skill-tree">
+        <span class="material-symbols-outlined mr-3 text-base">psychology</span>
+        Matriz de Talentos
+      </a>
+    </nav>
+  </div>
+
+  <!-- PROCEDURAL SOUND ENGINE CONTROLS -->
+  <div class="px-3 space-y-3">
+    <div class="p-3 bg-surface-container-lowest rounded border border-primary/40 space-y-2.5 text-xs font-label shadow-lg">
+      <div class="flex items-center justify-between text-primary font-bold border-b border-outline-variant/60 pb-1.5">
+        <span class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm" id="sound-engine-icon">graphic_eq</span>
+          <span>SISTEMA DE AUDIO</span>
+        </span>
+        <span id="sfx-status-chip" class="text-[9px] uppercase px-1.5 py-0.5 rounded bg-primary/20 text-primary border border-primary/30">SFX: ACTIVO</span>
       </div>
-      <span class="text-xs font-mono text-purple-400 uppercase">Nivel 2 · Producto Estrella</span>
-      <h3 class="font-bold text-xl text-white mt-1">Paquete Tratamiento Completo</h3>
-      <div class="my-3">
-        <span class="text-xs text-slate-500 line-through font-mono block">$250k–$450k COP</span>
-        <div class="text-2xl font-extrabold text-white">
-          $125k–$225k <span class="text-xs font-normal text-slate-400">COP / paquete</span>
-        </div>
-      </div>
-      <p class="text-xs text-slate-300 mb-6 flex-grow">
-        Reingeniería total de HV anti-ATS + Optimización de LinkedIn (Fórmula E.P.B.) + Simulacro de entrevista STAR 1:1.
-      </p>
-      <button onclick="agendarWhatsApp('Paquete Tratamiento Completo ($125k-$225k - 50% OFF Lanzamiento)')" class="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs transition-all">
-        Iniciar Tratamiento (-50%)
+
+      <button id="sidebar-ambience-btn" class="w-full py-1.5 px-2 bg-surface-container hover:bg-surface-container-high border border-outline-variant hover:border-primary text-secondary rounded flex items-center justify-between text-[11px] transition-all font-bold">
+        <span class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-xs" id="sidebar-ambience-icon">spatial_audio_off</span>
+          <span id="sidebar-ambience-label">AMBIENTE: APAGADO</span>
+        </span>
+        <span id="sidebar-ambience-badge" class="px-1.5 py-0.5 rounded bg-surface-container-lowest text-outline text-[9px]">TOGGLE</span>
       </button>
+
+      <div class="space-y-1">
+        <div class="flex justify-between text-[10px] text-on-surface-variant font-medium">
+          <span>Volumen Maestro</span>
+          <span id="vol-readout" class="text-primary font-bold">75%</span>
+        </div>
+        <input id="master-vol-slider" type="range" min="0" max="100" value="75" class="w-full h-1 bg-surface-container rounded appearance-none cursor-pointer accent-primary">
+      </div>
+
+      <div class="pt-1 flex justify-between text-[10px] text-on-surface-variant/80 border-t border-outline-variant/40">
+        <span>Sintetizador Web Audio API</span>
+        <span class="text-secondary">Procedural 100%</span>
+      </div>
     </div>
 
-    <!-- Nivel 3 -->
-    <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col bg-[#1d1b1a]">
-      <span class="text-xs font-mono text-orange-400 uppercase">Nivel 3 · Grupal En Vivo</span>
-      <h3 class="font-bold text-xl text-white mt-1">Cohorte / Taller Empleabilidad</h3>
-      <div class="my-3">
-        <span class="text-xs text-slate-500 line-through font-mono block">$50k–$90k COP</span>
-        <div class="text-2xl font-extrabold text-white">
-          $25k–$45k <span class="text-xs font-normal text-slate-400">COP / persona</span>
+    <button id="summon-party-btn" class="sfx-victory w-full py-2 px-3 bg-gradient-to-r from-primary to-primary-container text-black font-bold rounded shadow-[0_0_12px_rgba(242,202,80,0.3)] hover:brightness-110 active:scale-95 transition-all flex items-center justify-center space-x-1.5 text-xs font-label">
+      <span class="material-symbols-outlined text-sm">group_add</span>
+      <span>Convocar Escuadrón</span>
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="mt-12 xl:ml-64 px-4 sm:px-6 lg:px-8 py-6 space-y-10 max-w-7xl">
+
+  <!-- 1. HUD CLUSTER -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+    <div class="lg:col-span-5 bg-surface-container-low border border-outline-variant rounded p-3 relative stone-frame">
+      <div class="flex items-center space-x-3">
+        <div class="relative w-16 h-16 flex-shrink-0 cursor-pointer sfx-rune" title="Ver Hoja de Personaje">
+          <div class="w-full h-full rounded-full bg-surface-container-highest border-2 border-primary p-0.5 overflow-hidden shadow-[0_0_12px_rgba(242,202,80,0.5)]">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUWUjUvyP0bzppnBUNuaVNMLiIZHkMe_VhMg8HnmsSwfs4R7Z7rL5cVjSWQOznTLYWe9XvuW5LaqVVqK-WDm23xI63yVCen1ztH8tWr-aEeZ8x0_MuBrMYuVBFsJt-u7OsAY2wE08N1Q9vcQBINTiFJjmZ4xsGNdw_JOTS6TXMIQ_yxFsQP4roidbJ92rLxUEDlgBCC3FMYJzpyPkyczWciMqmHRv4ZxVDEQPMgvw" alt="Job Hunter Hero" class="w-full h-full object-cover">
+          </div>
+          <div class="absolute -top-1.5 -right-1.5 bg-primary text-black rounded-full w-5 h-5 flex items-center justify-center text-[10px] font-bold border border-black shadow">★</div>
+          <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-surface-container-lowest text-primary text-[10px] font-label px-1.5 rounded border border-outline-variant">Lvl 60</div>
+        </div>
+        <div class="flex-1 space-y-1">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+              <span class="font-headline font-bold text-primary">Candidato Doctor Demente</span>
+              <span class="text-[10px] font-label text-secondary bg-surface-container px-1.5 py-0.5 rounded border border-outline-variant">Estratega MAED</span>
+            </div>
+            <span class="text-[11px] font-label text-primary flex items-center">
+              <span class="material-symbols-outlined text-xs mr-0.5">bedtime</span> Descansado (200%)
+            </span>
+          </div>
+          <div>
+            <div class="flex justify-between text-[11px] font-label mb-0.5 text-on-surface">
+              <span>Moral (HP)</span>
+              <span>8,420 / 8,420 (100%)</span>
+            </div>
+            <div class="h-2.5 w-full bg-surface-container-lowest rounded-sm overflow-hidden border border-outline-variant">
+              <div class="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 w-full"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[11px] font-label mb-0.5 text-on-surface">
+              <span>Enfoque (Maná)</span>
+              <span>6,150 / 6,150 (100%)</span>
+            </div>
+            <div class="h-2 w-full bg-surface-container-lowest rounded-sm overflow-hidden border border-outline-variant">
+              <div class="h-full bg-gradient-to-r from-cyan-600 to-cyan-400 w-full shadow-[0_0_8px_rgba(0,238,252,0.4)]"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <p class="text-xs text-slate-300 mb-6 flex-grow">
-        Entrenamiento intensivo grupal (10–20 cupos) aplicando los 6 talleres de la Ruta MAED y prompts de IA en vivo.
-      </p>
-      <button onclick="agendarWhatsApp('Cupo Taller en Vivo / Cohorte ($25k-$45k - 50% OFF Lanzamiento)')" class="w-full py-2.5 rounded-xl border border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-black font-semibold text-xs transition-all">
-        Separar Cupo en Cohorte (-50%)
-      </button>
     </div>
 
-    <!-- Nivel 4 (Completado) -->
-    <div class="glass-card p-6 rounded-3xl border border-white/10 flex flex-col bg-[#1d1b1a]">
-      <span class="text-xs font-mono text-emerald-400 uppercase">Nivel 4 · Autónomo / B2B</span>
-      <h3 class="font-bold text-xl text-white mt-1">Kit Plantillas ATS &amp; Mini-Curso</h3>
-      <div class="my-3">
-        <span class="text-xs text-slate-500 line-through font-mono block">$30k–$90k · B2B $1.5M+</span>
-        <div class="text-2xl font-extrabold text-white">
-          $15k–$45k <span class="text-xs font-normal text-slate-400">COP · B2B $750k+</span>
+    <div class="lg:col-span-4 bg-surface-container-low border border-outline-variant rounded p-3 relative stone-frame">
+      <div class="flex items-center space-x-3">
+        <div class="flex-1 space-y-1 text-right">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] font-label text-error bg-error-container/30 px-1.5 py-0.5 rounded border border-error-container">Jefe: Tier 4</span>
+            <span class="font-headline font-bold text-error">Vicepresidente de Talento</span>
+          </div>
+          <div>
+            <div class="flex justify-between text-[11px] font-label mb-0.5 text-on-surface">
+              <span>Fase 3: Revisión Ejecutiva</span>
+              <span>2,450,000 / 5,000,000 (49%)</span>
+            </div>
+            <div class="h-2.5 w-full bg-surface-container-lowest rounded-sm overflow-hidden border border-outline-variant">
+              <div class="h-full bg-gradient-to-r from-rose-800 to-red-500 w-[49%]"></div>
+            </div>
+          </div>
+          <div class="text-[10px] font-label text-on-surface-variant flex justify-end items-center space-x-1">
+            <span>Amenaza Total: <strong class="text-primary">112% (Riesgo de Rechazo)</strong></span>
+          </div>
+        </div>
+        <div class="relative w-14 h-14 flex-shrink-0 cursor-pointer sfx-rune" title="Boss Target">
+          <div class="w-full h-full rounded-full bg-surface-container-highest border-2 border-error p-0.5 overflow-hidden shadow-[0_0_12px_rgba(147,0,10,0.6)]">
+            <div class="w-full h-full rounded-full bg-gradient-to-br from-red-950 to-slate-900 flex items-center justify-center text-error font-bold">
+              <span class="material-symbols-outlined text-2xl">sentiment_very_dissatisfied</span>
+            </div>
+          </div>
+          <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-surface-container-lowest text-error text-[9px] font-label px-1 rounded border border-outline-variant">?? Boss</div>
         </div>
       </div>
-      <p class="text-xs text-slate-300 mb-6 flex-grow">
-        Plantillas editables validadas contra algoritmos ATS + Guía de Prompts IA y calculadora de logros STAR.
-      </p>
-      <div class="flex flex-col gap-2">
-        <a href="https://wa.me/573104692473?text=Hola%20Doctor%20Demente%2C%20quiero%20el%20Kit%20Digital%20o%20Paquete%20Anti-ATS%20con%2050%25%20OFF%20v%C3%ADa%20Nequi%20o%20PSE.%20Acepto%20Ley%201581." target="_blank" rel="noopener" class="w-full py-2 rounded-xl bg-emerald-400 text-black hover:bg-emerald-300 font-bold text-xs text-center transition-all">
-          Pago Directo PSE / Nequi
-        </a>
-        <button onclick="agendarWhatsApp('Kit Digital Plantillas ATS ($15k-$45k) / B2B ($750k+)')" class="w-full py-2 rounded-xl border border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-black font-semibold text-xs transition-all">
-          Consultar por WhatsApp
+    </div>
+
+    <div class="lg:col-span-3 bg-surface-container-low border border-outline-variant rounded p-3 flex flex-col justify-between space-y-2 stone-frame">
+      <div class="flex justify-between items-center text-xs font-label border-b border-outline-variant pb-1">
+        <span class="text-on-surface-variant">Nivel MAED: <span class="text-primary font-bold">420+</span></span>
+        <span class="text-on-surface-variant">Grupo: <span class="text-secondary font-bold">24 / 25</span></span>
+      </div>
+      <div class="grid grid-cols-6 gap-1 py-0.5">
+        <button class="sfx-btn bg-surface-container p-1 rounded border border-outline-variant text-center hover:border-primary hover:text-primary transition-all group" title="Hoja de Personaje [C]">
+          <span class="material-symbols-outlined text-xs block">account_box</span>
+          <span class="text-[8px] font-label text-outline group-hover:text-primary">C</span>
+        </button>
+        <button class="sfx-btn bg-surface-container p-1 rounded border border-outline-variant text-center hover:border-primary hover:text-primary transition-all group" title="Libro de Hechizos [N]">
+          <span class="material-symbols-outlined text-xs block">auto_stories</span>
+          <span class="text-[8px] font-label text-outline group-hover:text-primary">N</span>
+        </button>
+        <button class="sfx-btn bg-surface-container p-1 rounded border border-outline-variant text-center hover:border-primary hover:text-primary transition-all group" title="Registro de Misiones [L]">
+          <span class="material-symbols-outlined text-xs block">history_edu</span>
+          <span class="text-[8px] font-label text-outline group-hover:text-primary">L</span>
+        </button>
+        <button class="sfx-btn bg-surface-container p-1 rounded border border-outline-variant text-center hover:border-primary hover:text-primary transition-all group" title="Gremio [J]">
+          <span class="material-symbols-outlined text-xs block">groups</span>
+          <span class="text-[8px] font-label text-outline group-hover:text-primary">J</span>
+        </button>
+        <button class="sfx-btn bg-surface-container p-1 rounded border border-outline-variant text-center hover:border-primary hover:text-primary transition-all group" title="Buscador de Mazmorras [I]">
+          <span class="material-symbols-outlined text-xs block">travel_explore</span>
+          <span class="text-[8px] font-label text-outline group-hover:text-primary">I</span>
+        </button>
+        <button class="sfx-btn bg-surface-container p-1 rounded border border-outline-variant text-center hover:border-primary hover:text-primary transition-all group" title="Ajustes de Sonido [Esc]">
+          <span class="material-symbols-outlined text-xs block">settings</span>
+          <span class="text-[8px] font-label text-outline group-hover:text-primary">Esc</span>
         </button>
       </div>
     </div>
-  </div>
-</section>
-</main>
-<!-- ========================================== -->
-<!-- 5. SHARED COMPONENT: Footer (Strict JSON) -->
-<!-- ========================================== -->
-<footer class="bg-surface-container-low dark:bg-surface-dim border-t border-outline-variant dark:border-outline mt-12 full-width flat no shadows">
-<div class="w-full max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
-<!-- Brand & Copyright -->
-<div class="flex flex-col items-center md:items-start text-center md:text-left gap-2 max-w-2xl">
-<div class="flex items-center gap-2">
-<span class="text-headline-sm font-headline-sm text-primary dark:text-inverse-primary font-bold">Doctor Demente · Modo Entrevista</span>
-<span class="px-2 py-0.5 rounded text-[10px] uppercase font-label-caps bg-surface-container-highest text-[#D4FF00] border border-outline-variant font-bold">Ψ Laboratorio Forense</span>
-</div>
-<p class="font-body-sm text-body-sm text-secondary dark:text-secondary-fixed-dim">
-          © 2025 Doctor Demente · Taller de Empleabilidad. Todos los derechos reservados. Este servicio de simulación y coaching no garantiza vinculación laboral directa.
-        </p>
-</div>
-<!-- Links defined by Source of Truth JSON -->
-<nav class="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-2">
-<a class="text-secondary dark:text-secondary-fixed-dim font-body-sm text-body-sm hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-150 focus:outline-none focus:underline" href="#terminos">
-          Términos del Servicio
-        </a>
-<a class="text-secondary dark:text-secondary-fixed-dim font-body-sm text-body-sm hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-150 focus:outline-none focus:underline" href="#privacidad">
-          Aviso Legal &amp; Privacidad
-        </a>
-<a class="text-primary dark:text-primary-fixed font-semibold font-body-sm text-body-sm hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-150 focus:outline-none focus:underline" href="#star">
-          Metodología STAR
-        </a>
-<a class="text-secondary dark:text-secondary-fixed-dim font-body-sm text-body-sm hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-150 focus:outline-none focus:underline" href="#contacto">
-          Contacto Directo
-        </a>
-</nav>
-</div>
-</footer>
-<script>
-  const WHATSAPP_DEMENTE = "573104692473";
+  </section>
 
-  function agendarWhatsApp(planElegido) {
-    const scoreActual = document.getElementById('total-score')?.innerText || 'N/A';
-    const utmSource = new URLSearchParams(window.location.search).get('utm_source') || 'simulador_web';
-    const mensaje = `Hola Doctor Demente, vengo del Simulador de Empleabilidad (Score M-DEM: ${scoreActual}/100 | Origen: ${utmSource}). Quiero adquirir: ${planElegido}. Acepto la política de tratamiento de datos (Ley 1581 de 2012).`;
-    window.open(`https://wa.me/${WHATSAPP_DEMENTE}?text=${encodeURIComponent(mensaje)}`, '_blank');
+  <!-- 2. HERO CALLOUT -->
+  <section class="relative rounded-lg p-8 sm:p-10 overflow-hidden border border-primary/30 stone-frame bg-gradient-to-b from-surface-container via-surface-container-low to-surface-container-lowest">
+    <div class="absolute -right-20 -top-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 max-w-3xl space-y-4">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded bg-surface-container-high border border-primary/40 text-primary text-xs font-label uppercase tracking-widest shadow">
+        <span class="material-symbols-outlined text-sm">warning</span>
+        <span>Aviso de Taller • Dificultad Heroica de Carrera</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-headline text-primary font-bold leading-tight drop-shadow">
+        TALLER DE EMPLEABILIDAD DOCTOR DEMENTE: BATALLA POR LA OFERTA DE 6 CIFRAS
+      </h1>
+      <p class="text-base font-body text-on-surface-variant leading-relaxed">
+        Embárcate en una expedición intensiva de empleabilidad de 3 días. Neutraliza los filtros de ATS automatizados, supera interrogatorios STAR y ejecuta apalancamiento salarial con directivos de nivel 4.
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-3 border-y border-outline-variant text-center sm:text-left">
+        <div>
+          <div class="text-[10px] font-label text-outline uppercase">Duración del Taller</div>
+          <div class="font-headline font-bold text-lg text-primary">3 Días Completos</div>
+        </div>
+        <div>
+          <div class="text-[10px] font-label text-outline uppercase">Aumento Promedio</div>
+          <div class="font-headline font-bold text-lg text-secondary">+85 Puntos</div>
+        </div>
+        <div>
+          <div class="text-[10px] font-label text-outline uppercase">Botín Garantizado</div>
+          <div class="font-headline font-bold text-lg text-tertiary">Carta de Oferta</div>
+        </div>
+        <div>
+          <div class="text-[10px] font-label text-outline uppercase">Composición</div>
+          <div class="font-headline font-bold text-lg text-on-surface">25/25 Activo</div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4 pt-1">
+        <button id="hero-enter-btn" class="sfx-victory px-6 py-3 bg-gradient-to-r from-red-700 via-red-600 to-amber-600 text-amber-100 font-headline font-bold rounded border-2 border-primary shadow-[0_0_20px_rgba(242,202,80,0.4)] hover:brightness-125 transition-all transform active:scale-95 flex items-center space-x-2">
+          <span class="material-symbols-outlined text-base">swords</span>
+          <span>ENTRAR AL TALLER DE EMPLEABILIDAD</span>
+        </button>
+        <a class="sfx-btn px-5 py-3 bg-surface-container hover:bg-surface-container-high text-primary border border-outline-variant font-label font-bold text-xs rounded transition-all active:scale-95 flex items-center space-x-2" href="#quest-log">
+          <span class="material-symbols-outlined text-sm">menu_book</span>
+          <span>ABRIR REGISTRO DE MISIONES</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ISOMETRIC CITADEL MAP -->
+  <section class="space-y-4" id="raid-canvas">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-outline-variant pb-3">
+      <div>
+        <div class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-primary">map</span>
+          <h2 class="font-headline text-2xl text-primary font-bold">Mapa Isométrico del Taller</h2>
+        </div>
+        <p class="text-xs font-body text-on-surface-variant">Pasa el cursor o haz clic en los portales [P1 - P6] para activar resonancias rúnicas y teletransportar a tu grupo.</p>
+      </div>
+      <div class="flex items-center space-x-2 bg-surface-container p-1 rounded border border-outline-variant">
+        <span class="text-xs font-label text-outline px-2">Especialización Activa:</span>
+        <button class="sfx-btn px-2.5 py-1 text-xs font-label rounded bg-primary text-black font-bold">Paladín (Full-Stack)</button>
+        <button class="sfx-btn px-2.5 py-1 text-xs font-label rounded text-on-surface-variant hover:text-on-surface">Mago (Producto)</button>
+        <button class="sfx-btn px-2.5 py-1 text-xs font-label rounded text-on-surface-variant hover:text-on-surface">Pícaro (Growth)</button>
+      </div>
+    </div>
+
+    <div class="relative rounded-lg overflow-hidden gold-elite-frame bg-surface-container-lowest">
+      <div class="relative w-full aspect-[16/9] max-h-[640px] overflow-hidden group">
+        <img alt="Mapa Isométrico" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZowbVQzKN31M8O-9GezUjtHUZQzFZ-5Cb6sUA4AGykgQtkqToJRtkqUd5Cb6zwoQLSfksoQpoVsNeLnciTLQbrChqqT-iLwf-kxnyez-x0n8YzU0yNh9ZULeuvaeO09XJdAeHxUJUzXK4ZeOom2uHZyTIbLGzRhOUGakpEA2wh-zX9FhNt0lKi9ShdqsX5RTyvLQ3wlqxctCpD5lNEac-M5VmiWKag6i3wnNVMDo">
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-black/30 pointer-events-none"></div>
+
+        <div class="portal-pin sfx-rune absolute top-[20%] left-[21%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group/pin z-30" data-portal="P1: Catacumbas del Bazaar / LinkedIn Desde Cero">
+          <div class="rune-floating relative flex flex-col items-center">
+            <div class="mb-1 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest/95 border border-cyan-400 text-cyan-400 text-[10px] font-bold shadow-[0_0_12px_rgba(0,238,252,0.9)] animate-pulse">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+              <span>[EN VIVO] Cristian: LinkedIn Desde Cero</span>
+            </div>
+            <div class="relative">
+              <img src="https://lh3.googleusercontent.com/aida/ALJJyrCZH0b3wzrXhMqUZes8kV3zMsSi3kU6Y0wuyQkDAIedkDZXWcliV3zpOe1rYq3VTIi6yw2IVTbcmVnBi0AR1q9qaFtHLFNPZNtq5AjdFjGhVMDC-oLO_hHTxIBebirto2k8vIx8ZVZL0cIHi3OtNtCcr4y1YuwkDOtHQ_MXkGrW633NiAJ2CBOcP10Np5MhQPN0oT5Iqh5ACK2gkWqNCYw6OpGX_YcWPx8DozMbvU" alt="Cristian Live Token" class="w-16 h-16 object-contain drop-shadow-[0_0_10px_rgba(0,238,252,0.8)]">
+              <div class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-cyan-400 text-black flex items-center justify-center font-bold text-[10px] border border-white shadow">P1</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-pin sfx-rune absolute top-[14%] right-[22%] -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20" data-portal="P2: Sala de Juntas Ejecutiva">
+          <div class="w-8 h-8 rounded-full bg-primary text-black font-bold text-xs flex items-center justify-center border-2 border-white shadow-[0_0_15px_rgba(242,202,80,0.8)] hover:scale-110 transition-transform">P2</div>
+        </div>
+
+        <div class="portal-pin sfx-rune absolute top-[52%] left-[44%] -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20" data-portal="P3: Caverna del Elixir / Redes de Contacto">
+          <div class="w-8 h-8 rounded-full bg-emerald-400 text-black font-bold text-xs flex items-center justify-center border-2 border-white shadow-[0_0_15px_rgba(16,185,129,0.8)] animate-pulse hover:scale-110 transition-transform">P3</div>
+        </div>
+
+        <div class="portal-pin sfx-rune absolute top-[28%] right-[8%] -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20" data-portal="P4: Aguja Arcana / Diseño de Sistemas">
+          <div class="w-8 h-8 rounded-full bg-tertiary text-black font-bold text-xs flex items-center justify-center border-2 border-white shadow-[0_0_15px_rgba(227,194,255,0.8)] hover:scale-110 transition-transform">P4</div>
+        </div>
+
+        <div class="portal-pin sfx-rune absolute bottom-[20%] left-[12%] -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20" data-portal="P5: Cámara de Pizarras y STAR">
+          <div class="w-8 h-8 rounded-full bg-secondary text-black font-bold text-xs flex items-center justify-center border-2 border-white shadow-[0_0_15px_rgba(0,238,252,0.8)] hover:scale-110 transition-transform">P5</div>
+        </div>
+
+        <div class="portal-pin sfx-rune absolute bottom-[22%] right-[14%] -translate-x-1/2 -translate-y-1/2 cursor-pointer z-20" data-portal="P6: Bóveda Salarial y Alquimia de Compensación">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-amber-600 text-black font-bold text-xs flex items-center justify-center border-2 border-white shadow-[0_0_15px_rgba(242,202,80,0.8)] animate-bounce hover:scale-110 transition-transform">P6</div>
+        </div>
+
+        <div class="sfx-btn absolute bottom-[20%] left-[18%] -translate-x-1/2 -translate-y-1/2 z-30 cursor-pointer group/hero transition-transform hover:scale-105">
+          <div class="absolute -top-16 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none whitespace-nowrap z-40">
+            <div class="px-2 py-0.5 rounded-full bg-cyan-600 text-white font-bold text-[9px] uppercase shadow tracking-wider">
+              INGRESANDO A ZONA 1 // LINKEDIN
+            </div>
+            <span class="material-symbols-outlined text-secondary text-sm">keyboard_arrow_down</span>
+          </div>
+          <img alt="Hero en Portal" class="w-24 h-24 object-contain drop-shadow-[0_10px_16px_rgba(0,0,0,0.9)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUWUjUvyP0bzppnBUNuaVNMLiIZHkMe_VhMg8HnmsSwfs4R7Z7rL5cVjSWQOznTLYWe9XvuW5LaqVVqK-WDm23xI63yVCen1ztH8tWr-aEeZ8x0_MuBrMYuVBFsJt-u7OsAY2wE08N1Q9vcQBINTiFJjmZ4xsGNdw_JOTS6TXMIQ_yxFsQP4roidbJ92rLxUEDlgBCC3FMYJzpyPkyczWciMqmHRv4ZxVDEQPMgvw">
+        </div>
+
+        <div class="absolute bottom-3 left-3 bg-surface-container-lowest/90 backdrop-blur border border-outline-variant p-2 rounded shadow text-xs font-label z-20 space-y-0.5">
+          <div class="text-primary font-bold flex items-center"><span class="material-symbols-outlined text-xs mr-1">navigation</span>Cuadrícula del Taller: 6 Portales Activos</div>
+          <div class="text-on-surface-variant text-[11px]">Haz clic en cualquier portal o botón para emitir resonancia rúnica y efectos de audio.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. LIVE WORKSHOP BROADCAST (ZONE 1) -->
+  <section class="space-y-4" id="live-broadcast">
+    <div class="bg-surface-container-low border border-cyan-400/50 rounded-lg p-5 stone-frame space-y-4 holo-glow">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-outline-variant pb-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-full border-2 border-cyan-400 overflow-hidden shadow-[0_0_10px_rgba(0,238,252,0.5)] flex-shrink-0 sfx-rune cursor-pointer">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxz7T767TBLRbt0--LRC8YWPYz0rBKloHR6ZHSDzoZnQFsXHTvLe9zWafjc9HB7QolSVxAPIh8Mx-MISGge5He6I_13iAsKwbHP90jiHsBlF40bzXQ_J_KiPOYUWlA9c3B6ImOnPJeRqf-TygdDL5oilZ3d2xQAebDSW0tKx5QZ-PkwH8oV3nhxf2VCBLnYKCzbi0vTcDjVLSanPy5ites3j871LXhSaE8yTT4vTI" alt="Cristian Avatar" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="px-2 py-0.5 rounded bg-cyan-400 text-black text-[10px] font-bold uppercase tracking-wider">Transmisión en Vivo</span>
+              <span class="text-xs font-label text-cyan-400">Zona 1: Catacumbas del Bazaar</span>
+            </div>
+            <h3 class="font-headline text-xl text-primary font-bold mt-0.5">LinkedIn Desde Cero: El Pergamino Arcano del Networking</h3>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="px-2.5 py-1 rounded bg-surface-container-lowest border border-cyan-400/40 text-cyan-400 text-xs font-label flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <span>142 Aventureros sintonizados</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="relative rounded-lg overflow-hidden border border-cyan-400/40 bg-black">
+        <img alt="Holograma Taller LinkedIn" class="w-full h-auto max-h-[500px] object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAr8vEd-trqo7rXFKVg5BaKrQwye8fMpN4g4ADKn7kmDOYli4RKzVbfBl31YRskrUVH3K-pwVCOnhR5VTPV4nxH66GxbvlrPFNHLMxIYpqFtvfbj-iX5u8Qi-Vnlw-Yyqt8nsO5Zzu7vT4_uomtUQdZ-XoMzZzyNQZjA_SplPvMWtmnCWfVSf-HtPG6DJyrB4Ow9qVIqKmvtwRk30hIR9XGHax4aF8B5EdhrBe9H-Y">
+        
+        <div class="absolute bottom-3 left-3 right-3 p-3 rounded bg-surface-container-lowest/90 backdrop-blur border border-cyan-400/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="text-xs font-body italic text-on-surface">
+            "Cristian: ¡Observen esta pantalla rúnica flotante! Su perfil de LinkedIn no es un currículum estático, sino un faro encantado para reclutadores."
+          </div>
+          <div class="flex items-center space-x-2">
+            <button class="sfx-victory px-3 py-1.5 rounded bg-cyan-400 text-black font-bold text-xs font-label shadow-[0_0_10px_rgba(0,238,252,0.6)] hover:brightness-110 active:scale-95 transition-all flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">download</span>
+              <span>Descargar Notas</span>
+            </button>
+            <button class="sfx-btn px-3 py-1.5 rounded bg-surface-container border border-cyan-400/40 text-cyan-400 text-xs font-label hover:bg-surface-container-high transition-colors">
+              Cambiar Cámara
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. QUEST LOG & NPC DIALOGUE -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-6" id="quest-log">
+    <div class="lg:col-span-7 rounded-lg overflow-hidden border-2 border-primary/50 shadow-2xl stone-frame">
+      <div class="bg-surface-container-lowest px-4 py-2.5 border-b border-outline-variant flex justify-between items-center">
+        <div class="flex items-center space-x-2 text-primary font-headline text-lg font-bold">
+          <span class="material-symbols-outlined">assignment</span>
+          <span>Misión Actual: La Caída del Guardián</span>
+        </div>
+        <span class="text-xs font-label px-2 py-0.5 rounded bg-primary/20 text-primary border border-primary/40 font-bold">[Misión del Taller]</span>
+      </div>
+      <div class="parchment-bg p-6 space-y-4">
+        <div>
+          <div class="text-xs uppercase font-label tracking-wider text-amber-900 font-bold">Capítulo II • Sector 01: Optimización de CV</div>
+          <h3 class="font-headline text-xl text-amber-950 font-bold mt-0.5">Vence al Gólem de Seguimiento Automatizado (ATS)</h3>
+        </div>
+        <p class="text-sm font-body text-stone-900 leading-relaxed">
+          "Las puertas corporativas están custodiadas por algoritmos que rechazan PDFs mal maquetados. Arma tus pergaminos con métricas de impacto focalizadas y alinea tus runas de acción con la descripción de puesto."
+        </p>
+
+        <div class="border-t border-amber-800/30 pt-3">
+          <h4 class="text-xs font-label text-amber-950 font-bold mb-2 uppercase tracking-wide">Objetivos de Misión:</h4>
+          <ul class="space-y-2 text-xs font-body text-stone-900">
+            <li class="flex items-center space-x-2 cursor-pointer sfx-btn">
+              <span class="w-4 h-4 rounded-sm bg-amber-900/20 border border-amber-900 flex items-center justify-center text-[10px] text-amber-950 font-bold">✓</span>
+              <span class="line-through text-stone-600">Reformatear CV estándar en pergamino de columna única legible (1/1)</span>
+            </li>
+            <li class="flex items-center space-x-2 cursor-pointer sfx-btn">
+              <span class="w-4 h-4 rounded-sm bg-amber-900/20 border border-amber-900 flex items-center justify-center text-[10px] text-amber-950 font-bold">✓</span>
+              <span class="line-through text-stone-600">Eliminar 10 duendes de filtro de palabras clave exactas (10/10)</span>
+            </li>
+            <li class="flex items-center space-x-2 cursor-pointer sfx-rune">
+              <span class="w-4 h-4 rounded-sm border border-amber-900 flex items-center justify-center text-[10px] text-amber-950 font-bold"></span>
+              <span>Sobrevivir al asedio de código en vivo de 45 minutos contra Staff Engineers (0/1)</span>
+            </li>
+            <li class="flex items-center space-x-2 cursor-pointer sfx-rune">
+              <span class="w-4 h-4 rounded-sm border border-amber-900 flex items-center justify-center text-[10px] text-amber-950 font-bold"></span>
+              <span>Despojar la Carta de Oferta refrendada del Baúl de la Sala de Juntas (0/1)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="border-t border-amber-800/30 pt-3 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <div class="text-[10px] font-label text-amber-950 font-bold uppercase">Recompensas al Completar:</div>
+            <div class="flex items-center space-x-3 mt-1">
+              <span class="inline-flex items-center text-xs font-bold text-amber-900">
+                <span class="material-symbols-outlined text-sm text-amber-700 mr-1">monetization_on</span>
+                185,000 Oro Base
+              </span>
+              <span class="inline-flex items-center text-xs font-bold text-purple-900">
+                <span class="material-symbols-outlined text-sm mr-1">stars</span>
+                +12,500 EXP de Carrera
+              </span>
+            </div>
+          </div>
+          <button id="track-quest-btn" class="sfx-victory px-4 py-1.5 bg-amber-900 text-amber-100 font-bold text-xs font-label rounded border border-amber-950 hover:bg-amber-950 transition-colors shadow">
+            Rastrear Misión
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 bg-surface-container-low border border-outline-variant rounded-lg p-5 flex flex-col justify-between stone-frame space-y-4">
+      <div>
+        <div class="flex items-center space-x-3 pb-3 border-b border-outline-variant">
+          <div class="relative w-16 h-16 rounded-full border-2 border-primary overflow-hidden shadow-[0_0_15px_rgba(242,202,80,0.5)] flex-shrink-0 cursor-pointer sfx-rune">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxz7T767TBLRbt0--LRC8YWPYz0rBKloHR6ZHSDzoZnQFsXHTvLe9zWafjc9HB7QolSVxAPIh8Mx-MISGge5He6I_13iAsKwbHP90jiHsBlF40bzXQ_J_KiPOYUWlA9c3B6ImOnPJeRqf-TygdDL5oilZ3d2xQAebDSW0tKx5QZ-PkwH8oV3nhxf2VCBLnYKCzbi0vTcDjVLSanPy5ites3j871LXhSaE8yTT4vTI" alt="Cristian Mentor" class="w-full h-full object-cover">
+            <div class="absolute top-0 right-0 bg-primary text-black text-[9px] font-bold px-1 rounded-bl">★</div>
+          </div>
+          <div>
+            <div class="font-headline font-bold text-lg text-primary flex items-center space-x-1.5">
+              <span>Cristian (Doctor Demente)</span>
+              <span class="text-[10px] font-label text-secondary bg-surface-container px-1.5 py-0.5 rounded border border-outline-variant uppercase">Instructor</span>
+            </div>
+            <div class="text-xs font-label text-secondary">&lt;Director de Empleabilidad y Psicólogo&gt;</div>
+          </div>
+        </div>
+        <div class="mt-4 p-4 rounded bg-surface-container-lowest border border-outline-variant text-sm font-body text-on-surface leading-relaxed italic relative">
+          <span class="text-2xl text-primary font-serif absolute -top-1 left-2 opacity-30">“</span>
+          "Escuchen con atención. En este taller, el mero esfuerzo en solitario no superará a los guardianes. He diseñado cada módulo para forjar respuestas inquebrantables, desviar preguntas trampa con el encantamiento STAR y asegurar que la oferta de seis cifras sea suya."
+        </div>
+      </div>
+
+      <div class="space-y-2 pt-2">
+        <button class="sfx-btn w-full text-left px-3 py-2 rounded bg-surface-container hover:bg-surface-container-high border border-outline-variant hover:border-primary text-xs font-label text-on-surface hover:text-primary transition-all flex items-center space-x-2">
+          <span class="text-primary font-bold">▸</span>
+          <span>"Cristian, desglosa la estrategia de palabras clave del Capítulo I ATS."</span>
+        </button>
+        <button class="sfx-btn w-full text-left px-3 py-2 rounded bg-surface-container hover:bg-surface-container-high border border-outline-variant hover:border-primary text-xs font-label text-on-surface hover:text-primary transition-all flex items-center space-x-2">
+          <span class="text-primary font-bold">▸</span>
+          <span>"Estoy listo para entrar a la Arena de Pizarra técnica bajo tu guía."</span>
+        </button>
+        <button class="sfx-btn w-full text-left px-3 py-2 rounded bg-surface-container hover:bg-surface-container-high border border-outline-variant hover:border-primary text-xs font-label text-on-surface hover:text-primary transition-all flex items-center space-x-2">
+          <span class="text-primary font-bold">▸</span>
+          <span>"Revisa las tácticas de Alquimia de Compensación Ejecutiva de Cristian."</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. THE 4 WORKSHOP MODULES -->
+  <section class="space-y-6" id="instructor-modules">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-outline-variant pb-3">
+      <div>
+        <div class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-primary text-2xl">school</span>
+          <h2 class="font-headline text-2xl text-primary font-bold">Módulos de Taller de Empleabilidad</h2>
+        </div>
+        <p class="text-xs font-body text-on-surface-variant">Clases magistrales activas dirigidas por el Doctor Demente en todas las alas de la ciudadela.</p>
+      </div>
+      <div class="flex items-center space-x-2 bg-surface-container px-3 py-1.5 rounded border border-primary/40 shadow">
+        <div class="w-6 h-6 rounded-full overflow-hidden border border-primary flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxz7T767TBLRbt0--LRC8YWPYz0rBKloHR6ZHSDzoZnQFsXHTvLe9zWafjc9HB7QolSVxAPIh8Mx-MISGge5He6I_13iAsKwbHP90jiHsBlF40bzXQ_J_KiPOYUWlA9c3B6ImOnPJeRqf-TygdDL5oilZ3d2xQAebDSW0tKx5QZ-PkwH8oV3nhxf2VCBLnYKCzbi0vTcDjVLSanPy5ites3j871LXhSaE8yTT4vTI" alt="Cristian" class="w-full h-full object-cover">
+        </div>
+        <span class="text-xs font-label text-primary font-bold">Instructor Líder: Cristian Castañeda</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Módulo 1 -->
+      <div class="bg-surface-container-low border border-cyan-400/50 hover:border-cyan-400 rounded-lg overflow-hidden stone-frame space-y-4 transition-all group flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-[16/9] w-full overflow-hidden border-b border-cyan-400/40 bg-black">
+            <img src="https://lh3.googleusercontent.com/aida/ALJJyrAr8vEd-trqo7rXFKVg5BaKrQwye8fMpN4g4ADKn7kmDOYli4RKzVbfBl31YRskrUVH3K-pwVCOnhR5VTPV4nxH66GxbvlrPFNHLMxIYpqFtvfbj-iX5u8Qi-Vnlw-Yyqt8nsO5Zzu7vT4_uomtUQdZ-XoMzZzyNQZjA_SplPvMWtmnCWfVSf-HtPG6DJyrB4Ow9qVIqKmvtwRk30hIR9XGHax4aF8B5EdhrBe9H-Y" alt="Módulo 1 Reino" class="w-full h-full object-cover filter brightness-105 group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-lowest/95 border border-cyan-400 text-cyan-400 text-xs font-label font-bold">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+              <span>Reino: Catacumbas del Bazaar / LinkedIn Arcano</span>
+            </div>
+            <span class="absolute top-3 right-3 text-xs font-label px-2 py-0.5 rounded bg-cyan-400 text-black font-bold">Activo</span>
+          </div>
+          <div class="p-5 space-y-3">
+            <span class="text-xs font-label text-cyan-400 uppercase font-bold tracking-wider">Módulo 01 • Sector Alpha</span>
+            <h3 class="font-headline font-bold text-lg text-primary">Capítulo I: LinkedIn From Scratch &amp; El Pergamino Arcano</h3>
+            <p class="text-xs font-body text-on-surface-variant">Encuentro en vivo: optimización de perfil, titulares de alto impacto y pergaminos de contacto con reclutadores.</p>
+            <div class="p-3 bg-surface-container-lowest rounded border border-cyan-400/30 text-xs font-body italic text-on-surface">
+              "Directiva Cristian: Tu CV no es una biografía: es una runa de fijación de objetivos que activa radares ATS de inmediato."
+            </div>
+          </div>
+        </div>
+        <div class="px-5 pb-5">
+          <button class="sfx-victory w-full py-2.5 px-4 bg-gradient-to-r from-cyan-600 to-secondary text-black font-bold text-xs font-label rounded border border-cyan-400 shadow-[0_0_12px_rgba(0,238,252,0.4)] hover:brightness-110 active:scale-95 transition-all flex items-center justify-center space-x-2">
+            <span class="material-symbols-outlined text-sm">portal</span>
+            <span>Teletransportarse al Reino [Portal Zona 1]</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Módulo 2 -->
+      <div class="bg-surface-container-low border border-amber-400/50 hover:border-amber-400 rounded-lg overflow-hidden stone-frame space-y-4 transition-all group flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-[16/9] w-full overflow-hidden border-b border-amber-400/40 bg-black">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeHN0eLXVChKRNpbtTbq3IcEjKH73h4riyTOZAp4aa7hkO6EtFBT10FXIeNRBFhmHOucGQ02l8Rt8hZarH85olxZXCoo3-RrslHsWP-5Lt4xLloaUn7Z_8LN8mcVCtx9GVRFvupBQfVSCndMHxdfa4ucmVj1hRBlKUA0PUK9s-CXkkRIQKSzh1tExBqxEIvHqSDxxPmlvZm7wOa5_H01lNVYRbZDMTM6TjNelO4Xs" alt="Módulo 2 Reino" class="w-full h-full object-cover filter brightness-105 group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-lowest/95 border border-amber-400 text-amber-400 text-xs font-label font-bold">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+              <span>Reino: Forja y Coliseo de Respuestas STAR</span>
+            </div>
+            <span class="absolute top-3 right-3 text-xs font-label px-2 py-0.5 rounded bg-surface-container text-amber-400 border border-amber-400/50 font-bold">Encounter Ready</span>
+          </div>
+          <div class="p-5 space-y-3">
+            <span class="text-xs font-label text-amber-400 uppercase font-bold tracking-wider">Módulo 02 • Sector Beta</span>
+            <h3 class="font-headline font-bold text-lg text-primary">Capítulo II: Behavioral Gauntlet &amp; Paradas STAR</h3>
+            <p class="text-xs font-body text-on-surface-variant">Dominio de preguntas conductuales, narrativa de liderazgo y serenidad ante interrogatorios técnicos.</p>
+            <div class="p-3 bg-surface-container-lowest rounded border border-amber-400/30 text-xs font-body italic text-on-surface">
+              "Directiva Cristian: Frente a preguntas de conflicto, usa la fórmula STAR para sellar con impacto tangible en el negocio."
+            </div>
+          </div>
+        </div>
+        <div class="px-5 pb-5">
+          <button class="sfx-victory w-full py-2.5 px-4 bg-gradient-to-r from-red-700 via-red-600 to-amber-600 text-amber-100 font-bold text-xs font-label rounded border border-amber-400 shadow-[0_0_12px_rgba(242,202,80,0.4)] hover:brightness-110 active:scale-95 transition-all flex items-center justify-center space-x-2">
+            <span class="material-symbols-outlined text-sm">shield</span>
+            <span>Teletransportarse al Reino [Coliseo STAR]</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Módulo 3 -->
+      <div class="bg-surface-container-low border border-tertiary/50 hover:border-tertiary rounded-lg overflow-hidden stone-frame space-y-4 transition-all group flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-[16/9] w-full overflow-hidden border-b border-tertiary/40 bg-black">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuASOh5z9yzgSsFMOBOo14wrOONU8VnNSCHEYLsZHaaZYxO4Uolmhz2bwgmuQrG67GTZyP-zKHpvPgA_gT1CqYVI1coUb1PhsUV9_3Oo36dfIK0hMBj_AiB3ZPDU9HFPAdy7YvhcWgJK5EAbkSLxYVC2v_FOmFHWcSBF0tp-2yWUJx27i0ZMAd6VJetaIMEZ99cCO9N1rEZ_C791Q64ICdKlCwJhhIv24MXNkXAhWn0" alt="Módulo 3 Reino" class="w-full h-full object-cover filter brightness-105 group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-lowest/95 border border-tertiary text-tertiary text-xs font-label font-bold">
+              <span class="w-2 h-2 rounded-full bg-tertiary animate-ping"></span>
+              <span>Reino: Ciudadela Flotante de Arquitectura</span>
+            </div>
+            <span class="absolute top-3 right-3 text-xs font-label px-2 py-0.5 rounded bg-surface-container text-tertiary border border-tertiary/50 font-bold">Boss Trial</span>
+          </div>
+          <div class="p-5 space-y-3">
+            <span class="text-xs font-label text-tertiary uppercase font-bold tracking-wider">Módulo 03 • Sector Gamma</span>
+            <h3 class="font-headline font-bold text-lg text-primary">Capítulo III: Whiteboard Citadel &amp; Live System Design</h3>
+            <p class="text-xs font-body text-on-surface-variant">Patrones de arquitectura distribuida, resolución de cuellos de botella y duelos de pizarra interactiva.</p>
+            <div class="p-3 bg-surface-container-lowest rounded border border-tertiary/30 text-xs font-body italic text-on-surface">
+              "Directiva Cristian: En diseño de sistemas, el éxito radica en fundamentar trade-offs con claridad de latencia y consistencia."
+            </div>
+          </div>
+        </div>
+        <div class="px-5 pb-5">
+          <button class="sfx-victory w-full py-2.5 px-4 bg-gradient-to-r from-tertiary to-tertiary-container text-black font-bold text-xs font-label rounded border border-tertiary shadow-[0_0_12px_rgba(227,194,255,0.4)] hover:brightness-110 active:scale-95 transition-all flex items-center justify-center space-x-2">
+            <span class="material-symbols-outlined text-sm">auto_awesome</span>
+            <span>Teletransportarse al Reino [Ciudadela]</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Módulo 4 -->
+      <div class="bg-surface-container-low border border-emerald-400/50 hover:border-emerald-400 rounded-lg overflow-hidden stone-frame space-y-4 transition-all group flex flex-col justify-between">
+        <div>
+          <div class="relative aspect-[16/9] w-full overflow-hidden border-b border-emerald-400/40 bg-black">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuApQI8DkWgUR_YMOVKapP56C7vkQBjeu4ZeESTusQl0oj9evVDd7Sfaz_H1onsJDpInXUwudUsR6CNbW4EGv9kK-zMtWI4Krem9-pVT1EN0jeMnjIq5H2JamrAJnjWvAspXCqRvFFXbXIi1JaPTqtOTZgqX456glChbtU-qcH5T5G3mvjlUI-USLJ3dmecc2pGv3_Wz5r49bVnl4N2Mmp-vKmNyYr8ykcObOMoaK_w" alt="Módulo 4 Reino" class="w-full h-full object-cover filter brightness-105 group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-lowest/95 border border-emerald-400 text-emerald-400 text-xs font-label font-bold">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Reino: Cámara Acorazada de Negociación</span>
+            </div>
+            <span class="absolute top-3 right-3 text-xs font-label px-2 py-0.5 rounded bg-emerald-400 text-black font-bold">Botín Final</span>
+          </div>
+          <div class="p-5 space-y-3">
+            <span class="text-xs font-label text-emerald-400 uppercase font-bold tracking-wider">Módulo 04 • Executive Vault</span>
+            <h3 class="font-headline font-bold text-lg text-primary">Capítulo IV: Executive Vault &amp; Alquimia de Compensación</h3>
+            <p class="text-xs font-body text-on-surface-variant">Estrategias de contraoferta, cálculo de acciones RSU y maximización de bonos de contratación.</p>
+            <div class="p-3 bg-surface-container-lowest rounded border border-emerald-400/30 text-xs font-body italic text-on-surface">
+              "Directiva Cristian: Jamás aceptes en caliente; agradece y negocia el paquete completo con rigor estratégico."
+            </div>
+          </div>
+        </div>
+        <div class="px-5 pb-5">
+          <button class="sfx-victory w-full py-2.5 px-4 bg-gradient-to-r from-emerald-600 to-amber-600 text-amber-100 font-bold text-xs font-label rounded border border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.4)] hover:brightness-110 active:scale-95 transition-all flex items-center justify-center space-x-2">
+            <span class="material-symbols-outlined text-sm">lock_open</span>
+            <span>Teletransportarse al Reino [Bóveda Salarial]</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. SKILL TREE MATRIX -->
+  <section class="space-y-4" id="skill-tree">
+    <div class="flex items-center justify-between border-b border-outline-variant pb-3">
+      <div>
+        <h2 class="font-headline text-2xl text-primary font-bold">Matriz de Talentos de Empleabilidad</h2>
+        <p class="text-xs font-body text-on-surface-variant">Puntos Disponibles: <strong class="text-primary">12 Puntos</strong> • Reinicio: 50 Oro</p>
+      </div>
+      <span class="text-xs font-label text-secondary bg-surface-container px-3 py-1 rounded border border-outline-variant">
+        Especialización: 31 / 20 / 0 (Híbrida Meta)
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-surface-container-low border border-outline-variant rounded-lg p-5 stone-frame space-y-4">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-2">
+          <div class="flex items-center space-x-2">
+            <span class="material-symbols-outlined text-secondary">terminal</span>
+            <h3 class="font-headline font-bold text-secondary">Hechicería de Código</h3>
+          </div>
+          <span class="text-xs font-label text-on-surface-variant font-bold">15 / 15</span>
+        </div>
+        <div class="flex justify-around items-center py-2">
+          <div class="text-center sfx-rune cursor-pointer group">
+            <div class="w-12 h-12 rounded bg-surface-container border-2 border-primary flex items-center justify-center text-primary shadow group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined">data_object</span>
+            </div>
+            <div class="text-xs font-label text-primary mt-1">5/5</div>
+            <div class="text-[11px] text-on-surface-variant">Proeza LeetCode</div>
+          </div>
+          <div class="text-center sfx-rune cursor-pointer group">
+            <div class="w-12 h-12 rounded bg-surface-container border-2 border-primary flex items-center justify-center text-primary shadow group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined">cloud</span>
+            </div>
+            <div class="text-xs font-label text-primary mt-1">5/5</div>
+            <div class="text-[11px] text-on-surface-variant">Arquitectura Cloud</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low border border-outline-variant rounded-lg p-5 stone-frame space-y-4">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-2">
+          <div class="flex items-center space-x-2">
+            <span class="material-symbols-outlined text-primary">auto_fix_high</span>
+            <h3 class="font-headline font-bold text-primary">Encantamiento STAR</h3>
+          </div>
+          <span class="text-xs font-label text-on-surface-variant font-bold">12 / 15</span>
+        </div>
+        <div class="flex justify-around items-center py-2">
+          <div class="text-center sfx-rune cursor-pointer group">
+            <div class="w-12 h-12 rounded bg-surface-container border-2 border-primary flex items-center justify-center text-primary shadow group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined">psychology</span>
+            </div>
+            <div class="text-xs font-label text-primary mt-1">5/5</div>
+            <div class="text-[11px] text-on-surface-variant">Presencia Ejecutiva</div>
+          </div>
+          <div class="text-center sfx-rune cursor-pointer group">
+            <div class="w-12 h-12 rounded bg-surface-container border-2 border-primary flex items-center justify-center text-primary shadow group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined">forum</span>
+            </div>
+            <div class="text-xs font-label text-primary mt-1">2/5</div>
+            <div class="text-[11px] text-on-surface-variant">Afinidad Cultural</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low border border-outline-variant rounded-lg p-5 stone-frame space-y-4">
+        <div class="flex items-center justify-between border-b border-outline-variant pb-2">
+          <div class="flex items-center space-x-2">
+            <span class="material-symbols-outlined text-tertiary">handshake</span>
+            <h3 class="font-headline font-bold text-tertiary">Diplomacia Ejecutiva</h3>
+          </div>
+          <span class="text-xs font-label text-on-surface-variant font-bold">4 / 15</span>
+        </div>
+        <div class="flex justify-around items-center py-2">
+          <div class="text-center sfx-rune cursor-pointer group">
+            <div class="w-12 h-12 rounded bg-surface-container border-2 border-primary flex items-center justify-center text-primary shadow group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined">payments</span>
+            </div>
+            <div class="text-xs font-label text-primary mt-1">3/5</div>
+            <div class="text-[11px] text-on-surface-variant">Compensación Total</div>
+          </div>
+          <div class="text-center sfx-rune cursor-pointer group">
+            <div class="w-12 h-12 rounded bg-surface-container border-2 border-primary flex items-center justify-center text-primary shadow group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined">trending_up</span>
+            </div>
+            <div class="text-xs font-label text-primary mt-1">1/5</div>
+            <div class="text-[11px] text-on-surface-variant">Valoración Equity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CITADEL PASSES -->
+  <section class="space-y-6">
+    <div class="text-center space-y-2 max-w-xl mx-auto">
+      <h2 class="font-headline text-3xl font-bold text-primary">Pases del Taller de Empleabilidad</h2>
+      <p class="text-xs font-body text-on-surface-variant">Elige tu nivel de entrenamiento. Desbloquea mentorías y resultados verificados.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+      <div class="bg-surface-container-low border border-outline-variant rounded-lg p-6 stone-frame flex flex-col justify-between space-y-6">
+        <div>
+          <div class="flex justify-between items-baseline mb-2">
+            <span class="text-xs font-label text-on-surface-variant uppercase font-bold">Nivel 1 • Modo Normal</span>
+            <span class="font-headline font-bold text-2xl text-primary">$149</span>
+          </div>
+          <h3 class="font-headline font-bold text-xl text-on-surface">Pase de Mazmorra Normal</h3>
+          <div class="mt-4 p-3 bg-surface-container-lowest rounded border border-outline-variant text-xs space-y-1.5 font-label">
+            <div class="text-secondary font-bold">[Raro: Kit de Asaltante Principiante]</div>
+            <div class="text-on-surface">• +20 Puntuación de Lectura ATS</div>
+            <div class="text-on-surface">• Transmisión en Vivo de los 3 Días</div>
+          </div>
+        </div>
+        <button onclick="window.open('https://link.mercadopago.com.co/drdemente', '_blank')" class="sfx-victory w-full py-2.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant hover:border-primary text-xs font-label font-bold text-primary rounded transition-all">
+          Despejar Pase Normal
+        </button>
+      </div>
+
+      <div class="bg-surface-container border-2 border-primary rounded-lg p-6 gold-elite-frame flex flex-col justify-between space-y-6 relative shadow-2xl">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-black font-extrabold text-[10px] font-label px-3 py-0.5 rounded-full uppercase tracking-wider shadow">
+          ★ Especialización Más Popular
+        </div>
+        <div>
+          <div class="flex justify-between items-baseline mb-2">
+            <span class="text-xs font-label text-primary uppercase font-bold">Nivel 2 • Modo Heroico</span>
+            <span class="font-headline font-bold text-3xl text-primary">$299</span>
+          </div>
+          <h3 class="font-headline font-bold text-xl text-primary">Pase Heroico</h3>
+          <div class="mt-4 p-3 bg-surface-container-lowest rounded border border-primary/30 text-xs space-y-1.5 font-label">
+            <div class="text-primary font-bold">[Épico: Abalorio de Bono de Firma]</div>
+            <div class="text-on-surface">• Revisión Directa de CV 1-a-1</div>
+            <div class="text-on-surface">• Simulador de Pizarra en Vivo con Mentores</div>
+            <div class="text-on-surface">• Matriz de Negociación y Compensación</div>
+          </div>
+        </div>
+        <button onclick="window.open('https://link.mercadopago.com.co/drdemente', '_blank')" class="sfx-victory w-full py-3 bg-gradient-to-r from-primary to-primary-container text-black font-extrabold text-xs font-label rounded shadow-[0_0_15px_rgba(242,202,80,0.5)] hover:brightness-110 active:scale-95 transition-all">
+          Elegir Pase Heroico
+        </button>
+      </div>
+
+      <div class="bg-surface-container-low border border-outline-variant rounded-lg p-6 stone-frame flex flex-col justify-between space-y-6">
+        <div>
+          <div class="flex justify-between items-baseline mb-2">
+            <span class="text-xs font-label text-tertiary uppercase font-bold">Nivel 3 • Modo Mítico+</span>
+            <span class="font-headline font-bold text-2xl text-tertiary">$599</span>
+          </div>
+          <h3 class="font-headline font-bold text-xl text-on-surface">Pase Mítico Keystone</h3>
+          <div class="mt-4 p-3 bg-surface-container-lowest rounded border border-outline-variant text-xs space-y-1.5 font-label">
+            <div class="text-tertiary font-bold">[Legendario: Recomendación de Staff]</div>
+            <div class="text-on-surface">• Referencia Ejecutiva Directa</div>
+            <div class="text-on-surface">• Pruebas Ilimitadas de Sistema Simulado</div>
+            <div class="text-on-surface">• Acceso Vitalicio a la Armería</div>
+          </div>
+        </div>
+        <button onclick="window.open('https://link.mercadopago.com.co/drdemente', '_blank')" class="sfx-victory w-full py-2.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant hover:border-tertiary text-xs font-label font-bold text-tertiary rounded transition-all">
+          Despejar Pase Mítico
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- PROCEDURAL SOUNDSCAPE ENGINE (WEB AUDIO API) -->
+<script>
+(function() {
+  let audioCtx = null;
+  let masterGain = null;
+  let ambienceGain = null;
+  let isAmbiencePlaying = false;
+  let ambienceNodes = [];
+  let userUnlocked = false;
+
+  function getAudioContext() {
+    if (!audioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return null;
+      audioCtx = new AudioContextClass();
+
+      masterGain = audioCtx.createGain();
+      const sliderVal = document.getElementById('master-vol-slider')?.value || 75;
+      masterGain.gain.setValueAtTime(sliderVal / 100, audioCtx.currentTime);
+      masterGain.connect(audioCtx.destination);
+
+      ambienceGain = audioCtx.createGain();
+      ambienceGain.gain.setValueAtTime(0, audioCtx.currentTime);
+      ambienceGain.connect(masterGain);
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    return audioCtx;
   }
 
-  window.auditCV = function() {
-    const text = document.getElementById('cv-input').value.trim();
-    const resultsEl = document.getElementById('audit-results');
-    if (!text) {
-      alert('Por favor ingresa un fragmento de tu experiencia o perfil para auditar.');
-      return;
+  function unlockAudioEngine() {
+    if (userUnlocked) return;
+    getAudioContext();
+    userUnlocked = true;
+
+    const banner = document.getElementById('audio-init-banner');
+    if (banner) {
+      banner.classList.add('opacity-0', '-translate-y-4');
+      setTimeout(() => banner.remove(), 400);
     }
-    resultsEl.classList.remove('hidden');
+    const icon = document.getElementById('sound-engine-icon');
+    if (icon) icon.classList.add('text-secondary');
+  }
 
-    const normalize = (str) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    const normalizedText = normalize(text);
+  window.addEventListener('click', unlockAudioEngine, { once: false });
+  window.addEventListener('keydown', unlockAudioEngine, { once: false });
 
-    const verbs = [
-      'lidere', 'implemente', 'reduje', 'optimice', 'disene', 'coordine',
-      'incremente', 'desarrolle', 'gestione', 'audite', 'automatice', 'negocie',
-      'estructure', 'ejecute', 'supervise', 'capacite', 'estandarice', 'lance',
-      'transforme', 'acelere', 'consolide', 'diagnostique', 'formule', 'dirigi',
-      'logre', 'alcance', 'construi', 'modernice', 'escale', 'integre',
-      'potencie', 'revitalice', 'sistematice', 'rentabilice', 'mitigue', 'articule'
+  function startCorporateDungeonAmbience() {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    stopCorporateDungeonAmbience();
+
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    osc1.type = 'sawtooth';
+    osc1.frequency.setValueAtTime(55, ctx.currentTime);
+    osc2.type = 'triangle';
+    osc2.frequency.setValueAtTime(55.6, ctx.currentTime);
+
+    const droneFilter = ctx.createBiquadFilter();
+    droneFilter.type = 'lowpass';
+    droneFilter.frequency.setValueAtTime(140, ctx.currentTime);
+    droneFilter.Q.setValueAtTime(4, ctx.currentTime);
+
+    const droneGain = ctx.createGain();
+    droneGain.gain.setValueAtTime(0.18, ctx.currentTime);
+
+    osc1.connect(droneFilter);
+    osc2.connect(droneFilter);
+    droneFilter.connect(droneGain);
+    droneGain.connect(ambienceGain);
+
+    osc1.start();
+    osc2.start();
+    ambienceNodes.push(osc1, osc2);
+
+    const crystalOsc = ctx.createOscillator();
+    crystalOsc.type = 'sine';
+    crystalOsc.frequency.setValueAtTime(880, ctx.currentTime);
+
+    const crystalLFO = ctx.createOscillator();
+    crystalLFO.type = 'sine';
+    crystalLFO.frequency.setValueAtTime(0.2, ctx.currentTime);
+
+    const crystalLFOGain = ctx.createGain();
+    crystalLFOGain.gain.setValueAtTime(15, ctx.currentTime);
+
+    crystalLFO.connect(crystalLFOGain);
+    crystalLFOGain.connect(crystalOsc.frequency);
+
+    const crystalGain = ctx.createGain();
+    crystalGain.gain.setValueAtTime(0.04, ctx.currentTime);
+
+    crystalOsc.connect(crystalGain);
+    crystalGain.connect(ambienceGain);
+
+    crystalOsc.start();
+    crystalLFO.start();
+    ambienceNodes.push(crystalOsc, crystalLFO);
+
+    const echoTimer = setInterval(() => {
+      if (!isAmbiencePlaying || !audioCtx) return;
+      playDistantTypewriterEcho();
+    }, 4500);
+    ambienceNodes.push({ stop: () => clearInterval(echoTimer) });
+
+    ambienceGain.gain.cancelScheduledValues(ctx.currentTime);
+    ambienceGain.gain.setValueAtTime(0, ctx.currentTime);
+    ambienceGain.gain.linearRampToValueAtTime(0.65, ctx.currentTime + 2.5);
+
+    isAmbiencePlaying = true;
+    updateAmbienceUI(true);
+  }
+
+  function stopCorporateDungeonAmbience() {
+    if (!audioCtx || !isAmbiencePlaying) return;
+    const ctx = audioCtx;
+    ambienceGain.gain.cancelScheduledValues(ctx.currentTime);
+    ambienceGain.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 1.2);
+
+    setTimeout(() => {
+      ambienceNodes.forEach(node => {
+        try {
+          if (node.stop) node.stop();
+          if (node.disconnect) node.disconnect();
+        } catch(e) {}
+      });
+      ambienceNodes = [];
+    }, 1300);
+
+    isAmbiencePlaying = false;
+    updateAmbienceUI(false);
+  }
+
+  function toggleAmbience() {
+    unlockAudioEngine();
+    if (isAmbiencePlaying) {
+      stopCorporateDungeonAmbience();
+    } else {
+      startCorporateDungeonAmbience();
+    }
+  }
+
+  function updateAmbienceUI(active) {
+    const topText = document.getElementById('topbar-sound-text');
+    const topIcon = document.getElementById('topbar-sound-icon');
+    const sideLabel = document.getElementById('sidebar-ambience-label');
+    const sideIcon = document.getElementById('sidebar-ambience-icon');
+    const sideBadge = document.getElementById('sidebar-ambience-badge');
+
+    if (active) {
+      if (topText) topText.textContent = 'BGM: ON';
+      if (topIcon) {
+        topIcon.textContent = 'volume_up';
+        topIcon.classList.add('text-secondary', 'animate-pulse');
+      }
+      if (sideLabel) sideLabel.textContent = 'AMBIENTE: ACTIVO';
+      if (sideIcon) sideIcon.textContent = 'volume_up';
+      if (sideBadge) {
+        sideBadge.textContent = 'SONANDO';
+        sideBadge.className = 'px-1.5 py-0.5 rounded bg-cyan-400 text-black font-extrabold text-[9px] animate-pulse';
+      }
+    } else {
+      if (topText) topText.textContent = 'BGM: OFF';
+      if (topIcon) {
+        topIcon.textContent = 'volume_off';
+        topIcon.classList.remove('text-secondary', 'animate-pulse');
+      }
+      if (sideLabel) sideLabel.textContent = 'AMBIENTE: APAGADO';
+      if (sideIcon) sideIcon.textContent = 'spatial_audio_off';
+      if (sideBadge) {
+        sideBadge.textContent = 'TOGGLE';
+        sideBadge.className = 'px-1.5 py-0.5 rounded bg-surface-container-lowest text-outline text-[9px]';
+      }
+    }
+  }
+
+  function playDistantTypewriterEcho() {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(600 + Math.random() * 400, ctx.currentTime);
+
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(1200, ctx.currentTime);
+    filter.Q.setValueAtTime(6, ctx.currentTime);
+
+    gain.gain.setValueAtTime(0.018, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.18);
+
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(ambienceGain);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 0.2);
+  }
+
+  function playChimeClick(freq = 523.25) {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(freq, now);
+    osc1.frequency.exponentialRampToValueAtTime(freq * 1.5, now + 0.12);
+
+    osc2.type = 'triangle';
+    osc2.frequency.setValueAtTime(freq * 2, now);
+
+    gain.gain.setValueAtTime(0.12, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+
+    osc1.connect(gain);
+    osc2.connect(gain);
+    gain.connect(masterGain);
+
+    osc1.start(now);
+    osc2.start(now);
+    osc1.stop(now + 0.26);
+    osc2.stop(now + 0.26);
+  }
+
+  function playHoverChime() {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(440, now);
+    osc.frequency.linearRampToValueAtTime(587.33, now + 0.08);
+
+    gain.gain.setValueAtTime(0.035, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.1);
+
+    osc.connect(gain);
+    gain.connect(masterGain);
+
+    osc.start(now);
+    osc.stop(now + 0.11);
+  }
+
+  function playRunicActivation() {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    const subOsc = ctx.createOscillator();
+    const subGain = ctx.createGain();
+    subOsc.type = 'sawtooth';
+    subOsc.frequency.setValueAtTime(110, now);
+    subOsc.frequency.exponentialRampToValueAtTime(220, now + 0.4);
+
+    const subFilter = ctx.createBiquadFilter();
+    subFilter.type = 'lowpass';
+    subFilter.frequency.setValueAtTime(250, now);
+    subFilter.frequency.exponentialRampToValueAtTime(600, now + 0.35);
+
+    subGain.gain.setValueAtTime(0.15, now);
+    subGain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
+
+    subOsc.connect(subFilter);
+    subFilter.connect(subGain);
+    subGain.connect(masterGain);
+
+    subOsc.start(now);
+    subOsc.stop(now + 0.7);
+
+    const notes = [659.25, 880.00, 1318.51];
+    notes.forEach((freq, idx) => {
+      const bell = ctx.createOscillator();
+      const bellGain = ctx.createGain();
+      bell.type = 'sine';
+      bell.frequency.setValueAtTime(freq, now + idx * 0.08);
+
+      bellGain.gain.setValueAtTime(0, now);
+      bellGain.gain.setValueAtTime(0.08, now + idx * 0.08);
+      bellGain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.08 + 0.45);
+
+      bell.connect(bellGain);
+      bellGain.connect(masterGain);
+
+      bell.start(now + idx * 0.08);
+      bell.stop(now + idx * 0.08 + 0.5);
+    });
+  }
+
+  function playEpicVictoryFanfare() {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+
+    const chordSeq = [
+      { t: 0.0, freqs: [293.66, 369.99, 440.00] },
+      { t: 0.22, freqs: [392.00, 493.88, 587.33] },
+      { t: 0.45, freqs: [440.00, 554.37, 659.25] },
+      { t: 0.72, freqs: [587.33, 739.99, 880.00, 1174.66] }
     ];
 
-    let foundVerbs = 0;
-    verbs.forEach(v => {
-      if (normalizedText.includes(v)) foundVerbs++;
+    chordSeq.forEach(chord => {
+      chord.freqs.forEach(freq => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(freq, now + chord.t);
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1800, now + chord.t);
+
+        gain.gain.setValueAtTime(0, now);
+        gain.gain.setValueAtTime(0.09, now + chord.t);
+        const duration = chord.t === 0.72 ? 1.4 : 0.24;
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + chord.t + duration);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(masterGain);
+
+        osc.start(now + chord.t);
+        osc.stop(now + chord.t + duration + 0.05);
+      });
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const topToggle = document.getElementById('topbar-audio-toggle');
+    if (topToggle) topToggle.addEventListener('click', toggleAmbience);
+
+    const sideToggle = document.getElementById('sidebar-ambience-btn');
+    if (sideToggle) sideToggle.addEventListener('click', toggleAmbience);
+
+    const slider = document.getElementById('master-vol-slider');
+    const volReadout = document.getElementById('vol-readout');
+    if (slider) {
+      slider.addEventListener('input', (e) => {
+        const val = e.target.value;
+        if (volReadout) volReadout.textContent = val + '%';
+        if (masterGain && audioCtx) {
+          masterGain.gain.setValueAtTime(val / 100, audioCtx.currentTime);
+        }
+      });
+    }
+
+    document.querySelectorAll('.sfx-btn').forEach(el => {
+      el.addEventListener('click', () => playChimeClick(587.33));
+      el.addEventListener('mouseenter', playHoverChime);
     });
 
-    const numbers = text.match(/\d+([.,]\d+)?[%$kKmM]?/g) || [];
-    const metricsCount = numbers.length;
+    document.querySelectorAll('.sfx-rune, .portal-pin').forEach(el => {
+      el.addEventListener('click', () => playRunicActivation());
+      el.addEventListener('mouseenter', () => playChimeClick(783.99));
+    });
 
-    let score = 25;
-    if (foundVerbs > 0) score += Math.min(foundVerbs * 18, 45);
-    if (metricsCount > 0) score += Math.min(metricsCount * 15, 30);
-    if (text.length > 110) score += 5;
-    if (score > 100) score = 100;
+    document.querySelectorAll('.sfx-victory').forEach(el => {
+      el.addEventListener('click', () => playEpicVictoryFanfare());
+      el.addEventListener('mouseenter', playHoverChime);
+    });
 
-    document.getElementById('audit-score').innerText = score + '%';
-    document.getElementById('action-verbs-count').innerText = foundVerbs + ' detectados';
-    document.getElementById('metrics-count').innerText = metricsCount + ' detectadas';
-
-    const feedbackEl = document.getElementById('audit-feedback');
-    if (score < 55) {
-      feedbackEl.innerHTML = `<span class='text-orange-400 font-bold'>⚠️ Alerta Roja ATS (${score}%):</span> Tu redacción es pasiva y descriptiva. Un ATS como Workday o Taleo descartará este bloque en menos de 3 segundos. <button onclick="agendarWhatsApp('Urgente: Reingeniería de CV (Score ATS ${score}% - 50% OFF)')" class="underline text-cyan-400 ml-2 font-semibold">Corregir mi CV con Doctor Demente (-50%) ➔</button>`;
-    } else if (score < 82) {
-      feedbackEl.innerHTML = `<span class='text-cyan-400 font-bold'>⚡ Nivel Competitivo (${score}%):</span> Tienes verbos de acción, pero te falta cerrar con la 'R' del método STAR (% de mejora, ahorro en COP o tiempo reducido). <button onclick="agendarWhatsApp('Optimización STAR de CV (Score ATS ${score}% - 50% OFF)')" class="underline text-purple-400 ml-2 font-semibold">Pulir en Consulta 1:1 (-50%) ➔</button>`;
-    } else {
-      feedbackEl.innerHTML = `<span class='text-emerald-400 font-bold'>🏆 Nivel Élite Anti-ATS (${score}%):</span> Estructura de alto impacto con verbos de liderazgo y evidencia numérica clara. Ahora asegúrate de defender este logro en la Sala de Entrevista STAR.`;
+    const initBanner = document.getElementById('audio-init-banner');
+    if (initBanner) {
+      initBanner.addEventListener('click', unlockAudioEngine);
     }
-  };
+  });
+})();
 </script>
-</body></html>
+</body>
+</html>
